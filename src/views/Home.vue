@@ -5,10 +5,10 @@ import TechStack from '../components/TechStack.vue';
 import Services from '../components/Services.vue';
 import SelectedWork from '../components/SelectedWork.vue';
 import CaseStudy from '../components/CaseStudy.vue';
-import About from '../components/About.vue';
-import Process from '../components/Process.vue';
 import FeaturedWork from '../components/FeaturedWork.vue';
 import Testimonials from '../components/Testimonials.vue';
+import About from '../components/About.vue';
+import Process from '../components/Process.vue';
 import FAQ from '../components/FAQ.vue';
 import Contact from '../components/Contact.vue';
 </script>

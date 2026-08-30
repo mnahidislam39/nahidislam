@@ -1,31 +1,63 @@
 @import "tailwindcss";
+@import 'tailwind-animations';
+
 /* Tailwind v4 Theme Configuration for Fonts */
 @theme {
-  --font-sans: 'Inter', sans-serif;
-  --font-heading: 'Manrope', sans-serif;
+   --font-sans: 'Inter', sans-serif;
+   --font-heading: 'Manrope', sans-serif;
 }
 
 html {
-  scroll-behavior: smooth;
+   scroll-behavior: smooth;
 }
 
 @variant dark (&:where(.dark, .dark *));
 
 @keyframes floatSlow {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+   0%, 100% { transform: translateY(0px); }
+   50% { transform: translateY(-10px); }
 }
 
-h1, h2, h3, h4, h5, h6, a, button{
+/* Unified Scroll-driven Zoom & Fade Animation Keyframes */
+@keyframes smoothZoomIn {
+   from {
+      opacity: 0;
+      transform: scale(0.92) translateY(30px);
+   }
+   to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+   }
+}
+
+/* গ্লোবাল এবং রিইউজেবল স্ক্রোল অ্যানিমেশন ক্লাস */
+.scroll-zoom-effect,
+.scroll-zoom-container,
+.scroll-card-item {
+   animation: smoothZoomIn linear;
+   animation-timeline: view();
+   animation-range: entry 0% cover 30%;
+}
+
+/* ফলব্যাক: যেসব ব্রাউজারে অ্যানিমেশন-টাইমলাইন সাপোর্ট করে না */
+@supports not (animation-timeline: view()) {
+   .scroll-zoom-effect,
+   .scroll-zoom-container,
+   .scroll-card-item {
+      opacity: 1;
+      transform: none;
+   }
+}
+
+h1, h2, h3, h4, h5, h6, a, button {
   font-family: var(--font-heading) !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.05em ;
+  letter-spacing: 0.05em;
 }
 
 body {
   font-family: var(--font-sans);
 }
-
 
 .animate-bounce-slow {
   animation: floatSlow 3s ease-in-out infinite;

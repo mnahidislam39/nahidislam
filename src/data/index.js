@@ -10,6 +10,7 @@ export { contactData } from './contactData.js';
 export { aboutData } from './aboutData.js';
 export { faqData } from './faqData.js';
 export { footerData } from './footerData.js';
-export { singleProjectData } from './singleProjectData.js';
+// export { singleProjectData } from './singleProjectData.js';
 export { featuredProjectsData } from './featuredProjectsData.js';
 export { techStackData } from './techStackData.js';
+

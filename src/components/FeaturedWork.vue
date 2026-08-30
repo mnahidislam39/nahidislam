@@ -3,11 +3,16 @@ import { ref, computed } from 'vue';
 import { featuredProjectsData } from '../data';
 import { Icon } from '@iconify/vue';
 import { useRouter } from 'vue-router';
+import { useScrollReveal } from '../composables/useScrollReveal';
+
 const router = useRouter();
 
 // কার্ড বা "View Project" এ ক্লিকের ফাংশন
 const viewProjectDetails = (id) => {
-   router.push(`/project/${id}`);
+   router.push({ 
+      path: `/project/${id}`, 
+      query: { from: 'featuredWork' } 
+   });
 };
 
 // Swiper Vue.js components & modules
@@ -23,11 +28,14 @@ const featured = featuredProjectsData;
 const modules = [Navigation, Pagination];
 
 // Active Category State
-const activeCategory = ref("All Projects");
+const activeCategory = ref("All");
+
+// Scroll Reveal Composable (false parameter to avoid zoom-out bounce bug)
+const { elementRef, isVisible } = useScrollReveal(0.1, false);
 
 // Filtered Projects Computed Property
 const filteredProjects = computed(() => {
-   if (activeCategory.value === "All Projects") {
+   if (activeCategory.value === "All") {
       return featured.projects;
    }
    return featured.projects.filter(project =>
@@ -39,25 +47,26 @@ const filteredProjects = computed(() => {
 
 <template>
    <section
-      class="relative px-4 py-20 overflow-hidden bg-[#fbf9f4] dark:bg-[#0f0d0b] featured-section sm:px-6 lg:px-8 text-slate-900 dark:text-slate-100 transition-colors duration-300"
+      ref="elementRef"
+      class="relative px-4 py-28 overflow-hidden bg-[#fbf9f4] dark:bg-[#0f0d0b] featured-section pt-0 sm:px-6 lg:px-8 text-slate-900 dark:text-slate-100 transition-colors duration-300"
       id="featuredWork"
    >
 
       <div
-         class="max-w-[1440px] mx-auto relative z-10 featured-container-inner"
+         :class="['max-w-[1440px] mx-auto relative z-10 featured-container-inner scroll-zoom-container', { 'start-zoom': isVisible }]"
          id="featured-container"
       >
 
          <!-- Top Header & Category Filter Row -->
          <div
-            class="flex flex-col justify-between gap-6 mb-16 lg:flex-row lg:items-end featured-header-wrapper"
+            class="flex flex-col justify-between gap-6 mb-16 lg:flex-row lg:items-end featured-header-wrapper scroll-card-item items-center md:items-start  text-center md:text-left"
             id="featured-header"
          >
 
             <!-- Left Title and Description -->
             <div class="max-w-xl featured-title-desc-wrapper">
                <div
-                  class="flex flex-col items-start mb-4 section-tag-group"
+                  class="flex flex-col md:items-start items-center mb-4 section-tag-group"
                   id="section-tag-wrapper"
                >
                   <span
@@ -105,7 +114,7 @@ const filteredProjects = computed(() => {
 
          <!-- Projects Slider Container -->
          <div
-            class="relative px-2 mb-16 sm:px-4 slider-outer-container"
+            class="relative px-2 mb-16 sm:px-4 slider-outer-container scroll-card-item"
             id="projects-slider-wrapper"
          >
 
@@ -197,7 +206,7 @@ const filteredProjects = computed(() => {
 
          <!-- Bottom Stats & Quote Banner -->
          <div
-            class="bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] p-8 sm:p-10 shadow-[0_10px_30px_rgba(0,0,0,0.03)] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative featured-bottom-banner"
+            class="bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] p-8 sm:p-10 shadow-[0_10px_30px_rgba(0,0,0,0.03)] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative featured-bottom-banner scroll-card-item"
          >
 
             <!-- Stats Columns -->

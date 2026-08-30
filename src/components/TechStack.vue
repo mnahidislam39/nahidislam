@@ -1,14 +1,17 @@
 <script setup>
 import { techStackData } from '../data';
-import { Icon } from '@iconify/vue';
+import { useScrollReveal } from '../composables/useScrollReveal';
+
 const techData = techStackData;
+const { elementRef: sectionRef, isVisible } = useScrollReveal();
 </script>
 
 <template>
-   <section :id="techData.id"
+   <section ref="sectionRef" :id="techData.id"
       class="tech-stack-section bg-[#fbf9f4] dark:bg-[#0f0d0b] py-20 px-4 sm:px-6 lg:px-8 text-slate-900 dark:text-slate-100 relative overflow-hidden transition-colors duration-300">
 
-      <div id="tech-stack-container" class="max-w-[1440px] mx-auto relative z-10 ">
+      <div id="tech-stack-container" class="max-w-[1440px] mx-auto relative z-10 transition-all duration-1000 ease-out"
+         :class="isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-12 scale-95'">
 
          <div id="tech-stack-ambient-pulse"
             class="absolute md:flex left-4 top-10 hidden lg:flex items-center justify-center pointer-events-none">
@@ -58,33 +61,6 @@ const techData = techStackData;
             class="tech-stack-description text-slate-500 dark:text-slate-400 text-center max-w-2xl mx-auto text-base sm:text-lg font-normal leading-relaxed">
             {{ techData.description }}
          </p>
-
-         <!-- <div id="tech-stack-inner-container" class="tech-stack-container max-w-6xl mx-auto rounded-[2.5rem] p-6 lg:pt-0 sm:p-10">
-            <div id="tech-stack-items-grid" class="tech-stack-grid grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 items-center">
-
-               <div id="tech-stack-card-item" v-for="(tech, index) in techData.skills" :key="index"
-                  class="tech-stack-item flex flex-col items-center justify-center py-6 px-3 rounded-2xl bg-white dark:bg-[#16120e] border border-slate-100 dark:border-[#26201a] hover:bg-slate-50 dark:hover:bg-[#1e1813] transition-all duration-300 group shadow-sm">
-
-                  <div id="tech-stack-icon-wrapper"
-                     class="tech-stack-icon-box flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 mb-4 rounded-2xl bg-white dark:bg-[#1c1713] border border-slate-100 dark:border-[#2d2620] shadow-sm group-hover:scale-105 transition-transform">
-                     <Icon :icon="tech.icon" class="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
-                  </div>
-
-                  <span id="tech-stack-item-name" class="tech-stack-name text-xs font-bold tracking-wider text-slate-800 dark:text-slate-200">{{ tech.name }}</span>
-               </div>
-
-            </div>
-         </div> -->
-
-         <!-- <div id="tech-stack-footer-wrapper" class="tech-stack-footer flex flex-col items-center justify-center mt-16">
-            <span id="tech-stack-footer-dot-element" class="tech-stack-footer-dot w-2 h-2 rounded-full bg-emerald-600 dark:bg-emerald-400 mb-3"></span>
-            <div id="tech-stack-footer-line-container" class="tech-stack-footer-line-wrapper flex items-center gap-4 w-full max-w-xs justify-center">
-               <span id="tech-stack-footer-line-left-bar" class="tech-stack-footer-line-left h-[1px] w-full bg-emerald-600/30"></span>
-               <span id="tech-stack-footer-text-content" class="tech-stack-footer-text text-slate-500 dark:text-slate-400 text-xs font-medium whitespace-nowrap">{{
-                  techData.footerText }}</span>
-               <span id="tech-stack-footer-line-right-bar" class="tech-stack-footer-line-right h-[1px] w-full bg-emerald-600/30"></span>
-            </div>
-         </div> -->
 
       </div>
    </section>

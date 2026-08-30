@@ -1,0 +1,1 @@
+Ei Vue component-ti te `useScrollReveal` composable diye scroll animation add/fix kore dao. Main wrapper ba container-e 'scroll-zoom-container' ebong inner card/grid item-gulo te 'scroll-card-item' class er sathe '{ 'is-visible': isVisible }' binding add kore dao, jate component-ti scroll korle smooth-ly fade & zoom effect-e reveal hoy.

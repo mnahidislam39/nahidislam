@@ -2,9 +2,12 @@
 import { ref } from 'vue';
 import { faqData as centralFaqData } from '../data'; 
 import { Icon } from '@iconify/vue';
+import { useScrollReveal } from '../composables/useScrollReveal';
 
 const faqData = centralFaqData; 
 const activeIndex = ref(null);
+
+const { elementRef, isVisible } = useScrollReveal(0.1, true);
 
 const toggleAccordion = (index) => {
    activeIndex.value = activeIndex.value === index ? null : index;
@@ -12,21 +15,21 @@ const toggleAccordion = (index) => {
 </script>
 
 <template>
-   <section id="faq" class="relative px-4 py-20 overflow-hidden bg-[#fbf9f4] dark:bg-[#0f0d0b] sm:px-6 lg:px-8 text-slate-900 dark:text-slate-100 transition-colors duration-300">
-      <div id="faq-main-container" class="faq-container max-w-[1440px] mx-auto relative z-10">
+   <section ref="elementRef" id="faq" class="relative pt-0 px-4 py-28 overflow-hidden bg-[#fbf9f4] dark:bg-[#0f0d0b] sm:px-6 lg:px-8 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+      <div id="faq-main-container" :class="['faq-container max-w-[1440px] mx-auto relative z-10 scroll-zoom-container', { 'start-zoom': isVisible }]">
 
          <!-- Top Grid: Left Column & Right Accordion -->
          <div class="faq-top-grid grid items-start grid-cols-1 gap-12 mb-16 lg:grid-cols-12">
 
             <!-- Left Column -->
-            <div class="faq-left-column flex flex-col gap-8 lg:col-span-5">
+            <div :class="['faq-left-column flex flex-col gap-8 lg:col-span-5 scroll-card-item', { 'is-visible': isVisible }]">
 
                <!-- Heading & Description -->
-               <div class="faq-header-content-box">
-                  <div id="faq-tag-wrapper" class="faq-tag-container flex flex-col items-start mb-4">
+               <div class="faq-header-content-box text-center md:text-left">
+                  <div id="faq-tag-wrapper" class="faq-tag-container flex flex-col md:items-start items-center  mb-4">
                      <span id="faq-section-number-tag" class="faq-section-tag text-xs font-bold tracking-[0.2em] text-emerald-600 dark:text-emerald-400 uppercase mb-3">{{
                         faqData.sectionTag }}</span>
-                     <div id="faq-line-indicator" class="faq-line-wrapper relative flex items-center justify-start w-36">
+                     <div id="faq-line-indicator" class="faq-line-wrapper relative flex items-center justify-start  w-36">
                         <div class="faq-line-bg absolute w-full h-[1.5px] bg-gradient-to-r from-emerald-600/40 to-transparent">
                         </div>
                         <span class="faq-line-dot relative z-10 w-2 h-2 rounded-full bg-emerald-600 dark:bg-emerald-400"></span>
@@ -40,8 +43,8 @@ const toggleAccordion = (index) => {
 
                <!-- Still Have Questions Box -->
                <div
-                  class="faq-help-card  flex flex-col gap-6 relative">
-                  <div class="faq-help-inner-flex flex items-start gap-4">
+                  class="faq-help-card  flex flex-col md:items-left items-center gap-6 relative">
+                  <div class="faq-help-inner-flex flex md:items-start gap-4">
                      <div
                         class="faq-help-icon-box flex items-center justify-center w-12 h-12 text-2xl text-white dark:text-slate-950 rounded-2xl bg-emerald-950 dark:bg-emerald-500 shrink-0">
                         <Icon icon="fa6-solid:question" />
@@ -60,7 +63,7 @@ const toggleAccordion = (index) => {
 
                <!-- 4 Trust Features Card -->
                <div
-                  class="faq-features-grid-card bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] p-6 shadow-[0_10px_30px_rgba(0,0,0,0.03)] grid grid-cols-2  gap-4 items-center">
+                  class="faq-features-grid-card bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] p-6 shadow-[0_10px_30px_rgba(0,0,0,0.03)] grid md:grid-cols-2 grid-cols-2 sm:grid-cols-3  gap-4 items-center">
                   <div v-for="(badge, bIdx) in faqData.features" :key="bIdx"
                      class="faq-feature-item flex flex-col items-center px-2 py-1 text-center"
                      :class="{ 'border-r border-slate-100 dark:border-[#26201a]': bIdx < 3 }">
@@ -76,7 +79,7 @@ const toggleAccordion = (index) => {
             </div>
 
             <!-- Right Column: FAQ Accordion List -->
-            <div class="faq-accordion-column flex flex-col gap-4 lg:col-span-7">
+            <div :class="['faq-accordion-column flex flex-col gap-4 lg:col-span-7 scroll-card-item', { 'is-visible': isVisible }]">
                <div v-for="(item, idx) in faqData.questions" :key="idx"
                   class="faq-accordion-item bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2rem] p-6 sm:p-7 shadow-[0_5px_20px_rgba(0,0,0,0.02)] transition-all hover:border-emerald-500/50">
                   <!-- Accordion Header -->
@@ -109,7 +112,7 @@ const toggleAccordion = (index) => {
 
          <!-- Bottom CTA Banner Bar -->
          <div
-            class="faq-cta-banner-bar bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] p-8 sm:p-10 shadow-[0_10px_30px_rgba(0,0,0,0.03)] grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            :class="['faq-cta-banner-bar bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] p-8 sm:p-10 shadow-[0_10px_30px_rgba(0,0,0,0.03)] grid grid-cols-1 lg:grid-cols-12 gap-6 items-center scroll-card-item', { 'is-visible': isVisible }]">
 
             <!-- Left Icon & Heading -->
             <div class="faq-cta-left-col flex items-center gap-4 lg:col-span-4">
@@ -149,3 +152,29 @@ const toggleAccordion = (index) => {
       </div>
    </section>
 </template>
+
+<style scoped>
+/* Scroll Zoom & Fade Transitions */
+.scroll-zoom-container {
+   opacity: 0;
+   transform: scale(0.95) translateY(30px);
+   transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-zoom-container.start-zoom {
+   opacity: 1;
+   transform: scale(1) translateY(0);
+}
+
+.scroll-card-item {
+   opacity: 0;
+   transform: translateY(25px);
+   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+   transition-delay: 0.2s;
+}
+
+.scroll-card-item.is-visible {
+   opacity: 1;
+   transform: translateY(0);
+}
+</style>

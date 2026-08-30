@@ -6,7 +6,7 @@ export const selectedWorkData = {
    mainButtonText: "View All Projects",
    mainButtonLink: "#",
    featuredProject: {
-      projectId: "vevano-home",
+      Id: "vevano-home",
       badge: "FEATURED PROJECT",
       title: "Vevano Home",
       description: "Premium home décor store with custom Shopify theme, mega menu, advanced filtering and optimized shopping experience.",

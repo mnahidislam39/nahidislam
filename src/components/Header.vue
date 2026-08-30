@@ -133,7 +133,7 @@ onUnmounted(() => {
             <!-- Desktop CTA -->
             <a
                class="hidden px-4 py-2 text-sm rounded-full font-bold transition-all shadow-md cursor-pointer sm:inline-block"
-               :class="isDark ? 'bg-slate-900 text-white hover:bg-[#009966] hover:text-white' : 'bg-white text-black hover:bg-[#009966] hover:text-white'"
+               :class="isDark ? 'bg-[#009966] text-white hover:bg-[transparent] hover:text-white border border-[#009966] hover:border-[#009966]' : 'bg-white text-black hover:bg-[#009966] hover:text-white'"
                id="desktop-cta-button"
                :href="headerData.ctaLink"
             >

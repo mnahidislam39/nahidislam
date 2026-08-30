@@ -813,8 +813,6 @@ export const singleProjectData = {
    ],
 
 
-
-
 };
 
 

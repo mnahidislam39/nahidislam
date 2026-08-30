@@ -1,35 +1,55 @@
 <script setup>
 import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { singleProjectData } from '../data/singleProjectData.js';
 import { Icon } from '@iconify/vue';
+
+// আপনার দুটি আলাদা ডেটা ফাইল ইমপোর্ট করা হলো
+import { featuredProjectsData, selectedWorkData } from '../data';
 
 const route = useRoute();
 const router = useRouter();
 const projectId = route.params.id;
 
-// singleProjectData.js থেকে ডায়নামিকভাবে প্রজেক্ট ডাটা খুঁজে বের করা (Featured বা Projects লিস্ট থেকে)
+// featuredProjectsData এবং selectedWorkData থেকে ডায়নামিকভাবে প্রজেক্ট ডাটা খুঁজে বের করা
 const projectData = computed(() => {
-   // ১. প্রথমে ফিচারড প্রজেক্টের সাথে আইডি মিলছে কিনা চেক করা
-   if (
-      singleProjectData.selectedWork?.featuredProject &&
-      (singleProjectData.selectedWork.featuredProject.id === projectId || 
-       singleProjectData.selectedWork.featuredProject.projectId === projectId)
-   ) {
-      return singleProjectData.selectedWork.featuredProject;
+   const targetId = String(projectId);
+
+   // ১. প্রথমে featuredProjectsData এর ভেতরে প্রজেক্ট লিস্ট বা ফিচারড প্রজেক্ট থেকে খোঁজা
+   if (featuredProjectsData?.projects) {
+      const foundInFeatured = featuredProjectsData.projects.find(p => String(p.id) === targetId);
+      if (foundInFeatured) return foundInFeatured;
+   }
+   if (featuredProjectsData?.featuredProject && (String(featuredProjectsData.featuredProject.id) === targetId || String(featuredProjectsData.featuredProject.projectId) === targetId)) {
+      return featuredProjectsData.featuredProject;
    }
    
-   // ২. না পেলে সাধারণ প্রজেক্টগুলোর লিস্ট থেকে খোঁজা
-   if (singleProjectData.selectedWork?.projects) {
-      return singleProjectData.selectedWork.projects.find(p => p.id === projectId) || null;
+   // ২. এরপর selectedWorkData এর ভেতরে ফিচারড প্রজেক্ট বা সাধারণ প্রজেক্ট লিস্ট থেকে খোঁজা
+   if (
+      selectedWorkData?.selectedWork?.featuredProject &&
+      (String(selectedWorkData.selectedWork.featuredProject.id) === targetId || 
+       String(selectedWorkData.selectedWork.featuredProject.projectId) === targetId)
+   ) {
+      return selectedWorkData.selectedWork.featuredProject;
+   }
+   
+   if (selectedWorkData?.selectedWork?.projects) {
+      const foundInSelected = selectedWorkData.selectedWork.projects.find(p => String(p.id) === targetId);
+      if (foundInSelected) return foundInSelected;
+   }
+
+   // ৩. সরাসরি যদি selectedWorkData নিজে একটি অ্যারে বা অবজেক্ট হয়
+   if (selectedWorkData?.projects) {
+      const found = selectedWorkData.projects.find(p => String(p.id) === targetId);
+      if (found) return found;
    }
 
    return null;
 });
 
-// ডায়নামিক ব্যাক বাটন (যে সেকশন থেকে এসেছে সেখানেই ফিরিয়ে নিয়ে যাবে)
 const goBack = () => {
-   router.back();
+   // ইউআরএলের query চেক করবে যে কোন সেকশন থেকে এসেছে
+   const fromSection = route.query.from || 'featuredWork'; 
+   router.push({ path: '/', hash: `#${fromSection}` });
 };
 </script>
 
@@ -37,7 +57,6 @@ const goBack = () => {
    <div class="bg-[#0f0d0b] min-h-screen text-slate-100 py-24 px-4 sm:px-6 lg:px-8 selection:bg-emerald-500 selection:text-white">
       <div class="max-w-[1440px] mx-auto">
 
-         <!-- Back Button -->
          <div class="mb-8">
             <button @click="goBack" class="inline-flex items-center gap-2 text-emerald-400 font-bold text-sm hover:underline cursor-pointer">
                <span>←</span> <span>Back to Previous Section</span>
@@ -46,14 +65,12 @@ const goBack = () => {
 
          <div v-if="projectData">
             
-            <!-- Top Hero Grid -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-16">
                
-               <!-- Left Info -->
                <div class="lg:col-span-5 flex flex-col justify-between">
                   <div>
                      <span class="inline-block px-3 py-1 rounded-full bg-emerald-950/50 border border-emerald-900/50 text-emerald-400 text-xs font-extrabold tracking-widest uppercase mb-4">
-                        {{ projectData.badge || projectData.category || 'FEATURED PROJECT' }}
+                        {{ projectData.badge || projectData.category || projectData.techBadge || 'FEATURED PROJECT' }}
                      </span>
                      <h1 class="text-4xl sm:text-5xl font-black tracking-tight mb-4 text-white">
                         {{ projectData.title }}
@@ -62,7 +79,6 @@ const goBack = () => {
                         {{ projectData.description }}
                      </p>
 
-                     <!-- Meta Details Grid (Dynamic) -->
                      <div class="grid grid-cols-2 gap-6 py-6 border-t border-b border-[#26201a] mb-8">
                         <div>
                            <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Industry</div>
@@ -83,7 +99,6 @@ const goBack = () => {
                      </div>
                   </div>
 
-                  <!-- CTAs -->
                   <div class="flex flex-wrap gap-4">
                      <a :href="projectData.liveUrl || projectData.link || '#'" target="_blank"
                         class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm transition-all shadow-lg shadow-emerald-900/20">
@@ -98,15 +113,14 @@ const goBack = () => {
                   </div>
                </div>
 
-               <!-- Right Preview Image/Mockup -->
                <div class="lg:col-span-7 bg-[#16120e] border border-[#26201a] rounded-[2.5rem] p-4 sm:p-6 shadow-2xl">
                   <div class="rounded-2xl overflow-hidden border border-[#26201a] bg-[#1c1713] aspect-video flex items-center justify-center">
-                     <div v-html="projectData.imageHtml || projectData.image" class="w-full h-full flex items-center justify-center"></div>
+                     <div v-if="projectData.imageHtml" v-html="projectData.imageHtml" class="w-full h-full flex items-center justify-center"></div>
+                     <img v-else-if="projectData.image" :src="projectData.image" :alt="projectData.title" class="w-full h-full object-cover" />
                   </div>
                </div>
             </div>
 
-            <!-- Metrics Bar -->
             <div v-if="projectData.metrics && projectData.metrics.length > 0" class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
                <div v-for="(metric, mIdx) in projectData.metrics" :key="mIdx" class="bg-[#16120e] border border-[#26201a] rounded-3xl p-6 text-center">
                   <div class="text-3xl sm:text-4xl font-black text-emerald-400 mb-2">{{ metric.value }}</div>
@@ -114,10 +128,8 @@ const goBack = () => {
                </div>
             </div>
 
-            <!-- 4 Column Detailed Breakdown (Challenge, Approach, Solution, Result) -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
                
-               <!-- Challenge -->
                <div class="bg-[#16120e] border border-[#26201a] rounded-3xl p-6">
                   <h3 class="text-xs font-black tracking-widest text-rose-400 uppercase mb-6 flex items-center gap-2">
                      <span class="w-2 h-2 rounded-full bg-rose-500"></span> THE CHALLENGE
@@ -130,7 +142,6 @@ const goBack = () => {
                   </ul>
                </div>
 
-               <!-- Approach -->
                <div class="bg-[#16120e] border border-[#26201a] rounded-3xl p-6">
                   <h3 class="text-xs font-black tracking-widest text-amber-400 uppercase mb-6 flex items-center gap-2">
                      <span class="w-2 h-2 rounded-full bg-amber-500"></span> THE APPROACH
@@ -143,7 +154,6 @@ const goBack = () => {
                   </ul>
                </div>
 
-               <!-- Solution -->
                <div class="bg-[#16120e] border border-[#26201a] rounded-3xl p-6">
                   <h3 class="text-xs font-black tracking-widest text-sky-400 uppercase mb-6 flex items-center gap-2">
                      <span class="w-2 h-2 rounded-full bg-sky-500"></span> THE SOLUTION
@@ -156,7 +166,6 @@ const goBack = () => {
                   </ul>
                </div>
 
-               <!-- Result -->
                <div class="bg-[#16120e] border border-[#26201a] rounded-3xl p-6">
                   <h3 class="text-xs font-black tracking-widest text-emerald-400 uppercase mb-6 flex items-center gap-2">
                      <span class="w-2 h-2 rounded-full bg-emerald-500"></span> THE RESULT
@@ -171,10 +180,8 @@ const goBack = () => {
 
             </div>
 
-            <!-- Project Scope & Technologies Split Grid -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
                
-               <!-- Scope -->
                <div class="lg:col-span-6 bg-[#16120e] border border-[#26201a] rounded-3xl p-8">
                   <h3 class="text-xl font-black text-white mb-6">PROJECT SCOPE</h3>
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -185,7 +192,6 @@ const goBack = () => {
                   </div>
                </div>
 
-               <!-- Technologies & Tools -->
                <div class="lg:col-span-6 bg-[#16120e] border border-[#26201a] rounded-3xl p-8">
                   <h3 class="text-xl font-black text-white mb-6">TECHNOLOGIES & TOOLS</h3>
                   <div class="flex flex-wrap gap-4">
@@ -198,7 +204,6 @@ const goBack = () => {
 
             </div>
 
-            <!-- Testimonial Section -->
             <div v-if="projectData.testimonial" class="bg-[#16120e] border border-[#26201a] rounded-3xl p-8 sm:p-12 mb-16 relative overflow-hidden flex flex-col md:flex-row items-center gap-8">
                <div class="text-emerald-500 text-6xl font-serif shrink-0">“</div>
                <div>
@@ -214,7 +219,6 @@ const goBack = () => {
 
          </div>
 
-         <!-- Not Found State -->
          <div v-else class="text-center py-32">
             <h2 class="text-3xl font-black mb-4">Project Not Found</h2>
             <p class="text-slate-400 mb-8">The project you are trying to view does not exist or has been removed.</p>

@@ -2,8 +2,11 @@
 import { ref, computed } from 'vue';
 import { contactData } from '../data'; 
 import { Icon } from '@iconify/vue';
+import { useScrollReveal } from '../composables/useScrollReveal';
 
 const contact = contactData; 
+
+const { elementRef, isVisible } = useScrollReveal(0.1, true);
 
 const form = ref({
    name: '',
@@ -24,18 +27,18 @@ const availableBudgets = computed(() => {
 </script>
 
 <template>
-   <section id="contact"
-      class="contact-section relative px-4 py-20 overflow-hidden bg-[#fbf9f4] dark:bg-[#0f0d0b] sm:px-6 lg:px-8 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+   <section ref="elementRef" id="contact"
+      class="contact-section relative px-4 pt-0 py-28 overflow-hidden bg-[#fbf9f4] dark:bg-[#0f0d0b] sm:px-6 lg:px-8 text-slate-900 dark:text-slate-100 transition-colors duration-300">
 
-      <div id="contact-container" class="contact-container max-w-[1440px] mx-auto relative z-10">
+      <div id="contact-container" :class="['contact-container max-w-[1440px] mx-auto relative z-10 scroll-zoom-container', { 'start-zoom': isVisible }]">
 
          <!-- Main Grid Layout (Left Info & Right Form) -->
          <div id="contact-grid-layout" class="contact-grid-layout grid items-start grid-cols-1 gap-12 lg:grid-cols-12">
 
             <!-- Left Column: Heading & Contact Info (5 Cols) -->
-            <div id="contact-left-col" class="contact-left-column lg:col-span-5 lg:sticky lg:top-24 flex flex-col gap-8">
+            <div id="contact-left-col" :class="['contact-left-column lg:col-span-5 lg:sticky lg:top-24 flex flex-col gap-8 scroll-card-item', { 'is-visible': isVisible }]">
 
-               <div class="contact-header-wrapper">
+               <div class="contact-header-wrapper flex flex-col items-center justify-center text-center md:items-left md:text-left">
                   <div id="section-tag-wrapper" class="section-tag-wrapper flex flex-col items-start mb-4">
                      <span id="section-number-tag"
                         class="section-number-tag text-xs font-bold tracking-[0.2em] text-emerald-600 dark:text-emerald-400 uppercase mb-3">{{ contact.sectionTag }}</span>
@@ -54,7 +57,7 @@ const availableBudgets = computed(() => {
                </div>
 
                <!-- Contact Details List -->
-               <div id="contact-info-list" class="contact-info-card-wrapper bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] p-8 shadow-[0_10px_30px_rgba(0,0,0,0.03)] space-y-6">
+               <div id="contact-info-list" class="contact-info-card-wrapper bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] p-8 shadow-[0_10px_30px_rgba(0,0,0,0.03)] space-y-6 flex flex-wrap justify-between">
                   <div v-for="(item, index) in contact.infoList" :key="index" class="contact-info-item flex items-start gap-4">
                      <span
                         class="contact-info-icon flex items-center justify-center w-12 h-12 text-xl rounded-2xl bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 shrink-0">
@@ -92,7 +95,7 @@ const availableBudgets = computed(() => {
             </div>
 
             <!-- Right Column: Form (7 Cols) -->
-            <div id="contact-right-col" class="contact-right-column lg:col-span-7">
+            <div id="contact-right-col" :class="['contact-right-column lg:col-span-7 scroll-card-item', { 'is-visible': isVisible }]">
 
                <div id="contact-form-wrapper"
                   class="contact-form-container bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] p-6 sm:p-10 shadow-[0_10px_30px_rgba(0,0,0,0.03)]">
@@ -241,3 +244,29 @@ const availableBudgets = computed(() => {
       </div>
    </section>
 </template>
+
+<style scoped>
+/* Scroll Zoom & Fade Transitions */
+.scroll-zoom-container {
+   opacity: 0;
+   transform: scale(0.95) translateY(30px);
+   transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-zoom-container.start-zoom {
+   opacity: 1;
+   transform: scale(1) translateY(0);
+}
+
+.scroll-card-item {
+   opacity: 0;
+   transform: translateY(25px);
+   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+   transition-delay: 0.2s;
+}
+
+.scroll-card-item.is-visible {
+   opacity: 1;
+   transform: translateY(0);
+}
+</style>

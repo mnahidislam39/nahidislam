@@ -23,6 +23,14 @@ export const heroData = {
     { name: "Shopify", icon: "logos:shopify", style: "amber" },
   ],
 
+  // ফ্লোটিং ব্যাজগুলোর ডেটা এখানে ডাইনামিক করা হলো
+  floatingBadges: [
+    { text: "Shopify Development", icon: "lucide:shopping-bag", position: "absolute left-2 sm:left-6 top-16 sm:top-24 animate-float-slow" },
+    { text: "Custom Liquid", icon: "lucide:code", position: "absolute right-2 sm:right-6 top-24 sm:top-32 animate-float-delayed" },
+    { text: "Performance Focused", icon: "lucide:zap", position: "absolute left-2 sm:left-4 bottom-16 sm:bottom-28 animate-float-slow" },
+    { text: "eCommerce Solutions", icon: "lucide:layers", position: "absolute right-2 sm:right-4 bottom-10 sm:bottom-20 animate-float-delayed" }
+  ],
+
   primaryCta: { 
     text: "View Shopify Work", 
     link: "#selected-work" 
@@ -31,5 +39,5 @@ export const heroData = {
     text: "Start a Project", 
     link: "#contact" 
   },
-   image: 'na.png'
+  image: 'na.png'
 };

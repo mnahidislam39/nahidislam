@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { selectedWorkData } from '../data';
 import { Icon } from '@iconify/vue';
@@ -8,28 +8,52 @@ const router = useRouter();
 const workData = selectedWorkData;
 
 const activeIndex = ref(null);
+const sectionRef = ref(null);
+const isVisible = ref(false);
+
+let observer = null;
+
+onMounted(() => {
+   observer = new IntersectionObserver(
+      ([entry]) => {
+         isVisible.value = entry.isIntersecting;
+      },
+      { threshold: 0.1 }
+   );
+
+   if (sectionRef.value) {
+      observer.observe(sectionRef.value);
+   }
+});
+
+onUnmounted(() => {
+   if (observer) {
+      observer.disconnect();
+   }
+});
 
 const viewProjectDetails = (id) => {
-   if (id) {
-      router.push(`/project/${id}`);
-   }
+   router.push({ 
+      path: `/project/${id}`, 
+      query: { from: 'selected-work' } 
+   });
 };
 
 const toggleDetails = (index) => {
    if (activeIndex.value === index) {
-     activeIndex.value = null; 
+      activeIndex.value = null; 
    } else {
-     activeIndex.value = index; 
+      activeIndex.value = index; 
    }
 };
 </script>
 
 <template>
-   <section :id="workData.id"
-      class="selected-work-section bg-[#fbf9f4] dark:bg-[#0f0d0b] py-20  px-4 sm:px-6 lg:px-8 text-slate-900 dark:text-slate-100 relative transition-colors duration-300">
+   <section ref="sectionRef" :id="workData.id"
+      class="selected-work-section bg-[#fbf9f4] dark:bg-[#0f0d0b] py-20 px-4 pt-0 sm:px-6 lg:px-8 text-slate-900 dark:text-slate-100 relative transition-colors duration-300">
 
-      <div id="selected-work-max-width-container" class="max-w-[1440px] mx-auto relative z-10">
-         <div id="selected-work-header-grid" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-12">
+      <div id="selected-work-max-width-container" :class="['max-w-[1440px] mx-auto relative z-10 scroll-zoom-container', { 'start-zoom': isVisible }]">
+         <div id="selected-work-header-grid" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-12 scroll-card-item">
 
             <div id="selected-work-left-col" class="lg:col-span-4 flex flex-col justify-center md:justify-between">
                <div id="selected-work-title-content-wrapper" class="text-center md:text-left">
@@ -129,10 +153,10 @@ const toggleDetails = (index) => {
                   </div>
 
                   <div id="selected-work-featured-btn-wrapper">
-                     <button @click="viewProjectDetails(workData.featuredProject.projectId)"
+                     <button @click="viewProjectDetails(workData.featuredProject.Id)"
                         id="selected-work-featured-btn"
                         class="inline-flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors group cursor-pointer">
-                        <span id="selected-work-featured-btn-text">{{ workData.featuredProject.caseStudyText || 'VIEW CASE STUDY' }}</span>
+                        <span id="selected-work-featured-btn-text" >{{ workData.featuredProject.caseStudyText || 'VIEW CASE STUDY' }}</span>
                         <span id="selected-work-featured-btn-arrow"
                            class="transition-transform group-hover:translate-x-1">→</span>
                      </button>
@@ -152,96 +176,100 @@ const toggleDetails = (index) => {
 
          </div>
 
-         <!-- প্রজেক্ট গ্রিড সেকশন -->
-         <div id="selected-work-projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 items-start">
+         <!-- প্রজেক্ট গ্রিড ও মোবাইল স্টিকি সেকশন -->
+         <div id="selected-work-projects-grid" class="projects-stack-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 items-start scroll-card-item">
 
-            <div v-for="(project, pIdx) in workData.projects" :key="pIdx" id="selected-work-project-card-item"
-               class="bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] shadow-[0_10px_30px_rgba(0,0,0,0.03)] flex flex-col justify-between transition-all duration-300 hover:border-slate-300 dark:hover:border-[#382f25]">
+            <template v-for="(project, pIdx) in workData.projects" :key="project.id || pIdx">
+               <div :id="'selected-work-project-card-' + pIdx" 
+                  :style="{ top: `${90 + (pIdx * 0)}px`, zIndex: pIdx + 1 }"
+                  class="framer-sticky-card sticky lg:static bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] shadow-[0_10px_30px_rgba(0,0,0,0.03)] flex flex-col justify-between transition-all duration-300 hover:border-slate-300 dark:hover:border-[#382f25]"
+               >
+                  <div id="selected-work-project-top-content">
+                     <div id="selected-work-project-image-wrapper"
+                        class="w-full h-72 rounded-2xl rounded-br-none rounded-bl-none overflow-hidden border-none">
+                        <div id="selected-work-project-image-inner"
+                           class="w-full h-full bg-slate-100 flex items-center justify-center overflow-hidden rounded-2xl rounded-bl-none rounded-br-none border border-slate-200/40 shadow-sm">
+                           <img :src="project.imageUrl" :alt="project.title" class="w-full h-full object-cover" />
+                        </div>
+                     </div>
 
-               <div id="selected-work-project-top-content">
-                  <div id="selected-work-project-image-wrapper"
-                     class="w-full h-70 rounded-2xl rounded-br-none rounded-bl-none overflow-hidden border-none">
-                     <div id="selected-work-project-image-inner"
-                        class="w-full h-full bg-slate-100 flex items-center justify-center overflow-hidden rounded-2xl rounded-bl-none rounded-br-none border border-slate-200/40 shadow-sm">
-                        <img :src="project.imageUrl" :alt="project.title" class="w-full h-full object-cover" />
+                     <!-- টাইটেল, ডিসক্রিপশন এবং টগল বাটন অংশ -->
+                     <div class="p-6 pb-2">
+                        <div id="selected-work-project-title-row" class="flex items-center justify-between mb-2">
+                           <h3 id="selected-work-project-title" class="text-2xl font-black text-slate-900 dark:text-white">
+                              {{ project.title }}</h3>
+                           <span id="selected-work-project-category"
+                              class="text-[11px] text-slate-600 dark:text-slate-400 font-semibold px-2.5 py-0.5 rounded-md bg-slate-100 dark:bg-[#1c1713] border border-slate-200 dark:border-[#2d2620]">{{
+                                 project.category || 'Store' }}</span>
+                        </div>
+
+                        <p id="selected-work-project-description"
+                           class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">{{ project.description
+                           }}</p>
+
+                        <!-- সিঙ্গেল অ্যাক্টিভ টগল বাটন -->
+                        <button @click="toggleDetails(pIdx)"
+                           :aria-expanded="activeIndex === pIdx"
+                           class="flex items-center gap-2 text-xs font-bold text-emerald-700 dark:text-emerald-400 hover:underline focus:outline-none cursor-pointer mb-2">
+                           <span>{{ activeIndex === pIdx ? 'Hide Details' : 'Show Details' }}</span>
+                           <span class="transition-transform duration-300"
+                              :class="{ 'rotate-180': activeIndex === pIdx }">▼</span>
+                        </button>
+                     </div>
+
+                     <!-- শুধুমাত্র ক্লিক করা প্রজেক্টটি শো করবে, বাকি সব হাইড থাকবে -->
+                     <div v-show="activeIndex === pIdx"
+                        class="selected-work-project-info-wrapper px-6 pt-2 pb-6 transition-all duration-300">
+                        <div id="selected-work-project-csr-box" class="space-y-3 mb-6 rounded-2xl">
+                           <div id="selected-work-project-challenge-row" class="flex items-start gap-2 text-xs">
+                              <span id="selected-work-project-challenge-label"
+                                 class="font-black text-emerald-700 dark:text-emerald-400 shrink-0 w-20">CHALLENGE</span>
+                              <span id="selected-work-project-challenge-text" class="text-slate-700 dark:text-slate-300">{{
+                                 project.challenge || 'Low conversion rate and poor product discovery.' }}</span>
+                           </div>
+                           <div id="selected-work-project-solution-row" class="flex items-start gap-2 text-xs">
+                              <span id="selected-work-project-solution-label"
+                                 class="font-black text-emerald-700 dark:text-emerald-400 shrink-0 w-20">SOLUTION</span>
+                              <span id="selected-work-project-solution-text" class="text-slate-700 dark:text-slate-300">{{
+                                 project.solution || 'Custom sections, product bundles, and subscription app integration.'
+                                 }}</span>
+                           </div>
+                           <div id="selected-work-project-result-row" class="flex items-start gap-2 text-xs">
+                              <span id="selected-work-project-result-label"
+                                 class="font-black text-emerald-700 dark:text-emerald-400 shrink-0 w-20">RESULT</span>
+                              <span id="selected-work-project-result-text"
+                                 class="text-emerald-700 dark:text-emerald-400 font-bold">{{ project.result || '+55% conversion rate and +40% subscription sales.' }}</span>
+                           </div>
+                        </div>
+
+                        <div id="selected-work-project-tags-wrapper" class="flex flex-wrap gap-2">
+                           <span v-for="(tag, tgIdx) in project.tags" :key="tgIdx" id="selected-work-project-tag-item"
+                              class="px-3 py-1 rounded-lg bg-slate-100 dark:bg-[#1c1713] border border-slate-200 dark:border-[#2d2620] text-slate-700 dark:text-slate-300 text-xs font-bold">
+                              {{ tag }}
+                           </span>
+                        </div>
                      </div>
                   </div>
 
-                  <!-- টাইটেল, ডিসক্রিপশন এবং টগল বাটন অংশ -->
-                  <div class="p-6 pb-2">
-                     <div id="selected-work-project-title-row" class="flex items-center justify-between mb-2">
-                        <h3 id="selected-work-project-title" class="text-2xl font-black text-slate-900 dark:text-white">
-                           {{ project.title }}</h3>
-                        <span id="selected-work-project-category"
-                           class="text-[11px] text-slate-600 dark:text-slate-400 font-semibold px-2.5 py-0.5 rounded-md bg-slate-100 dark:bg-[#1c1713] border border-slate-200 dark:border-[#2d2620]">{{
-                              project.category || 'Store' }}</span>
-                     </div>
-
-                     <p id="selected-work-project-description"
-                        class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">{{ project.description
-                        }}</p>
-
-                     <!-- সিঙ্গেল অ্যাক্টিভ টগল বাটন -->
-                     <button @click="toggleDetails(pIdx)"
-                        class="flex items-center gap-2 text-xs font-bold text-emerald-700 dark:text-emerald-400 hover:underline focus:outline-none cursor-pointer mb-2">
-                        <span>{{ activeIndex === pIdx ? 'Hide Details' : 'Show Details' }}</span>
-                        <span class="transition-transform duration-300"
-                           :class="{ 'rotate-180': activeIndex === pIdx }">▼</span>
+                  <div id="selected-work-project-btn-wrapper" class="p-6 border-t border-slate-100 dark:border-[#26201a]">
+                     <button @click="viewProjectDetails(project.id)" id="selected-work-project-btn"
+                        class="inline-flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors group cursor-pointer">
+                        <span id="selected-work-project-btn-text">{{ project.caseStudyText || 'VIEW CASE STUDY' }}</span>
+                        <span id="selected-work-project-btn-arrow"
+                           class="transition-transform group-hover:translate-x-1">→</span>
                      </button>
                   </div>
 
-                  <!-- শুধুমাত্র ক্লিক করা প্রজেক্টটি শো করবে, বাকি সব হাইড থাকবে -->
-                  <div v-show="activeIndex === pIdx"
-                     class="selected-work-project-info-wrapper px-6 pt-2 pb-6 transition-all duration-300">
-                     <div id="selected-work-project-csr-box" class="space-y-3 mb-6 rounded-2xl">
-                        <div id="selected-work-project-challenge-row" class="flex items-start gap-2 text-xs">
-                           <span id="selected-work-project-challenge-label"
-                              class="font-black text-emerald-700 dark:text-emerald-400 shrink-0 w-20">CHALLENGE</span>
-                           <span id="selected-work-project-challenge-text" class="text-slate-700 dark:text-slate-300">{{
-                              project.challenge || 'Low conversion rate and poor product discovery.' }}</span>
-                        </div>
-                        <div id="selected-work-project-solution-row" class="flex items-start gap-2 text-xs">
-                           <span id="selected-work-project-solution-label"
-                              class="font-black text-emerald-700 dark:text-emerald-400 shrink-0 w-20">SOLUTION</span>
-                           <span id="selected-work-project-solution-text" class="text-slate-700 dark:text-slate-300">{{
-                              project.solution || 'Custom sections, product bundles, and subscription app integration.'
-                              }}</span>
-                        </div>
-                        <div id="selected-work-project-result-row" class="flex items-start gap-2 text-xs">
-                           <span id="selected-work-project-result-label"
-                              class="font-black text-emerald-700 dark:text-emerald-400 shrink-0 w-20">RESULT</span>
-                           <span id="selected-work-project-result-text"
-                              class="text-emerald-700 dark:text-emerald-400 font-bold">{{ project.result || '+55% conversion rate and +40% subscription sales.' }}</span>
-                        </div>
-                     </div>
-
-                     <div id="selected-work-project-tags-wrapper" class="flex flex-wrap gap-2">
-                        <span v-for="(tag, tgIdx) in project.tags" :key="tgIdx" id="selected-work-project-tag-item"
-                           class="px-3 py-1 rounded-lg bg-slate-100 dark:bg-[#1c1713] border border-slate-200 dark:border-[#2d2620] text-slate-700 dark:text-slate-300 text-xs font-bold">
-                           {{ tag }}
-                        </span>
-                     </div>
-                  </div>
                </div>
-
-               <div id="selected-work-project-btn-wrapper" class="p-6 border-t border-slate-100 dark:border-[#26201a]">
-                  <button @click="viewProjectDetails(project.id)" id="selected-work-project-btn"
-                     class="inline-flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors group cursor-pointer">
-                     <span id="selected-work-project-btn-text">{{ project.caseStudyText || 'VIEW CASE STUDY' }}</span>
-                     <span id="selected-work-project-btn-arrow"
-                        class="transition-transform group-hover:translate-x-1">→</span>
-                  </button>
-               </div>
-
-            </div>
+            </template>
 
          </div>
 
          <div id="selected-work-cta-banner"
-            class="bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] p-8 sm:p-12 shadow-[0_10px_30px_rgba(0,0,0,0.03)] flex flex-col lg:flex-row items-center justify-between gap-8">
+            class="bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] p-8 sm:p-12 shadow-[0_10px_30px_rgba(0,0,0,0.03)] flex flex-col lg:flex-row items-center justify-between gap-8 scroll-card-item">
 
             <div id="selected-work-cta-left"
-               class="flex items-center flex-col md:flex-row text-center md:text-left gap-6">
+               class="flex items-center md:flex-col md:flex-row md:text-center md:text-left gap-6">
                <div id="selected-work-cta-icon-wrapper"
                   class="w-16 h-16 rounded-2xl bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-900/50 flex items-center justify-center shrink-0 text-emerald-700 dark:text-emerald-400">
                   <svg id="selected-work-cta-svg" class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2"
@@ -271,3 +299,26 @@ const toggleDetails = (index) => {
       </div>
    </section>
 </template>
+
+<style scoped>
+   .selected-work-section, 
+   #selected-work-max-width-container,
+   .projects-stack-container {
+   overflow: visible !important;
+   }
+
+   .framer-sticky-card {
+   backface-visibility: hidden;
+   }
+
+   @media (min-width: 1024px) {
+   .projects-stack-container {
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+   }
+   .framer-sticky-card {
+      position: static !important;
+      margin-bottom: 0 !important;
+   }
+   }
+</style>

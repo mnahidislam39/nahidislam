@@ -1,28 +1,30 @@
 <script setup>
 import { aboutData as centralAboutData } from '../data';
 import { Icon } from '@iconify/vue';
+import { useScrollReveal } from '../composables/useScrollReveal';
 
 const about = centralAboutData;
+const { elementRef, isVisible } = useScrollReveal(0.1, false);
 </script>
 
 <template>
    <!-- Main Section Container -->
-   <section :id="about.id"
-      class="about-experience-section bg-[#0f0d0b] py-20 px-4 sm:px-6 lg:px-8 text-slate-100 relative transition-colors duration-300">
+   <section ref="elementRef" :id="about.id"
+      :class="['about-experience-section bg-[#0f0d0b] pt-0 py-28 px-4 sm:px-6 lg:px-8 text-slate-100 relative transition-colors duration-300 scroll-zoom-container', { 'start-zoom': isVisible }]">
 
       <!-- Section Inner Wrapper -->
       <div class="experience-container max-w-[1440px] mx-auto relative z-10">
 
-         <!-- Main Grid Layout (Left: About, Right: Experience) -->
+         <!-- Main Grid Layout -->
          <div class="experience-main-grid grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 
             <!-- ========================================= -->
             <!-- LEFT COLUMN: ABOUT ME, STATS & TECH STACK -->
             <!-- ========================================= -->
-            <div id="about-sidebar" class="lg:col-span-5 lg:sticky lg:top-24 flex flex-col gap-y-8">
+            <div id="about-sidebar" class="lg:col-span-5 lg:sticky lg:top-24 flex flex-col gap-y-8 self-start">
 
                <!-- Section Tag/Number -->
-               <div class="about-tag-wrapper flex flex-col items-start">
+               <div class="about-tag-wrapper flex flex-col md:items-start items-center">
                   <span id="section-id-tag" class="text-xs font-bold tracking-[0.2em] text-emerald-400 uppercase mb-3">
                      {{ about.sectionNumber }}
                   </span>
@@ -34,7 +36,7 @@ const about = centralAboutData;
 
                <!-- Main Headline -->
                <h2 id="about-main-headline"
-                  class="text-4xl sm:text-5xl font-black tracking-tight leading-tight text-white">
+                  class="text-4xl sm:text-5xl font-black tracking-tight leading-tight text-center md:text-left text-white">
                   {{ about.headline }}
                   <span id="about-highlight-text" class="text-emerald-400"> {{ about.subHeadline }} </span>
                </h2>
@@ -44,7 +46,8 @@ const about = centralAboutData;
                   <div class="author-details sm:col-span-7 flex flex-col justify-center">
                      <h3 id="author-name-text" class="text-3xl font-bold text-emerald-400 mb-1">
                         {{ about.authorName }}
-                     </h3>                    
+                     </h3>   
+                     
                      <!-- Personal Description Paragraph -->
                      <p id="about-description-text" class="text-slate-400 text-sm font-normal leading-relaxed">
                         {{ about.description }}
@@ -64,7 +67,7 @@ const about = centralAboutData;
 
                <!-- Key Statistics Grid -->
                <div id="key-stats-grid"
-                  class="stats-box grid grid-cols-2 gap-5 bg-[#16120e] border border-[#26201a] rounded-[2rem] p-8 shadow-sm">
+                  class="stats-box grid grid-cols-4 md:grid-cols-2 gap-5 bg-[#16120e] border border-[#26201a] rounded-[2rem] p-8 shadow-sm">
 
                   <div v-for="(stat, sIdx) in about.stats" :key="sIdx" :id="'stat-item-' + sIdx"
                      class="stat-card flex items-start gap-4">
@@ -83,9 +86,9 @@ const about = centralAboutData;
                   </div>
                </div>
 
-               <!-- Tech Stack / Technologies I Use Box -->
+               <!-- Tech Stack Box -->
                <div v-if="about.technologies && about.technologies.length" id="tech-stack-showcase"
-                  class="tech-box bg-[#16120e] border border-[#26201a] rounded-[2rem] p-8 shadow-sm">
+                  class="tech-box bg-[#16120e] border border-[#26201a] rounded-[2rem] p-8 shadow-sm md:visible hidden">
                   <div class="tech-header flex items-center gap-3 mb-6">
                      <span class="tech-pulse-dot w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                      <h5 class="tech-title text-xs font-bold text-slate-200 uppercase tracking-widest">TECHNOLOGIES I
@@ -115,18 +118,21 @@ const about = centralAboutData;
 
                <div id="timeline-main-wrapper" class="relative">
 
-                  <!-- Vertical Timeline Line (Desktop only) -->
+                  <!-- Vertical Timeline Line -->
                   <div id="timeline-vertical-line"
                      class="absolute left-6 top-12 bottom-12 w-0.5 bg-emerald-900/60 hidden sm:block"></div>
 
-                  <div id="timeline-items-container" class="space-y-12 relative z-10">
+                  <!-- স্পেস কমানো হয়েছে যাতে কার্ডগুলো কাছাকাছি থেকে সঠিকভাবে স্ট্যাক হয় -->
+                  <div id="timeline-items-container" class="space-y-6 relative z-10">
 
+                     <!-- মেইন এন্ট্রি ফ্লেক্স থেকে সরিয়ে সরাসরি কার্ডকেই স্টিকি করা হয়েছে, যেমনটা সার্ভিসে করা হয়েছিল -->
                      <div v-for="(exp, eIdx) in about.experiences" :key="eIdx" :id="'experience-entry-' + eIdx"
-                        class="timeline-entry flex flex-col sm:flex-row items-start gap-6 relative pl-0 sm:pl-16">
+                        class="timeline-entry relative pl-0 sm:pl-16 sticky transition-all duration-300"
+                        :style="{ top: `calc(6rem + ${eIdx * 0}rem)` }">
 
                         <!-- Desktop Timeline Icon Badge -->
                         <div id="timeline-badge-icon"
-                           class="badge-wrapper w-12 h-12 rounded-2xl bg-[#1f1a15] border border-[#2b241d] shadow-md flex items-center justify-center shrink-0 z-10 text-xl text-emerald-400 absolute left-0 top-0 hidden sm:flex">
+                           class="badge-wrapper w-12 h-12 rounded-2xl bg-[#1f1a15] border border-[#2b241d] shadow-md flex items-center justify-center shrink-0 z-10 text-xl text-emerald-400 absolute left-0 top-6 hidden sm:flex">
                            <Icon v-if="exp.icon === 'briefcase'" icon="lucide:briefcase" />
                            <Icon v-else-if="exp.icon === 'shopify'" icon="logos:shopify" class="w-6 h-6" />
                            <Icon v-else-if="exp.icon === 'wordpress'" icon="logos:wordpress-icon" class="w-6 h-6" />
@@ -135,7 +141,7 @@ const about = centralAboutData;
 
                         <!-- Main Experience Card -->
                         <div id="experience-card-box"
-                           class="experience-card flex-1 bg-[#1f1a15] border border-[#2b241d] rounded-3xl p-7 shadow-lg w-full relative flex flex-col">
+                           class="experience-card bg-[#1f1a15] border border-[#2b241d] rounded-3xl p-7 shadow-2xl w-full relative flex flex-col">
 
                            <!-- Mobile Header (Role + Icon) -->
                            <div class="mobile-card-header flex items-center gap-4 mb-3 sm:hidden">
@@ -154,14 +160,14 @@ const about = centralAboutData;
                            <div id="desktop-card-header"
                               class="header-row flex items-center justify-between gap-4 mb-2">
                               <div class="role-status-group hidden sm:flex items-center gap-4">
-                                 <h3 class="role-title font-black text-white">{{ exp.role }}</h3>
+                                 <h3 class="role-title font-black text-white text-xl">{{ exp.role }}</h3>
                                  <span v-if="exp.status"
                                     class="status-badge bg-emerald-950/50 text-emerald-300 text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full border border-emerald-900/50">
                                     {{ exp.status }}
                                  </span>
                               </div>
                               <span
-                                 class="duration-badge text-xs font-bold text-slate-400 bg-[#16120e] px-4 py-1.5 rounded-full border border-[#2b241d] ml-auto sm:ml-0">
+                                 class="duration-badge text-xs font-bold text-slate-400 bg-[#16120e] px-4 py-1.5 rounded-full border border-[#2b241d] ml-auto sm:ml-0 shrink-0">
                                  {{ exp.duration }}
                               </span>
                            </div>

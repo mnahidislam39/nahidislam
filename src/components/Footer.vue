@@ -1,19 +1,22 @@
 <script setup>
-import { footerData } from '../data/';
+import { footerData } from '../data';
 import { Icon } from '@iconify/vue';
+import { useScrollReveal } from '../composables/useScrollReveal';
 
 const footer = footerData;
+
+const { elementRef, isVisible } = useScrollReveal(0.1, true);
 </script>
 
 <template>
-   <footer id="footer"
-      class="footer-wrapper bg-[#fbf9f4] dark:bg-[#0b0f0e] text-slate-600 dark:text-slate-300 pt-20 pb-12 px-4 sm:px-6 lg:px-12 relative overflow-hidden font-sans border-t border-slate-200/90 dark:border-emerald-950/40 transition-colors duration-300">
+   <footer ref="elementRef" id="footer"
+      class="footer-wrapper bg-[#fbf9f4] dark:bg-[#0b0f0e] text-slate-600 dark:text-slate-300  pb-12 px-4 sm:px-6 lg:px-12 relative overflow-hidden font-sans border-t border-slate-200/90 dark:border-emerald-950/40 transition-colors duration-300">
 
-      <div id="footer-container-inner" class="footer-container max-w-[1440px] mx-auto">
+      <div id="footer-container-inner" :class="['footer-container max-w-[1440px] mx-auto scroll-zoom-container', { 'start-zoom': isVisible }]">
 
          <!-- Top CTA Card Banner -->
          <div id="footer-cta-banner"
-            class="footer-cta-card bg-white dark:bg-[#0f1715] border border-slate-200/90 dark:border-emerald-900/40 rounded-[2.5rem] p-6 sm:p-8 lg:p-10 mb-20 shadow-[0_10px_30px_rgba(0,0,0,0.03)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.5)] flex flex-col lg:flex-row items-center justify-between gap-8 relative overflow-hidden">
+            :class="['footer-cta-card bg-white dark:bg-[#0f1715] border border-slate-200/90 dark:border-emerald-900/40 rounded-[2.5rem] p-6 sm:p-8 lg:p-10 mb-20 shadow-[0_10px_30px_rgba(0,0,0,0.03)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.5)] flex flex-col lg:flex-row items-center justify-between gap-8 relative overflow-hidden scroll-card-item', { 'is-visible': isVisible }]">
 
             <!-- Left Side: Icon & Text -->
             <div id="footer-cta-left" class="footer-cta-content-wrapper flex items-center gap-6">
@@ -55,18 +58,18 @@ const footer = footerData;
 
          <!-- Main Footer Columns Grid -->
          <div id="footer-main-grid"
-            class="footer-grid grid grid-cols-1 gap-12 mb-16 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
+            :class="['footer-grid grid grid-cols-1 gap-12  md:grid-cols-2 lg:grid-cols-12 lg:gap-8 scroll-card-item', { 'is-visible': isVisible }]">
 
             <div id="footer-col-brand" class="footer-brand-column flex flex-col gap-6 lg:col-span-4">
 
                <!-- Logo & Title -->
                <div id="footer-brand-header" class="footer-logo-wrapper flex flex-col items-start gap-3">
                   <div id="footer-brand-logo-box"
-                     class="footer-logo-icon flex items-center justify-center text-xl font-black max-w-[100px] text-emerald-700 dark:text-emerald-400 overflow-hidden shrink-0">
+                     class="footer-logo-icon flex items-center justify-center text-xl font-black max-w-[200px] text-emerald-700 dark:text-emerald-400 overflow-hidden shrink-0">
                      <img v-if="footer.personal.logoUrl" :src="footer.personal.logoUrl" alt="Logo"
                         class="w-full h-full object-cover" />
                   </div>
-                  <div id="footer-brand-titles" class="footer-title-group">                    
+                  <div id="footer-brand-titles" class="footer-title-group">            
                      <p id="footer-author-role"
                         class="footer-role text-[11px] text-slate-400 dark:text-slate-400 font-medium">{{
                            footer.personal.title }}</p>
@@ -79,7 +82,7 @@ const footer = footerData;
                   {{ footer.personal.bio }}
                </p>
 
-            <!-- Feature Bullet Points (Dynamic) -->
+               <!-- Feature Bullet Points (Dynamic) -->
                <div id="footer-features-list" class="footer-features-wrapper flex flex-col gap-3 pt-2">
                   <div v-for="(feature, index) in footer.featuresList" :key="index"
                      class="footer-feature-item flex items-center gap-3 text-xs text-slate-600 dark:text-slate-300">
@@ -151,9 +154,7 @@ const footer = footerData;
                      </a>
                   </div>
                </div>
-
             </div>
-
          </div>
 
          <!-- Dividers -->
@@ -171,19 +172,35 @@ const footer = footerData;
                <p>{{ footer.personal.tagline }}</p>
             </div>
 
-            <!-- Privacy & Legal Links -->
-            <!-- <div id="footer-legal-links" class="footer-legal-group flex items-center gap-4">
-               <template v-for="(legal, index) in footer.legalLinks" :key="index">
-                  <a :href="legal.href" class="transition-colors hover:text-emerald-600 dark:hover:text-emerald-400">{{
-                     legal.name }}</a>
-                  <span v-if="index < footer.legalLinks.length - 1">|</span>
-               </template>
-            </div> -->
-            
-
          </div>
 
       </div>
 
    </footer>
 </template>
+
+<style scoped>
+/* Scroll Zoom & Fade Transitions */
+.scroll-zoom-container {
+   opacity: 0;
+   transform: scale(0.95) translateY(30px);
+   transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-zoom-container.start-zoom {
+   opacity: 1;
+   transform: scale(1) translateY(0);
+}
+
+.scroll-card-item {
+   opacity: 0;
+   transform: translateY(25px);
+   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+   transition-delay: 0.2s;
+}
+
+.scroll-card-item.is-visible {
+   opacity: 1;
+   transform: translateY(0);
+}
+</style>
