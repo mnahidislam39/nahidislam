@@ -5,6 +5,14 @@ import { Icon } from '@iconify/vue';
 import { useRouter } from 'vue-router';
 import { useScrollReveal } from '../composables/useScrollReveal';
 
+// Swiper Vue.js components & modules
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Navigation, Pagination } from 'swiper/modules';
+
+// Swiper CSS styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+
 const router = useRouter();
 
 // কার্ড বা "View Project" এ ক্লিকের ফাংশন
@@ -15,14 +23,6 @@ const viewProjectDetails = (id) => {
    });
 };
 
-// Swiper Vue.js components & modules
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Navigation, Pagination } from 'swiper/modules';
-
-// Swiper CSS styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-
 // featuredProjectsData 
 const featured = featuredProjectsData; 
 const modules = [Navigation, Pagination];
@@ -30,8 +30,8 @@ const modules = [Navigation, Pagination];
 // Active Category State
 const activeCategory = ref("All");
 
-// Scroll Reveal Composable (false parameter to avoid zoom-out bounce bug)
-const { elementRef, isVisible } = useScrollReveal(0.1, false);
+// Scroll Reveal Composable (Intersection Observer)
+const { elementRef, isVisible } = useScrollReveal(0.15, false);
 
 // Filtered Projects Computed Property
 const filteredProjects = computed(() => {
@@ -48,23 +48,30 @@ const filteredProjects = computed(() => {
 <template>
    <section
       ref="elementRef"
-      class="relative px-4 py-28 overflow-hidden bg-[#fbf9f4] dark:bg-[#0f0d0b] featured-section pt-0 sm:px-6 lg:px-8 text-slate-900 dark:text-slate-100 transition-colors duration-300"
+      class="relative px-4 py-18 overflow-hidden bg-[#fbf9f4] dark:bg-[#0f0d0b] featured-section sm:px-6 lg:px-8 text-slate-900 dark:text-slate-200 transition-colors duration-300"
       id="featuredWork"
    >
 
+      <!-- Main Container with Tailwind Zoom Scale & Opacity Animation -->
       <div
-         :class="['max-w-[1440px] mx-auto relative z-10 featured-container-inner scroll-zoom-container', { 'start-zoom': isVisible }]"
+         :class="[
+            'max-w-[1440px] mx-auto relative z-10 featured-container-inner transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] transform',
+            isVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-90 translate-y-12'
+         ]"
          id="featured-container"
       >
 
          <!-- Top Header & Category Filter Row -->
          <div
-            class="flex flex-col justify-between gap-6 mb-16 lg:flex-row lg:items-end featured-header-wrapper scroll-card-item items-center md:items-start  text-center md:text-left"
+            :class="[
+               'flex flex-col justify-between gap-6 mb-16 lg:flex-row lg:items-end featured-header-wrapper items-center md:items-start text-center md:text-left transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-100 transform',
+               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            ]"
             id="featured-header"
          >
 
             <!-- Left Title and Description -->
-            <div class="max-w-xl featured-title-desc-wrapper">
+            <div class="max-w-2xl featured-title-desc-wrapper">
                <div
                   class="flex flex-col md:items-start items-center mb-4 section-tag-group"
                   id="section-tag-wrapper"
@@ -84,13 +91,13 @@ const filteredProjects = computed(() => {
 
                <!-- Main Heading -->
                <h2
-                  class="mb-4 text-4xl font-black leading-tight tracking-tight sm:text-5xl text-slate-900 dark:text-white section-heading-text"
+                  class="mb-4 text-4xl font-black leading-tight tracking-tight sm:text-6xl text-slate-900 dark:text-white section-heading-text"
                   id="featured-main-heading"
                   v-html="featured.title"
                ></h2>
                
                <p
-                  class="text-sm leading-relaxed text-slate-500 dark:text-slate-400 sm:text-base section-desc-text"
+                  class="text-sm leading-relaxed text-slate-200 dark:text-slate-200 sm:text-base section-desc-text"
                   id="featured-description"
                >{{ featured.description }}</p>
             </div>
@@ -104,7 +111,7 @@ const filteredProjects = computed(() => {
                   'px-5 py-2.5 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap',
                   activeCategory === cat
                      ? 'bg-emerald-800 dark:bg-emerald-500 text-white dark:text-slate-950 shadow-md'
-                     : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-150 dark:hover:bg-[#1f1a15]'
+                     : 'text-slate-600 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white hover:bg-slate-150 dark:hover:bg-[#1f1a15]'
                ]">
                   {{ cat }}
                </button>
@@ -114,7 +121,10 @@ const filteredProjects = computed(() => {
 
          <!-- Projects Slider Container -->
          <div
-            class="relative px-2 mb-16 sm:px-4 slider-outer-container scroll-card-item"
+            :class="[
+               'relative px-2 mb-16 sm:px-4 slider-outer-container transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-300 transform',
+               isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-95'
+            ]"
             id="projects-slider-wrapper"
          >
 
@@ -130,7 +140,7 @@ const filteredProjects = computed(() => {
 
                   <!-- Project Card -->
                   <div
-                     class="bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] shadow-[0_10px_30px_rgba(0,0,0,0.03)] flex flex-col justify-between h-full hover:border-emerald-500/50 transition-all project-card-box"
+                     class=" bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] shadow-[0_10px_30px_rgba(0,0,0,0.03)] flex flex-col justify-between h-full hover:border-emerald-500/50 transition-all project-card-box"
                   >
 
                      <!-- Thumbnail Preview -->
@@ -145,7 +155,7 @@ const filteredProjects = computed(() => {
                         />
                      </div>
 
-                     <div class="project-card-content-area p-4">
+                     <div class="p-4 project-card-content-area">
                         <!-- Tech Badge -->
                         <span
                            class="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-800 dark:text-emerald-400 rounded-full text-xs font-bold mb-3 project-tech-badge"
@@ -158,7 +168,7 @@ const filteredProjects = computed(() => {
                            @click="viewProjectDetails(project.id)"
                         >{{ project.title }}</h3>
                         <p
-                           class="mb-6 text-xs leading-relaxed text-slate-500 dark:text-slate-400 line-clamp-2 project-desc-text"
+                           class="mb-6 text-xs leading-relaxed text-slate-200 dark:text-slate-200 line-clamp-2 project-desc-text"
                         >{{ project.description }}
                         </p>
                      </div>
@@ -168,7 +178,7 @@ const filteredProjects = computed(() => {
                         class="flex items-center justify-between p-4 mt-auto border-t border-slate-100 dark:border-[#26201a] project-card-footer"
                      >
                         <div
-                           class="flex items-center gap-3 text-xs font-bold text-slate-700 dark:text-slate-300 project-features-group"
+                           class="flex items-center gap-3 text-xs font-bold text-slate-700 dark:text-slate-200 project-features-group"
                         >
                            <span v-for="(feat, fIdx) in project.features" :key="fIdx" class="flex items-center gap-1 project-feature-item">
                               <Icon icon="lucide:check-circle-2" class="text-sm text-emerald-700 dark:text-emerald-400" /> {{ feat.label }}
@@ -176,7 +186,7 @@ const filteredProjects = computed(() => {
                         </div>
                         <!-- View Project Button -->
                         <button
-                           class="flex items-center gap-1 text-xs font-bold cursor-pointer text-emerald-800 dark:text-emerald-400 hover:text-emerald-950 dark:hover:text-emerald-300 shrink-0 project-view-btn"
+                           class="flex items-center gap-1 text-xs font-bold cursor-pointer  text-emerald-800 dark:text-emerald-400 hover:text-emerald-950 dark:hover:text-emerald-300 shrink-0 project-view-btn"
                            @click="viewProjectDetails(project.id)"
                         >
                            View Project
@@ -191,13 +201,13 @@ const filteredProjects = computed(() => {
 
             <!-- Custom Navigation Arrows -->
             <button
-               class="custom-prev-btn absolute -left-5 sm:-left-6 top-[45%] -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white dark:bg-[#16120e] border border-slate-200 dark:border-[#26201a] shadow-xl text-slate-700 dark:text-slate-300 hover:bg-emerald-800 dark:hover:bg-emerald-500 hover:text-white dark:hover:text-slate-950 hover:border-emerald-800 dark:hover:border-emerald-500 flex items-center justify-center transition-all cursor-pointer"
+               class="custom-prev-btn absolute -left-5 sm:-left-6 top-[45%] -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white dark:bg-[#16120e] border border-slate-200 dark:border-[#26201a] shadow-xl text-slate-700 dark:text-slate-200 hover:bg-emerald-800 dark:hover:bg-emerald-500 hover:text-white dark:hover:text-slate-950 hover:border-emerald-800 dark:hover:border-emerald-500 flex items-center justify-center transition-all cursor-pointer"
             >
                <Icon icon="lucide:chevron-left" class="text-2xl" />
             </button>
 
             <button
-               class="custom-next-btn absolute -right-5 sm:-right-6 top-[45%] -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white dark:bg-[#16120e] border border-slate-200 dark:border-[#26201a] shadow-xl text-slate-700 dark:text-slate-300 hover:bg-emerald-800 dark:hover:bg-emerald-500 hover:text-white dark:hover:text-slate-950 hover:border-emerald-800 dark:hover:border-emerald-500 flex items-center justify-center transition-all cursor-pointer"
+               class="custom-next-btn absolute -right-5 sm:-right-6 top-[45%] -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white dark:bg-[#16120e] border border-slate-200 dark:border-[#26201a] shadow-xl text-slate-700 dark:text-slate-200 hover:bg-emerald-800 dark:hover:bg-emerald-500 hover:text-white dark:hover:text-slate-950 hover:border-emerald-800 dark:hover:border-emerald-500 flex items-center justify-center transition-all cursor-pointer"
             >
                <Icon icon="lucide:chevron-right" class="text-2xl" />
             </button>
@@ -206,7 +216,10 @@ const filteredProjects = computed(() => {
 
          <!-- Bottom Stats & Quote Banner -->
          <div
-            class="bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] p-8 sm:p-10 shadow-[0_10px_30px_rgba(0,0,0,0.03)] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative featured-bottom-banner scroll-card-item"
+            :class="[
+               'bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] p-8 sm:p-10 shadow-[0_10px_30px_rgba(0,0,0,0.03)] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative featured-bottom-banner transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-500 transform',
+               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            ]"
          >
 
             <!-- Stats Columns -->
@@ -218,7 +231,7 @@ const filteredProjects = computed(() => {
                      <Icon :icon="stat.icon" class="text-2xl" />
                   </div>
                   <h3 class="mb-1 text-3xl font-black text-slate-900 dark:text-white stat-value-text">{{ stat.value }}</h3>
-                  <p class="text-[11px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-wider stat-label-text">{{ stat.label }}</p>
+                  <p class="text-[11px] text-slate-200 dark:text-slate-200 font-bold uppercase tracking-wider stat-label-text">{{ stat.label }}</p>
                </div>
             </div>
 
@@ -228,7 +241,7 @@ const filteredProjects = computed(() => {
             >
                <div class="flex items-start gap-3 quote-content-box">
                   <span class="font-serif text-3xl font-bold leading-none text-emerald-600 dark:text-emerald-400 quote-symbol">“</span>
-                  <p class="text-xs font-medium leading-relaxed sm:text-sm text-slate-600 dark:text-slate-400 quote-text">
+                  <p class="text-xs font-medium leading-relaxed sm:text-sm text-slate-600 dark:text-slate-200 quote-text">
                      {{ featured.quoteBox.quote }}
                   </p>
                </div>

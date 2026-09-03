@@ -57,7 +57,7 @@ export const servicesData = {
    ],
    ctaBox: {
       title: "One Developer. Multiple Solutions.",
-      description: "You get the advantage of working with a developer who understands both the business and the technology.",
+      description: "You get the advantage of working with me, a developer who understands both the business and the technology.",
       subTextPrimary: "Transform your ideas into reality.",
       subTextSecondary: "Let's build something amazing together.",
       buttonText: "Start a Project",

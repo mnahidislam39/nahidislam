@@ -55,7 +55,7 @@ export const processData = {
 
    cta: {
       icon: "lucide:message-square-text",
-      text: "Have a project in mind? Let's discuss how we can work together.",
+      text: "Have a project in mind? Let's discuss how I can work together.",
       buttonText: "Start a Project",
       buttonLink: "#contact"
    }

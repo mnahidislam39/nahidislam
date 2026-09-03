@@ -36,7 +36,7 @@ onUnmounted(() => {
 
 <template>
    <section ref="sectionRef" :id="services.id"
-      class="services-section bg-[#fbf9f4] dark:bg-[#0f0d0b] py-20 px-4 sm:px-6 lg:px-8 pt-0 text-slate-900 dark:text-slate-100 relative transition-colors duration-300">
+      class="services-section bg-[#fbf9f4] dark:bg-[#0f0d0b] py-18 px-4 sm:px-6 lg:px-8 text-slate-900 dark:text-slate-300 relative transition-colors duration-300">
 
       <!-- Max width container with Global Scroll Zoom Effect -->
       <div id="services-container" :class="['max-w-[1400px] mx-auto relative z-10 flex flex-col gap-10 scroll-zoom-container', { 'start-zoom': isVisible }]">
@@ -62,7 +62,7 @@ onUnmounted(() => {
                </div>
 
                <h2 id="section-main-heading"
-                  class="text-4xl sm:text-5xl max-w-xl text-center md:text-left font-black tracking-tight mb-6 leading-tight text-slate-900 dark:text-white">
+                  class="text-4xl sm:text-6xl max-w-xl text-center md:text-left font-black tracking-tight mb-6 leading-tight text-slate-900 dark:text-white">
                   {{ services.headline }} 
                   <span id="section-heading-highlight" class="text-emerald-600 dark:text-emerald-400">
                      {{ services.highLigheHedline }}
@@ -71,7 +71,7 @@ onUnmounted(() => {
                </h2>
 
                <p id="section-description"
-                  class="text-slate-500 max-w-xl dark:text-slate-400 text-center md:text-left text-base sm:text-lg font-normal max-w-2xl leading-relaxed">
+                  class="text-slate-300 max-w-xl dark:text-slate-300 text-center md:text-left text-base sm:text-lg font-normal max-w-2xl leading-relaxed">
                   {{ services.description }}
                </p>
             </div>
@@ -117,21 +117,21 @@ onUnmounted(() => {
          </div>
 
          <!-- Cards Container: Desktop Grid vs Mobile Sticky Stack -->
-         <div id="capability-cards-grid" class="cards-stack-container relative grid grid-cols-1 lg:grid-cols-3 gap-6 scroll-card-item">
+         <div id="capability-cards-grid" class="cards-stack-container relative grid grid-cols-1 lg:grid-cols-3 gap-6 scroll-card-item ">
 
             <template v-for="(card, cIdx) in services.cards" :key="cIdx">
                <!-- Mobile sticky and stack, Desktop standard grid item -->
                <div :id="'card-' + card.title.toLowerCase()" 
                   :style="{ top: `${90 + (cIdx * 0)}px`, zIndex: cIdx + 1 }"
                   :class="[
-                     cIdx === 0 ? 'bg-[#f4faf6] dark:bg-[#131b15] border-emerald-100 dark:border-emerald-950/60' : '',
-                     cIdx === 1 ? 'bg-white dark:bg-[#16120e] border-slate-200/90 dark:border-[#26201a]' : '',
-                     cIdx === 2 ? 'bg-[#fcf7f2] dark:bg-[#191512] border-amber-100/80 dark:border-amber-950/50' : '',
+                     cIdx === 0 ? 'bg-[#f4faf6] dark:bg-[#131b15] border-emerald-100 dark:border-emerald-950/60 ' : '',
+                     cIdx === 1 ? 'bg-white dark:bg-[#16120e] border-slate-200/90 dark:border-[#26201a] ' : '',
+                     cIdx === 2 ? 'bg-[#fcf7f2] dark:bg-[#191512] border-amber-100/80 dark:border-amber-950/50 ' : '',
                      'framer-sticky-card sticky lg:static border rounded-[2.5rem] p-6 sm:p-10 shadow-[0_20px_40px_rgba(0,0,0,0.15)] flex flex-col justify-between transition-all duration-300'
-                  ]"
+                  ] "
                >
                   <div>
-                     <div class="flex items-center justify-between mb-6">
+                     <div class="flex items-center justify-between mb-6 ">
                         <span :class="[
                            cIdx === 0 ? 'text-emerald-700 dark:text-emerald-300 bg-white dark:bg-[#1a261e] border-emerald-100 dark:border-emerald-900/50' : '',
                            cIdx === 1 ? 'text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/50 border-sky-100 dark:border-sky-900/50' : '',
@@ -182,7 +182,7 @@ onUnmounted(() => {
 
          <!-- Bottom CTA Banner Card -->
          <div id="bottom-cta-banner"
-            class="bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] p-6 sm:p-8 shadow-[0_10px_30px_rgba(0,0,0,0.03)] flex flex-col lg:flex-row items-center justify-between gap-6 relative z-20 md:mt-10 scroll-card-item">
+            class="bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] p-6 sm:p-8 shadow-[0_10px_30px_rgba(0,0,0,0.03)] flex flex-col lg:flex-row items-center justify-between gap-6 relative z-20  scroll-card-item">
 
             <div class="flex md:items-center  md:flex-col md:flex-row gap-5">
                <div class="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-100 dark:border-emerald-900/50 flex items-center justify-center shrink-0">
@@ -194,7 +194,7 @@ onUnmounted(() => {
                   <h3 class="text-lg sm:text-xl md:text-center md:text-left font-black text-slate-900 dark:text-white mb-1">
                      {{ services.ctaBox.title }}
                   </h3>
-                  <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">
+                  <p class="text-xs sm:text-sm text-slate-300 dark:text-slate-300 font-medium">
                      {{ services.ctaBox.description }}
                   </p>
                </div>
@@ -203,11 +203,11 @@ onUnmounted(() => {
             <div class="flex items-center gap-6 w-full lg:w-auto justify-center md:justify-between lg:justify-end border-t lg:border-t-0 pt-4 lg:pt-0 border-slate-100 dark:border-[#26201a]">
                <div class="hidden sm:block text-right">
                   <p class="text-xs font-bold text-slate-900 dark:text-white">{{ services.ctaBox.subTextPrimary }}</p>
-                  <p class="text-xs text-slate-400 dark:text-slate-500 font-medium">{{ services.ctaBox.subTextSecondary }}</p>
+                  <p class="text-xs text-slate-300 dark:text-slate-300 font-medium">{{ services.ctaBox.subTextSecondary }}</p>
                </div>
                <a :href="services.ctaBox.buttonLink"
-                  class="inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-[#0d2318] dark:bg-white dark:hover:text-white hover:bg-emerald-600 dark:hover:bg-emerald-500 text-white dark:text-slate-900 font-bold text-sm transition-all duration-300 shadow-md">
-                  <span>{{ services.ctaBox.buttonText }}</span>
+                  class=" inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-[#0d2318] dark:bg-white dark:hover:text-white hover:bg-emerald-600 dark:hover:bg-emerald-500 text-white dark:text-slate-900 font-bold text-sm transition-all duration-300 shadow-md">
+                  <span class="">{{ services.ctaBox.buttonText }}</span>
                   <span>→</span>
                </a>
             </div>

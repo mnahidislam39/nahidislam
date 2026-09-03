@@ -28,7 +28,7 @@ const availableBudgets = computed(() => {
 
 <template>
    <section ref="elementRef" id="contact"
-      class="contact-section relative px-4 pt-0 py-28 overflow-hidden bg-[#fbf9f4] dark:bg-[#0f0d0b] sm:px-6 lg:px-8 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+      class="contact-section relative px-4 py-18 overflow-hidden bg-[#fbf9f4] dark:bg-[#0f0d0b] sm:px-6 lg:px-8 text-slate-900 dark:text-slate-300 transition-colors duration-300">
 
       <div id="contact-container" :class="['contact-container max-w-[1440px] mx-auto relative z-10 scroll-zoom-container', { 'start-zoom': isVisible }]">
 
@@ -38,7 +38,7 @@ const availableBudgets = computed(() => {
             <!-- Left Column: Heading & Contact Info (5 Cols) -->
             <div id="contact-left-col" :class="['contact-left-column lg:col-span-5 lg:sticky lg:top-24 flex flex-col gap-8 scroll-card-item', { 'is-visible': isVisible }]">
 
-               <div class="contact-header-wrapper flex flex-col items-center justify-center text-center md:items-left md:text-left">
+               <div class="contact-header-wrapper flex flex-col items-center justify-center text-center md:items-start md:text-left">
                   <div id="section-tag-wrapper" class="section-tag-wrapper flex flex-col items-start mb-4">
                      <span id="section-number-tag"
                         class="section-number-tag text-xs font-bold tracking-[0.2em] text-emerald-600 dark:text-emerald-400 uppercase mb-3">{{ contact.sectionTag }}</span>
@@ -48,10 +48,10 @@ const availableBudgets = computed(() => {
                      </div>
                   </div>
 
-                  <h2 id="section-main-heading" class="section-main-heading mb-4 text-4xl font-black leading-tight tracking-tight sm:text-5xl text-slate-900 dark:text-white"
+                  <h2 id="section-main-heading" class="section-main-heading mb-4 text-4xl font-black leading-tight tracking-tight sm:text-6xl text-slate-900 dark:text-white"
                      v-html="contact.title"></h2>
 
-                  <p id="section-description" class="section-description text-sm leading-relaxed text-slate-500 dark:text-slate-400 sm:text-base">
+                  <p id="section-description" class="section-description text-sm leading-relaxed text-slate-300 dark:text-slate-300 sm:text-base">
                      {{ contact.description }}
                   </p>
                </div>
@@ -64,7 +64,7 @@ const availableBudgets = computed(() => {
                         <Icon :icon="item.icon" />
                      </span>
                      <div class="contact-info-content">
-                        <p class="contact-info-label mb-1 text-xs font-bold tracking-wider uppercase text-slate-400 dark:text-slate-500">{{ item.label }}</p>
+                        <p class="contact-info-label mb-1 text-xs font-bold tracking-wider uppercase text-slate-300 dark:text-slate-300">{{ item.label }}</p>
                         <a v-if="item.href" :href="item.href"
                            class="contact-info-link !lowercase text-sm font-bold transition-colors text-slate-900 dark:text-white hover:text-emerald-600 dark:hover:text-emerald-400">{{
                               item.value }}</a>
@@ -75,7 +75,7 @@ const availableBudgets = computed(() => {
 
                <!-- Schedule a Call Box -->
                <div id="schedule-call-box"
-                  class="schedule-call-wrapper flex flex-col items-center justify-between gap-6 p-8 border bg-white dark:bg-[#16120e] border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] shadow-[0_10px_30px_rgba(0,0,0,0.03)] sm:flex-row">
+                  class="hidden md:visible schedule-call-wrapper flex flex-col items-center justify-between gap-6 p-8 border bg-white dark:bg-[#16120e] border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] shadow-[0_10px_30px_rgba(0,0,0,0.03)] sm:flex-row">
                   <div class="schedule-call-info flex items-center gap-4">
                      <span
                         class="schedule-call-icon flex items-center justify-center w-12 h-12 text-xl bg-emerald-50 dark:bg-emerald-950/50 rounded-2xl text-emerald-600 dark:text-emerald-400 shrink-0">
@@ -83,7 +83,7 @@ const availableBudgets = computed(() => {
                      </span>
                      <div class="schedule-call-text">
                         <h4 class="schedule-call-title text-sm font-bold text-slate-900 dark:text-white">{{ contact.scheduleCall.title }}</h4>
-                        <p class="schedule-call-subtitle text-xs text-slate-500 dark:text-slate-400">{{ contact.scheduleCall.subtitle }}</p>
+                        <p class="schedule-call-subtitle text-xs text-slate-300 dark:text-slate-300">{{ contact.scheduleCall.subtitle }}</p>
                      </div>
                   </div>
                   <a :href="contact.scheduleCall.href"
@@ -107,7 +107,7 @@ const availableBudgets = computed(() => {
                      </span>
                      <div class="contact-form-header-text">
                         <h3 class="contact-form-title text-xl font-black text-slate-900 dark:text-white">{{ contact.form.title }}</h3>
-                        <p class="contact-form-subtitle text-xs text-slate-500 dark:text-slate-400">{{ contact.form.subtitle }}</p>
+                        <p class="contact-form-subtitle text-xs text-slate-300 dark:text-slate-300">{{ contact.form.subtitle }}</p>
                      </div>
                   </div>
 
@@ -120,7 +120,7 @@ const availableBudgets = computed(() => {
                               {{ contact.form.fields.nameLabel }} <span class="text-red-500">*</span>
                            </label>
                            <input type="text" v-model="form.name" :placeholder="contact.form.fields.namePlaceholder"
-                              class="form-input w-full bg-slate-50 dark:bg-[#1f1a15] border border-slate-200 dark:border-[#26201a] rounded-2xl px-4 py-3.5 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 dark:focus:border-emerald-400 focus:bg-white dark:focus:bg-[#16120e] transition-all"
+                              class="form-input w-full bg-slate-50 dark:bg-[#1f1a15] border border-slate-200 dark:border-[#26201a] rounded-2xl px-4 py-3.5 text-sm text-slate-900 dark:text-slate-300 focus:outline-none focus:border-emerald-600 dark:focus:border-emerald-400 focus:bg-white dark:focus:bg-[#16120e] transition-all"
                               required />
                         </div>
                         <div class="form-field-group">
@@ -128,7 +128,7 @@ const availableBudgets = computed(() => {
                               {{ contact.form.fields.emailLabel }} <span class="text-red-500">*</span>
                            </label>
                            <input type="email" v-model="form.email" :placeholder="contact.form.fields.emailPlaceholder"
-                              class="form-input w-full bg-slate-50 dark:bg-[#1f1a15] border border-slate-200 dark:border-[#26201a] rounded-2xl px-4 py-3.5 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 dark:focus:border-emerald-400 focus:bg-white dark:focus:bg-[#16120e] transition-all"
+                              class="form-input w-full bg-slate-50 dark:bg-[#1f1a15] border border-slate-200 dark:border-[#26201a] rounded-2xl px-4 py-3.5 text-sm text-slate-900 dark:text-slate-300 focus:outline-none focus:border-emerald-600 dark:focus:border-emerald-400 focus:bg-white dark:focus:bg-[#16120e] transition-all"
                               required />
                         </div>
                      </div>
@@ -140,14 +140,14 @@ const availableBudgets = computed(() => {
                               {{ contact.form.fields.companyLabel }}
                            </label>
                            <input type="text" v-model="form.company" :placeholder="contact.form.fields.companyPlaceholder"
-                              class="form-input w-full bg-slate-50 dark:bg-[#1f1a15] border border-slate-200 dark:border-[#26201a] rounded-2xl px-4 py-3.5 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 dark:focus:border-emerald-400 focus:bg-white dark:focus:bg-[#16120e] transition-all" />
+                              class="form-input w-full bg-slate-50 dark:bg-[#1f1a15] border border-slate-200 dark:border-[#26201a] rounded-2xl px-4 py-3.5 text-sm text-slate-900 dark:text-slate-300 focus:outline-none focus:border-emerald-600 dark:focus:border-emerald-400 focus:bg-white dark:focus:bg-[#16120e] transition-all" />
                         </div>
                         <div class="form-field-group">
                            <label class="form-label block mb-2 text-xs font-bold tracking-wider uppercase text-slate-700 dark:text-slate-300">
                               {{ contact.form.fields.websiteLabel }}
                            </label>
                            <input type="url" v-model="form.website" :placeholder="contact.form.fields.websitePlaceholder"
-                              class="form-input w-full bg-slate-50 dark:bg-[#1f1a15] border border-slate-200 dark:border-[#26201a] rounded-2xl px-4 py-3.5 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 dark:focus:border-emerald-400 focus:bg-white dark:focus:bg-[#16120e] transition-all" />
+                              class="form-input w-full bg-slate-50 dark:bg-[#1f1a15] border border-slate-200 dark:border-[#26201a] rounded-2xl px-4 py-3.5 text-sm text-slate-900 dark:text-slate-300 focus:outline-none focus:border-emerald-600 dark:focus:border-emerald-400 focus:bg-white dark:focus:bg-[#16120e] transition-all" />
                         </div>
                      </div>
 
@@ -158,7 +158,7 @@ const availableBudgets = computed(() => {
                         </label>
                         <select
                            v-model="form.projectType"
-                           class="form-select w-full bg-slate-50 dark:bg-[#1f1a15] border border-slate-200 dark:border-[#26201a] rounded-2xl px-4 py-3.5 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 dark:focus:border-emerald-400 focus:bg-white dark:focus:bg-[#16120e] transition-all"
+                           class="form-select w-full bg-slate-50 dark:bg-[#1f1a15] border border-slate-200 dark:border-[#26201a] rounded-2xl px-4 py-3.5 text-sm text-slate-900 dark:text-slate-300 focus:outline-none focus:border-emerald-600 dark:focus:border-emerald-400 focus:bg-white dark:focus:bg-[#16120e] transition-all"
                            required>
                            <option disabled value="">{{ contact.form.fields.projectTypeDefault }}</option>
                            <option v-for="(opt, idx) in contact.form.projectTypes" :key="idx" :value="opt">{{ opt }}</option>
@@ -173,7 +173,7 @@ const availableBudgets = computed(() => {
                         <textarea rows="3"
                            v-model="form.need"
                            :placeholder="contact.form.fields.needPlaceholder"
-                           class="form-textarea w-full bg-slate-50 dark:bg-[#1f1a15] border border-slate-200 dark:border-[#26201a] rounded-2xl px-4 py-3.5 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 dark:focus:border-emerald-400 focus:bg-white dark:focus:bg-[#16120e] transition-all"
+                           class="form-textarea w-full bg-slate-50 dark:bg-[#1f1a15] border border-slate-200 dark:border-[#26201a] rounded-2xl px-4 py-3.5 text-sm text-slate-900 dark:text-slate-300 focus:outline-none focus:border-emerald-600 dark:focus:border-emerald-400 focus:bg-white dark:focus:bg-[#16120e] transition-all"
                            required></textarea>
                      </div>
 
@@ -185,7 +185,7 @@ const availableBudgets = computed(() => {
                            </label>
                            <select
                               v-model="form.budget"
-                              class="form-select w-full bg-slate-50 dark:bg-[#1f1a15] border border-slate-200 dark:border-[#26201a] rounded-2xl px-4 py-3.5 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 dark:focus:border-emerald-400 focus:bg-white dark:focus:bg-[#16120e] transition-all"
+                              class="form-select w-full bg-slate-50 dark:bg-[#1f1a15] border border-slate-200 dark:border-[#26201a] rounded-2xl px-4 py-3.5 text-sm text-slate-900 dark:text-slate-300 focus:outline-none focus:border-emerald-600 dark:focus:border-emerald-400 focus:bg-white dark:focus:bg-[#16120e] transition-all"
                               required>
                               <option disabled value="">{{ contact.form.fields.budgetDefault }}</option>
                               <option v-for="(budget, idx) in availableBudgets" :key="idx" :value="budget">{{ budget }}</option>
@@ -197,7 +197,7 @@ const availableBudgets = computed(() => {
                            </label>
                            <select
                               v-model="form.timeline"
-                              class="form-select w-full bg-slate-50 dark:bg-[#1f1a15] border border-slate-200 dark:border-[#26201a] rounded-2xl px-4 py-3.5 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 dark:focus:border-emerald-400 focus:bg-white dark:focus:bg-[#16120e] transition-all">
+                              class="form-select w-full bg-slate-50 dark:bg-[#1f1a15] border border-slate-200 dark:border-[#26201a] rounded-2xl px-4 py-3.5 text-sm text-slate-900 dark:text-slate-300 focus:outline-none focus:border-emerald-600 dark:focus:border-emerald-400 focus:bg-white dark:focus:bg-[#16120e] transition-all">
                               <option disabled value="">{{ contact.form.fields.timelineDefault }}</option>
                               <option v-for="(time, idx) in contact.form.timelines" :key="idx" :value="time">{{ time }}</option>
                            </select>
@@ -212,18 +212,18 @@ const availableBudgets = computed(() => {
                         <textarea rows="3"
                            v-model="form.details"
                            :placeholder="contact.form.fields.detailsPlaceholder"
-                           class="form-textarea w-full bg-slate-50 dark:bg-[#1f1a15] border border-slate-200 dark:border-[#26201a] rounded-2xl px-4 py-3.5 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-600 dark:focus:border-emerald-400 focus:bg-white dark:focus:bg-[#16120e] transition-all"></textarea>
+                           class="form-textarea w-full bg-slate-50 dark:bg-[#1f1a15] border border-slate-200 dark:border-[#26201a] rounded-2xl px-4 py-3.5 text-sm text-slate-900 dark:text-slate-300 focus:outline-none focus:border-emerald-600 dark:focus:border-emerald-400 focus:bg-white dark:focus:bg-[#16120e] transition-all"></textarea>
                      </div>
 
                      <!-- File Upload & Submit Row -->
                      <div class="form-footer-action flex flex-col items-center justify-between gap-4 pt-2 sm:flex-row">
                         <label
-                           class="form-upload-label flex items-center gap-2 text-xs font-bold transition-colors cursor-pointer text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 w-full sm:w-auto">
+                           class="form-upload-label flex items-center gap-2 text-xs font-bold transition-colors cursor-pointer text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 w-full sm:w-auto">
                            <span
                               class="form-upload-icon-box flex items-center justify-center w-10 h-10 border rounded-xl bg-slate-50 dark:bg-[#1f1a15] border-slate-200 dark:border-[#26201a] text-slate-700 dark:text-slate-300 shrink-0">
                               <Icon icon="lucide:paperclip" />
                            </span>
-                           <span class="form-upload-text-wrap">{{ contact.form.uploadText }} <br /><span class="text-[10px] text-slate-400 dark:text-slate-500 font-normal">{{ contact.form.uploadSubtext }}</span></span>
+                           <span class="form-upload-text-wrap">{{ contact.form.uploadText }} <br /><span class="text-[10px] text-slate-300 dark:text-slate-300 font-normal">{{ contact.form.uploadSubtext }}</span></span>
                            <input type="file" class="hidden" />
                         </label>
 

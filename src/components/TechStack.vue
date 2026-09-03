@@ -8,7 +8,7 @@ const { elementRef: sectionRef, isVisible } = useScrollReveal();
 
 <template>
    <section ref="sectionRef" :id="techData.id"
-      class="tech-stack-section bg-[#fbf9f4] dark:bg-[#0f0d0b] py-20 px-4 sm:px-6 lg:px-8 text-slate-900 dark:text-slate-100 relative overflow-hidden transition-colors duration-300">
+      class="tech-stack-section bg-[#fbf9f4] dark:bg-[#0f0d0b] py-18 px-4 sm:px-6 lg:px-8 text-slate-900 dark:text-slate-300 relative overflow-hidden transition-colors duration-300">
 
       <div id="tech-stack-container" class="max-w-[1440px] mx-auto relative z-10 transition-all duration-1000 ease-out"
          :class="isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-12 scale-95'">
@@ -54,11 +54,11 @@ const { elementRef: sectionRef, isVisible } = useScrollReveal();
          </div>
 
          <h2 id="tech-stack-main-heading"
-            class="tech-stack-title text-4xl sm:text-5xl lg:text-6xl font-black text-center tracking-tight mb-6 max-w-4xl mx-auto leading-tight text-slate-900 dark:text-white"
+            class="tech-stack-title text-4xl sm:text-6xl lg:text-6xl font-black text-center tracking-tight mb-6 max-w-4xl mx-auto leading-tight text-slate-900 dark:text-white"
             v-html="techData.headline"></h2>
 
          <p id="tech-stack-description-text"
-            class="tech-stack-description text-slate-500 dark:text-slate-400 text-center max-w-2xl mx-auto text-base sm:text-lg font-normal leading-relaxed">
+            class="tech-stack-description text-slate-300 dark:text-slate-300 text-center max-w-2xl mx-auto text-base sm:text-lg font-normal leading-relaxed">
             {{ techData.description }}
          </p>
 

@@ -36,7 +36,7 @@ html {
 .scroll-card-item {
    animation: smoothZoomIn linear;
    animation-timeline: view();
-   animation-range: entry 0% cover 30%;
+   animation-range: entry 0% cover 20%;
 }
 
 /* ফলব্যাক: যেসব ব্রাউজারে অ্যানিমেশন-টাইমলাইন সাপোর্ট করে না */

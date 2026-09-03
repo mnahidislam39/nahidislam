@@ -15,35 +15,35 @@ const toggleAccordion = (index) => {
 </script>
 
 <template>
-   <section ref="elementRef" id="faq" class="relative pt-0 px-4 py-28 overflow-hidden bg-[#fbf9f4] dark:bg-[#0f0d0b] sm:px-6 lg:px-8 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+   <section ref="elementRef" id="faq" class="relative px-4 py-18 bg-[#fbf9f4] dark:bg-[#0f0d0b] sm:px-6 lg:px-8 text-slate-900 dark:text-slate-300 transition-colors duration-300">
       <div id="faq-main-container" :class="['faq-container max-w-[1440px] mx-auto relative z-10 scroll-zoom-container', { 'start-zoom': isVisible }]">
 
          <!-- Top Grid: Left Column & Right Accordion -->
          <div class="faq-top-grid grid items-start grid-cols-1 gap-12 mb-16 lg:grid-cols-12">
 
             <!-- Left Column -->
-            <div :class="['faq-left-column flex flex-col gap-8 lg:col-span-5 scroll-card-item', { 'is-visible': isVisible }]">
+            <div :class="['faq-left-column flex flex-col gap-8 lg:col-span-5 lg:sticky lg:top-24 scroll-card-item', { 'is-visible': isVisible }]">
 
                <!-- Heading & Description -->
                <div class="faq-header-content-box text-center md:text-left">
-                  <div id="faq-tag-wrapper" class="faq-tag-container flex flex-col md:items-start items-center  mb-4">
+                  <div id="faq-tag-wrapper" class="faq-tag-container flex flex-col md:items-start items-center mb-4">
                      <span id="faq-section-number-tag" class="faq-section-tag text-xs font-bold tracking-[0.2em] text-emerald-600 dark:text-emerald-400 uppercase mb-3">{{
                         faqData.sectionTag }}</span>
-                     <div id="faq-line-indicator" class="faq-line-wrapper relative flex items-center justify-start  w-36">
+                     <div id="faq-line-indicator" class="faq-line-wrapper relative flex items-center justify-start w-36">
                         <div class="faq-line-bg absolute w-full h-[1.5px] bg-gradient-to-r from-emerald-600/40 to-transparent">
                         </div>
                         <span class="faq-line-dot relative z-10 w-2 h-2 rounded-full bg-emerald-600 dark:bg-emerald-400"></span>
                      </div>
                   </div>
 
-                  <h2 class="faq-main-title mb-4 text-4xl font-black leading-tight tracking-tight sm:text-5xl text-slate-900 dark:text-white" v-html="faqData.title">
+                  <h2 class="faq-main-title mb-4 text-4xl font-black leading-tight tracking-tight sm:text-6xl text-slate-900 dark:text-white" v-html="faqData.title">
                   </h2>
-                  <p class="faq-main-desc text-sm leading-relaxed text-slate-500 dark:text-slate-400 sm:text-base">{{ faqData.description }}</p>
+                  <p class="faq-main-desc text-sm leading-relaxed text-slate-300 dark:text-slate-300 sm:text-base">{{ faqData.description }}</p>
                </div>
 
                <!-- Still Have Questions Box -->
                <div
-                  class="faq-help-card  flex flex-col md:items-left items-center gap-6 relative">
+                  class="faq-help-card hidden flex flex-col md:items-start items-center gap-6 relative">
                   <div class="faq-help-inner-flex flex md:items-start gap-4">
                      <div
                         class="faq-help-icon-box flex items-center justify-center w-12 h-12 text-2xl text-white dark:text-slate-950 rounded-2xl bg-emerald-950 dark:bg-emerald-500 shrink-0">
@@ -51,7 +51,7 @@ const toggleAccordion = (index) => {
                      </div>
                      <div class="faq-help-text-box">
                         <h3 class="faq-help-title mb-1 text-base font-black text-slate-900 dark:text-white">{{ faqData.helpBox.title }}</h3>
-                        <p class="faq-help-desc text-xs leading-relaxed text-slate-500 dark:text-slate-400">{{ faqData.helpBox.description }}</p>
+                        <p class="faq-help-desc text-xs leading-relaxed text-slate-300 dark:text-slate-300">{{ faqData.helpBox.description }}</p>
                      </div>
                   </div>
                   <a :href="faqData.helpBox.buttonLink"
@@ -60,10 +60,10 @@ const toggleAccordion = (index) => {
                      <Icon icon="lucide:arrow-right" class="text-base" />
                   </a>
                </div>
-
+               
                <!-- 4 Trust Features Card -->
                <div
-                  class="faq-features-grid-card bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] p-6 shadow-[0_10px_30px_rgba(0,0,0,0.03)] grid md:grid-cols-2 grid-cols-2 sm:grid-cols-3  gap-4 items-center">
+                  class="faq-features-grid-card bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] p-6 shadow-[0_10px_30px_rgba(0,0,0,0.03)] grid md:grid-cols-2 grid-cols-2 sm:grid-cols-3 gap-4 items-center">
                   <div v-for="(badge, bIdx) in faqData.features" :key="bIdx"
                      class="faq-feature-item flex flex-col items-center px-2 py-1 text-center"
                      :class="{ 'border-r border-slate-100 dark:border-[#26201a]': bIdx < 3 }">
@@ -72,16 +72,23 @@ const toggleAccordion = (index) => {
                         <Icon :icon="badge.icon" />
                      </div>
                      <h4 class="faq-feature-title text-[11px] font-black text-slate-900 dark:text-white mb-0.5 whitespace-nowrap">{{ badge.title }}</h4>
-                     <p class="faq-feature-desc text-[9px] text-slate-400 dark:text-slate-500 leading-tight">{{ badge.description }}</p>
+                     <p class="faq-feature-desc text-[9px] text-slate-300 dark:text-slate-300 leading-tight">{{ badge.description }}</p>
                   </div>
                </div>
 
             </div>
 
-            <!-- Right Column: FAQ Accordion List -->
-            <div :class="['faq-accordion-column flex flex-col gap-4 lg:col-span-7 scroll-card-item', { 'is-visible': isVisible }]">
-               <div v-for="(item, idx) in faqData.questions" :key="idx"
-                  class="faq-accordion-item bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2rem] p-6 sm:p-7 shadow-[0_5px_20px_rgba(0,0,0,0.02)] transition-all hover:border-emerald-500/50">
+            <!-- Right Column: FAQ Accordion Sticky Stack Container -->
+            <div class="faq-accordion-column lg:col-span-7 flex flex-col relative gap-6 ">
+               <div 
+                  v-for="(item, idx) in faqData.questions" 
+                  :key="idx"
+                  class="faq-accordion-item sticky bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2rem] p-6 sm:p-7 shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all hover:border-emerald-500/50"
+                  :style="{
+                     top: `calc(6rem + ${idx * 0}px)`,
+                     zIndex: 10 + idx
+                  }"
+               >
                   <!-- Accordion Header -->
                   <button @click="toggleAccordion(idx)"
                      class="faq-accordion-btn flex items-center justify-between w-full gap-4 text-left cursor-pointer">
@@ -103,7 +110,7 @@ const toggleAccordion = (index) => {
 
                   <!-- Accordion Body / Answer -->
                   <div v-show="activeIndex === idx" class="faq-accordion-body pt-4 mt-4 border-t border-slate-100 dark:border-[#26201a]">
-                     <p class="faq-accordion-answer text-xs leading-relaxed text-slate-500 dark:text-slate-400 sm:text-sm">{{ item.answer }}</p>
+                     <p class="faq-accordion-answer text-xs leading-relaxed text-slate-300 dark:text-slate-300 sm:text-sm">{{ item.answer }}</p>
                   </div>
                </div>
             </div>
@@ -112,7 +119,7 @@ const toggleAccordion = (index) => {
 
          <!-- Bottom CTA Banner Bar -->
          <div
-            :class="['faq-cta-banner-bar bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] p-8 sm:p-10 shadow-[0_10px_30px_rgba(0,0,0,0.03)] grid grid-cols-1 lg:grid-cols-12 gap-6 items-center scroll-card-item', { 'is-visible': isVisible }]">
+            :class="['faq-cta-banner-bar bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] p-8 sm:p-10 shadow-[0_10px_30px_rgba(0,0,0,0.03)] grid grid-cols-1 lg:grid-cols-12 gap-6 items-center scroll-card-item relative z-30', { 'is-visible': isVisible }]">
 
             <!-- Left Icon & Heading -->
             <div class="faq-cta-left-col flex items-center gap-4 lg:col-span-4">
@@ -122,7 +129,7 @@ const toggleAccordion = (index) => {
                </div>
                <div class="faq-cta-text-box">
                   <h3 class="faq-cta-title mb-1 text-base font-black text-slate-900 dark:text-white">{{ faqData.ctaBanner.title }}</h3>
-                  <p class="faq-cta-desc text-xs text-slate-500 dark:text-slate-400">{{ faqData.ctaBanner.description }}</p>
+                  <p class="faq-cta-desc text-xs text-slate-300 dark:text-slate-300">{{ faqData.ctaBanner.description }}</p>
                </div>
             </div>
 
@@ -134,7 +141,7 @@ const toggleAccordion = (index) => {
                   <div class="faq-cta-highlight-title flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 text-xs font-bold mb-0.5">
                      <Icon :icon="high.icon" /> {{ high.title }}
                   </div>
-                  <span class="faq-cta-highlight-desc text-[10px] text-slate-400 dark:text-slate-500">{{ high.desc }}</span>
+                  <span class="faq-cta-highlight-desc text-[10px] text-slate-300 dark:text-slate-300">{{ high.desc }}</span>
                </div>
             </div>
 

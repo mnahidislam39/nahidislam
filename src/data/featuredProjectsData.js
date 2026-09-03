@@ -1,6 +1,6 @@
 export const featuredProjectsData = {
    sectionTag: "FEATURED WORK",
-   title: "Real Projects. <span class='text-emerald-600 dark:text-emerald-400'>Real Results.</span>",
+   title: "Real Projects <span class='text-emerald-600 dark:text-emerald-400'>Real Results</span>",
    description: "Here are some of the projects I've worked on for amazing brands and clients around the world.",
    categories: ["All", "Shopify", "WordPress", "Custom Development"],
    projects: [

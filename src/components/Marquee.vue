@@ -19,7 +19,7 @@ const { elementRef: sectionRef, isVisible } = useScrollReveal();
               </div>
               <div>
                 <h4 class="text-base font-extrabold text-slate-900 dark:text-white mb-1 whitespace-nowrap">{{ item.title }}</h4>
-                <p class="text-xs text-slate-500 dark:text-slate-400 font-medium leading-relaxed whitespace-nowrap">{{ item.desc }}</p>
+                <p class="text-xs text-slate-300 dark:text-slate-300 font-medium leading-relaxed whitespace-nowrap">{{ item.desc }}</p>
               </div>
             </div>
           </div>

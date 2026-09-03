@@ -17,6 +17,7 @@ export const clientReviewData = {
          name: "Michael Brown",
          role: "E-commerce Entrepreneur",
          avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+         rating: 5,
          icon: "lucide:shopping-bag"
       },
       {
@@ -24,6 +25,7 @@ export const clientReviewData = {
          name: "Sophia Williams",
          role: "Store Owner",
          avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+         rating: 4.5,
          icon: "lucide:shopping-bag"
       },
       {
@@ -31,6 +33,7 @@ export const clientReviewData = {
          name: "David Thompson",
          role: "Marketing Manager",
          avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80",
+         rating: 5,
          icon: "lucide:globe"
       },
       {
@@ -38,6 +41,7 @@ export const clientReviewData = {
          name: "Daniel Smith",
          role: "CTO, TechSolutions",
          avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80",
+         rating: 4.5,
          icon: "lucide:code"
       },
       {
@@ -45,6 +49,7 @@ export const clientReviewData = {
          name: "Daniel Smith",
          role: "CTO, TechSolutions",
          avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80",
+         rating: 5,
          icon: "lucide:code"
       },
    ]

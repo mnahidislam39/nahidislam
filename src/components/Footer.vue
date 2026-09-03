@@ -1,36 +1,71 @@
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue';
 import { footerData } from '../data';
 import { Icon } from '@iconify/vue';
 import { useScrollReveal } from '../composables/useScrollReveal';
 
+// ১. আপনার ইমেজের সঠিক Relative Path দিয়ে ইম্পোর্ট করুন
+import footerBgImg from '/nahid.png'; 
+
 const footer = footerData;
 const { elementRef, isVisible } = useScrollReveal(0.1, true);
+
+// Scroll Parallax Logic (শুধু ফুটারের মধ্যেই কাজ করবে)
+const scrollY = ref(0);
+
+const handleScroll = () => {
+   if (elementRef.value) {
+      const rect = elementRef.value.getBoundingClientRect();
+      // ফুটার স্ক্রিনে আসাকালীন সময় ইমেজের গতি নিয়ন্ত্রণ করবে
+      scrollY.value = rect.top * 0.25; 
+   }
+};
+
+onMounted(() => {
+   window.addEventListener('scroll', handleScroll, { passive: true });
+});
+
+onUnmounted(() => {
+   window.removeEventListener('scroll', handleScroll);
+});
 </script>
 
 <template>
+   <!-- relative & overflow-hidden দিয়ে ছবিটিকে শুধুমাত্র ফুটারের মধ্যে লক করা হয়েছে -->
    <footer ref="elementRef" id="footer"
       class="footer-wrapper bg-[#fbf9f4] dark:bg-[#0b0f0e] text-slate-800 dark:text-slate-300 relative overflow-hidden font-sans border-t border-slate-200 dark:border-emerald-950/40 transition-colors duration-300">
+
+      <div 
+         class="absolute inset-0 w-full h-[130%] -top-[15%] bg-cover bg-center pointer-events-none z-0 opacity-1 dark:opacity-100 transition-transform duration-100 ease-out"
+         :style="{ 
+            backgroundImage: `url(${footerBgImg})`,
+            transform: `translate3d(0, ${scrollY}px, 0)` 
+         }"
+      ></div>
+
+      <!-- Overlay Layer (লেখা যাতে স্পষ্ট পড়া যায়) -->
+      <div class="absolute inset-0 bg-gradient-to-b from-[#fbf9f4]/90 via-[#fbf9f4]/60 to-[#046947]/40 dark:from-[#0b0f0e]/95 dark:via-[#0b0f0e]/70 dark:to-[#046947]/50 pointer-events-none z-0"></div>
 
       <!-- Top CTA & Big Title Section -->
       <div id="footer-top-container" :class="['max-w-[1440px] mx-auto px-5 sm:px-6 lg:px-12 pt-16 pb-20 relative z-10 scroll-zoom-container', { 'start-zoom': isVisible }]">
          <div id="footer-top-cta" class="flex flex-col items-center justify-center text-center">
             
-            <div class="w-12 h-12 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center mb-6 text-slate-700 dark:text-white text-xl font-bold bg-slate-200/60 dark:bg-slate-900/50 shadow-sm">
+            <div class="w-12 h-12 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center mb-6 text-slate-700 dark:text-white text-xl font-bold bg-emerald-200/60 dark:bg-emerald-900/50 shadow-sm">
                <Icon icon="lucide:circle-dot" />
             </div>
 
             <h2 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-900 dark:text-white uppercase max-w-4xl leading-tight mb-8">
-               Let’s Work <br class="hidden sm:inline" /> Together to Build Something Amazing!
+               {{ footer.personal.title }} <br class="hidden sm:inline" />  {{ footer.personal.subTitle }}
             </h2>
 
-            <a href="#contact"
+            <a :href="footer.personal.ectaButtonLink" target="_blank" rel="noopener noreferrer"
                class="bg-[#046947] hover:bg-[#035237] text-white font-extrabold text-sm sm:text-base px-8 py-3.5 rounded-full transition-transform duration-300 hover:scale-105 shadow-md mb-10">
-               Start
+               {{ footer.personal.ectaButtonText }}
             </a>
 
             <div class="mt-2">
-               <h1 class="text-5xl sm:text-7xl lg:text-9xl font-black text-[#046947] dark:text-[#00d492] tracking-wider uppercase select-none drop-shadow-sm transition-colors duration-300">
-                  NAHID ISLAM
+               <h1 class="text-6xl sm:text-7xl lg:text-9xl font-black text-[#046947] dark:text-[#00d492] tracking-wider uppercase select-none drop-shadow-sm transition-colors duration-300">
+                  {{ footer.personal.firstName }} {{ footer.personal.lastName }}
                </h1>
             </div>
 
@@ -68,7 +103,7 @@ const { elementRef, isVisible } = useScrollReveal(0.1, true);
             </div>
 
             <!-- Inline Navigation Links -->
-            <ul class="flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-sm font-medium text-emerald-100">
+            <ul v-if="footer.quickLinks" class="flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-sm font-medium text-emerald-100">
                <li v-for="(link, index) in footer.quickLinks" :key="index">
                   <a :href="link.href" class="hover:text-white transition-colors">
                      {{ link.name }}
@@ -100,33 +135,17 @@ const { elementRef, isVisible } = useScrollReveal(0.1, true);
    transform: scale(1) translateY(0);
 }
 
-/* Real Live Wave Animation CSS */
+/* Wave Animation */
 .parallax > use {
    animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
 }
-.parallax > use:nth-child(1) {
-   animation-delay: -2s;
-   animation-duration: 7s;
-}
-.parallax > use:nth-child(2) {
-   animation-delay: -3s;
-   animation-duration: 10s;
-}
-.parallax > use:nth-child(3) {
-   animation-delay: -4s;
-   animation-duration: 13s;
-}
-.parallax > use:nth-child(4) {
-   animation-delay: -5s;
-   animation-duration: 20s;
-}
+.parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 7s; }
+.parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 10s; }
+.parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 13s; }
+.parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 20s; }
 
 @keyframes move-forever {
-   0% {
-      transform: translate3d(-90px, 0, 0);
-   }
-   100% {
-      transform: translate3d(85px, 0, 0);
-   }
+   0% { transform: translate3d(-90px, 0, 0); }
+   100% { transform: translate3d(85px, 0, 0); }
 }
 </style>

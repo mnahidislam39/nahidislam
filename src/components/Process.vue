@@ -36,7 +36,7 @@ onUnmounted(() => {
 
 <template>
    <section ref="sectionRef" id="process-section"
-      class="relative pt-0 px-4 py-28 bg-[#fbf9f4] dark:bg-[#0f0d0b] process-section sm:px-6 lg:px-8 text-slate-900 dark:text-slate-100 transition-colors duration-700">
+      class="relative px-4 py-18 bg-[#fbf9f4] dark:bg-[#0f0d0b] process-section sm:px-6 lg:px-8 text-slate-900 dark:text-slate-300 transition-colors duration-700">
 
       <!-- Main Container Div with Animation Binding -->
       <div id="process-container" :class="['max-w-[1440px] mx-auto relative z-10 scroll-zoom-container', { 'start-zoom': isVisible }]">
@@ -48,20 +48,20 @@ onUnmounted(() => {
             <div class="process-title-wrapper max-w-2xl">
                <div id="section-tag-wrapper" class="section-tag-container flex flex-col items-center mb-4">
                   <span id="section-number-tag"
-                     class="section-number-text text-xs font-bold tracking-[0.2em] text-amber-700 dark:text-emerald-400 uppercase mb-3 px-4 py-1.5 rounded-full bg-amber-100/50 dark:bg-emerald-950/50 border border-amber-600/20 dark:border-emerald-500/20">
+                     class="section-number-text text-xs font-bold tracking-[0.2em] text-emerald-700 dark:text-emerald-400 uppercase mb-3 px-4 py-1.5 rounded-full bg-amber-100/50 dark:bg-emerald-950/50 border border-emerald-600/20 dark:border-emerald-500/20">
                      {{ processData.sectionTag }}
                   </span>
                </div>
 
-               <h2 class="process-main-title mb-4 text-4xl font-black leading-tight tracking-tight sm:text-5xl text-slate-900 dark:text-white" v-html="processData.title">
+               <h2 class="process-main-title mb-4 text-4xl font-black leading-tight tracking-tight sm:text-6xl text-slate-900 dark:text-white" v-html="processData.title">
                </h2>
-               <p class="process-main-desc text-sm leading-relaxed text-slate-500 dark:text-slate-400 sm:text-base mb-6">{{ processData.description }}</p>
+               <p class="process-main-desc text-sm leading-relaxed text-slate-300 dark:text-slate-300 sm:text-base mb-6">{{ processData.description }}</p>
             </div>
 
             <!-- Top CTA Button -->
             <div v-if="processData.cta" class="process-top-cta">
                <a :href="processData.cta.buttonLink || '#'"
-                  class="process-cta-btn inline-flex items-center gap-2 px-8 py-4 text-sm font-bold transition-all bg-amber-700 hover:bg-amber-800 text-white rounded-full shadow-[0_10px_25px_rgba(180,83,9,0.3)] transform hover:-translate-y-0.5">
+                  class="process-cta-btn inline-flex items-center gap-2 px-8 py-4 text-sm font-bold transition-all bg-emerald-700 hover:bg-emerald-800 text-white rounded-full shadow-[0_10px_25px_rgba(180,83,9,0.3)] transform hover:-translate-y-0.5">
                   {{ processData.cta.buttonText || 'Book Free Visit' }}
                </a>
             </div>
@@ -69,7 +69,7 @@ onUnmounted(() => {
          </div>
 
          <!-- 3 Process Steps Layout -->
-         <div class="process-steps-curve-wrapper relative mb-0 md:mb-12 pt-6 md:pb-28">
+         <div class="process-steps-curve-wrapper relative pt-6 ">
             
             <!-- SVG Curved Wave Line -->
             <div class="absolute inset-0 hidden lg:block pointer-events-none z-0">
@@ -89,7 +89,7 @@ onUnmounted(() => {
 
                   <div class="relative z-10 max-w-sm px-2 mb-6">
                      <h3 class="mb-3 text-xl font-black text-slate-900 dark:text-white">{{ processData.steps[0]?.title }}</h3>
-                     <p class="text-xs sm:text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+                     <p class="text-xs sm:text-sm leading-relaxed text-slate-300 dark:text-slate-300">
                         {{ processData.steps[0]?.description }}
                      </p>
                   </div>
@@ -111,7 +111,7 @@ onUnmounted(() => {
 
                   <div class="relative z-10 max-w-sm px-2">
                      <h3 class="mb-3 text-xl font-black text-slate-900 dark:text-white">{{ processData.steps[1]?.title }}</h3>
-                     <p class="text-xs sm:text-sm leading-relaxed text-slate-500 dark:text-slate-400 mb-4">
+                     <p class="text-xs sm:text-sm leading-relaxed text-slate-300 dark:text-slate-300 mb-4">
                         {{ processData.steps[1]?.description }}
                      </p>
                   </div>
@@ -129,7 +129,7 @@ onUnmounted(() => {
 
                   <div class="relative z-10 max-w-sm px-2">
                      <h3 class="mb-3 text-xl font-black text-slate-900 dark:text-white">{{ processData.steps[2]?.title }}</h3>
-                     <p class="text-xs sm:text-sm leading-relaxed text-slate-500 dark:text-slate-400 mb-4">
+                     <p class="text-xs sm:text-sm leading-relaxed text-slate-300 dark:text-slate-300 mb-4">
                         {{ processData.steps[2]?.description }}
                      </p>
                   </div>

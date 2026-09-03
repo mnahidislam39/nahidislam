@@ -10,7 +10,7 @@ const { elementRef, isVisible } = useScrollReveal(0.1, false);
 <template>
    <!-- Main Section Container -->
    <section ref="elementRef" :id="about.id"
-      :class="['about-experience-section bg-[#0f0d0b] pt-0 py-28 px-4 sm:px-6 lg:px-8 text-slate-100 relative transition-colors duration-300 scroll-zoom-container', { 'start-zoom': isVisible }]">
+      :class="['about-experience-section bg-[#0f0d0b] py-18 px-4 sm:px-6 lg:px-8 text-slate-300 relative transition-colors duration-300 scroll-zoom-container', { 'start-zoom': isVisible }]">
 
       <!-- Section Inner Wrapper -->
       <div class="experience-container max-w-[1440px] mx-auto relative z-10">
@@ -36,7 +36,7 @@ const { elementRef, isVisible } = useScrollReveal(0.1, false);
 
                <!-- Main Headline -->
                <h2 id="about-main-headline"
-                  class="text-4xl sm:text-5xl font-black tracking-tight leading-tight text-center md:text-left text-white">
+                  class="text-4xl sm:text-6xl font-black tracking-tight leading-tight text-center md:text-left text-white">
                   {{ about.headline }}
                   <span id="about-highlight-text" class="text-emerald-400"> {{ about.subHeadline }} </span>
                </h2>
@@ -49,7 +49,7 @@ const { elementRef, isVisible } = useScrollReveal(0.1, false);
                      </h3>   
                      
                      <!-- Personal Description Paragraph -->
-                     <p id="about-description-text" class="text-slate-400 text-sm font-normal leading-relaxed">
+                     <p id="about-description-text" class="text-slate-300 text-sm font-normal leading-relaxed">
                         {{ about.description }}
                      </p>
 
@@ -80,7 +80,7 @@ const { elementRef, isVisible } = useScrollReveal(0.1, false);
                      </span>
                      <div class="stat-text-wrapper flex flex-col">
                         <h4 class="stat-value font-black text-white">{{ stat.value }}</h4>
-                        <p class="stat-label text-xs text-slate-400 font-medium uppercase tracking-wider">{{ stat.label
+                        <p class="stat-label text-xs text-slate-300 font-medium uppercase tracking-wider">{{ stat.label
                            }}</p>
                      </div>
                   </div>
@@ -91,7 +91,7 @@ const { elementRef, isVisible } = useScrollReveal(0.1, false);
                   class="tech-box bg-[#16120e] border border-[#26201a] rounded-[2rem] p-8 shadow-sm md:visible hidden">
                   <div class="tech-header flex items-center gap-3 mb-6">
                      <span class="tech-pulse-dot w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                     <h5 class="tech-title text-xs font-bold text-slate-200 uppercase tracking-widest">TECHNOLOGIES I
+                     <h5 class="tech-title text-xs font-bold text-slate-300 uppercase tracking-widest">TECHNOLOGIES I
                         WORK WITH</h5>
                   </div>
                   <div class="tech-icons-grid grid grid-cols-5 gap-y-6 gap-x-4">
@@ -100,10 +100,10 @@ const { elementRef, isVisible } = useScrollReveal(0.1, false);
                         <div
                            class="icon-bg w-10 h-10 rounded-xl bg-[#0f0d0b] border border-[#26201a] flex items-center justify-center group-hover:border-emerald-500/50 transition-colors">
                            <Icon :icon="tech.icon"
-                              class="tech-svg w-5 h-5 text-slate-400 group-hover:text-emerald-400 transition-colors" />
+                              class="tech-svg w-5 h-5 text-slate-300 group-hover:text-emerald-400 transition-colors" />
                         </div>
                         <span
-                           class="tech-name text-[10px] font-medium text-slate-400 uppercase tracking-wider text-center">{{
+                           class="tech-name text-[10px] font-medium text-slate-300 uppercase tracking-wider text-center">{{
                            tech.name }}</span>
                      </div>
                   </div>
@@ -167,7 +167,7 @@ const { elementRef, isVisible } = useScrollReveal(0.1, false);
                                  </span>
                               </div>
                               <span
-                                 class="duration-badge text-xs font-bold text-slate-400 bg-[#16120e] px-4 py-1.5 rounded-full border border-[#2b241d] ml-auto sm:ml-0 shrink-0">
+                                 class="duration-badge text-xs font-bold text-slate-300 bg-[#16120e] px-4 py-1.5 rounded-full border border-[#2b241d] ml-auto sm:ml-0 shrink-0">
                                  {{ exp.duration }}
                               </span>
                            </div>
@@ -180,7 +180,7 @@ const { elementRef, isVisible } = useScrollReveal(0.1, false);
 
                            <!-- Job Description -->
                            <p id="job-description-text"
-                              class="job-description text-slate-400 text-sm leading-relaxed mb-6">
+                              class="job-description text-slate-300 text-sm leading-relaxed mb-6">
                               {{ exp.description }}
                            </p>
 

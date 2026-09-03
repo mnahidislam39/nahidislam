@@ -27,7 +27,7 @@ const { elementRef: rightColRef, isVisible: rightIsVisible } = useScrollReveal()
           
           <div class="hero-top-wrapper relative flex justify-center items-center">
             <div
-              class="hero-badge-box inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white dark:bg-[#0f1715] border border-slate-200 dark:border-emerald-900/60 shadow-sm text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-200 transition-colors duration-300">
+              class="hero-badge-box inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white dark:bg-[#0f1715] border border-slate-200 dark:border-emerald-900/60 shadow-sm text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-300 transition-colors duration-300">
               <span
                 class="hero-badge-icon w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xs animate-pulse">🛡️</span>
               <span class="hero-badge-text uppercase">{{ hero.badge }}</span>
@@ -36,15 +36,15 @@ const { elementRef: rightColRef, isVisible: rightIsVisible } = useScrollReveal()
 
           <div class="hero-main-title-box text-center md:text-left">
             <h1
-              class="hero-main-title text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.1] transition-colors duration-300">
+              class="hero-main-title text-6xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.1] transition-colors duration-300">
               {{ hero.titlePrefix }} <span class="hero-highlight-name text-emerald-600 dark:text-emerald-400">{{ hero.highlightName }}</span>
             </h1>
             <p
-              class="hero-subtitle max-w-[600px] text-slate-600 dark:text-slate-400 font-medium text-base sm:text-lg mt-4 transition-colors duration-300">
+              class="hero-subtitle max-w-[600px] text-slate-600 dark:text-slate-300 font-medium text-base sm:text-lg mt-4 transition-colors duration-300">
               {{ hero.subtitle }}
             </p>
             <p
-              class="hero-subtitle max-w-[600px] text-slate-600 dark:text-slate-400 font-medium text-base sm:text-lg mt-2 transition-colors duration-300">
+              class="hero-subtitle max-w-[600px] text-slate-600 dark:text-slate-300 font-medium text-base sm:text-lg mt-2 transition-colors duration-300">
               {{ hero.heroDescription }}
             </p>
           </div>
@@ -100,9 +100,9 @@ const { elementRef: rightColRef, isVisible: rightIsVisible } = useScrollReveal()
               <div class="review-content-box">
                 <h4
                   class="review-count text-base font-black text-slate-900 dark:text-white transition-colors duration-300">
-                  {{ hero.reviewCount }} <span class="review-rating text-slate-600 dark:text-slate-400 font-semibold">{{ hero.reviewRating }}</span>
+                  {{ hero.reviewCount }} <span class="review-rating text-slate-600 dark:text-slate-300 font-semibold">{{ hero.reviewRating }}</span>
                 </h4>
-                <p class="review-subtext text-xs text-slate-500 dark:text-slate-400 font-medium">{{ hero.reviewSubtext }}</p>
+                <p class="review-subtext text-xs text-slate-300 dark:text-slate-300 font-medium">{{ hero.reviewSubtext }}</p>
               </div>
             </div>
           </div>
@@ -121,7 +121,7 @@ const { elementRef: rightColRef, isVisible: rightIsVisible } = useScrollReveal()
           </div>
 
           <div class="relative w-full max-w-[380px] sm:max-w-[450px] flex justify-center items-end">
-            <img class="hero-main-image w-full max-h-[420px] md:max-h-[520px] h-full object-cover md:object-contain md:transform md:scale-[1.55] lg:scale-[1.8] object-bottom drop-shadow-2xl" :src="hero.image"
+            <img class="hero-main-image w-full max-h-[420px] md:max-h-[520px] h-full object-cover md:object-contain md:transform scale-[1.55] md:scale-[1.55] lg:scale-[1.8] object-bottom drop-shadow-2xl" :src="hero.image"
               :alt="hero.highlightName">
           </div>
 

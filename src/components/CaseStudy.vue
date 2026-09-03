@@ -9,7 +9,7 @@ const { elementRef, isVisible } = useScrollReveal(0.1, false);
 </script>
 
 <template>
-   <section ref="elementRef" class="case-study-section bg-[#fbf9f4] dark:bg-[#0f0d0b] py-28 pt-0 px-4 sm:px-6 lg:px-8 text-slate-900 dark:text-slate-100 relative transition-colors duration-300" :id="caseData.id">
+   <section ref="elementRef" class="case-study-section bg-[#fbf9f4] dark:bg-[#0f0d0b] py-18 px-4 sm:px-6 lg:px-8 text-slate-900 dark:text-slate-300 relative transition-colors duration-300" :id="caseData.id">
       
       <div :class="['case-study-container max-w-[1440px] mx-auto relative z-10 scroll-zoom-container', { 'start-zoom': isVisible }]">
          
@@ -22,15 +22,15 @@ const { elementRef, isVisible } = useScrollReveal(0.1, false);
                      <span class="case-study-dot w-2 h-2 rounded-full bg-emerald-600 dark:bg-emerald-400 relative z-10"></span>
                   </div>
                </div>
-               <h2 class="text-4xl sm:text-5xl font-black tracking-tight mb-4 leading-tight text-slate-900 dark:text-white">
+               <h2 class="text-4xl sm:text-6xl font-black tracking-tight mb-4 leading-tight text-slate-900 dark:text-white">
                   {{ caseData.headline }}
                </h2>
-               <p class="text-slate-500 dark:text-slate-400 text-base sm:text-lg mb-8 font-normal leading-relaxed">
+               <p class="text-slate-300 dark:text-slate-300 text-base sm:text-lg mb-8 font-normal leading-relaxed">
                   {{ caseData.description }}
                </p>
                <div class="case-study-meta-box grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-50/80 dark:bg-[#16120e] border border-slate-200/80 dark:border-[#26201a] rounded-2xl p-4 mb-10">
                   <div class="case-study-meta-item flex flex-col" v-for="(meta, mIdx) in caseData.metaInfo" :key="mIdx">
-                     <span class="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-0.5">{{ meta.label }}</span>
+                     <span class="text-[11px] font-bold text-slate-300 dark:text-slate-300 uppercase tracking-wider mb-0.5">{{ meta.label }}</span>
                      <span class="text-xs sm:text-sm font-extrabold text-slate-900 dark:text-white truncate">{{ meta.value }}</span>
                   </div>
                </div>
@@ -41,19 +41,19 @@ const { elementRef, isVisible } = useScrollReveal(0.1, false);
                      </div>
                      <div class="case-study-step-text-wrap flex flex-col">
                         <h4 class="text-sm font-extrabold text-emerald-700 dark:text-emerald-400 tracking-wider uppercase mb-1">{{ step.title }}</h4>
-                        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium leading-relaxed">{{ step.text }}</p>
+                        <p class="text-xs sm:text-sm text-slate-300 dark:text-slate-300 font-medium leading-relaxed">{{ step.text }}</p>
                      </div>
                   </div>
                </div>
                <div class="case-study-button-wrap flex justify-center md:justify-start items-center">
-                  <a :href="caseData.mainButtonLink" class="case-study-btn inline-flex items-center gap-3 px-8 py-4 rounded-full bg-slate-900 dark:bg-white hover:bg-emerald-600 dark:hover:bg-emerald-500 text-white dark:text-slate-900 font-bold text-sm transition-all duration-300 shadow-md group cursor-pointer">
+                  <a :href="caseData.mainButtonLink" class="case-study-btn  inline-flex items-center gap-3 px-8 py-4 rounded-full bg-slate-900 dark:bg-white hover:bg-emerald-600 dark:hover:bg-emerald-500 text-white dark:text-slate-900 font-bold text-sm transition-all duration-300 shadow-md group cursor-pointer">
                      {{ caseData.mainButtonText }}
                      <span class="inline-block transition-transform group-hover:translate-x-1">→</span>
                   </a>
                </div>
             </div>
             
-            <div class="case-study-content-right lg:col-span-7 flex flex-col gap-8 h-full">
+            <div class="case-study-content-right  lg:col-span-7 flex flex-col gap-8 h-full">
                <div class="case-study-mockup-card max-h-[700px] bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.04)]">
                   <div class="case-study-mockup-inner h-full w-full flex items-center justify-center">
                      <div class="case-study-mockup-html w-full h-full flex items-center justify-center">
@@ -67,15 +67,16 @@ const { elementRef, isVisible } = useScrollReveal(0.1, false);
                         <span class="text-3xl font-black text-slate-900 dark:text-white">{{ stat.value }}</span>
                         <span class="text-emerald-600 dark:text-emerald-400 font-black text-lg" v-if="stat.isUp">↑</span>
                      </div>
-                     <p class="text-xs font-bold text-slate-800 dark:text-slate-200 mb-0.5">{{ stat.sub }}</p>
-                     <p class="text-[11px] text-slate-400 dark:text-slate-500 font-medium">{{ stat.desc }}</p>
+                     <p class="text-xs font-bold text-slate-800 dark:text-slate-300 mb-0.5">{{ stat.sub }}</p>
+                     <p class="text-[11px] text-slate-300 dark:text-slate-300 font-medium">{{ stat.desc }}</p>
                   </div>
                </div>
             </div>
          </div>
 
          <div class="case-study-testimonial-banner bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] p-4 sm:p-6 shadow-[0_10px_30px_rgba(0,0,0,0.03)] flex flex-col md:flex-row items-center justify-between gap-8 scroll-card-item">
-            <div class="case-study-testimonial-quote-wrap flex items-start gap-4 max-w-3xl">
+            <div class="case-study-testimonial-quote-wrap flex items-start gap-4 max-w-3xl animate-slide-in-right
+">
                <span class="text-4xl text-emerald-600 dark:text-emerald-400 font-serif font-black leading-none">“</span>
                <p class="text-sm sm:text-base text-slate-700 dark:text-slate-300 font-medium italic leading-relaxed">
                   {{ caseData.testimonial.quote }}
@@ -88,7 +89,7 @@ const { elementRef, isVisible } = useScrollReveal(0.1, false);
                   </div>
                   <div class="case-study-author-details flex flex-col">
                      <h5 class="text-sm font-black text-slate-900 dark:text-white">{{ caseData.testimonial.author }}</h5>
-                     <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">{{ caseData.testimonial.role }}</p>
+                     <p class="text-xs text-slate-300 dark:text-slate-300 font-medium">{{ caseData.testimonial.role }}</p>
                      <a class="text-[11px] text-emerald-600 dark:text-emerald-400 font-bold hover:underline inline-block mt-0.5" href="#">{{ caseData.testimonial.website }}</a>
                   </div>
                </div>

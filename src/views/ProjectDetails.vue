@@ -54,7 +54,7 @@ const goBack = () => {
 </script>
 
 <template>
-   <div class="bg-[#0f0d0b] min-h-screen text-slate-100 py-24 px-4 sm:px-6 lg:px-8 selection:bg-emerald-500 selection:text-white">
+   <div class="bg-[#0f0d0b] min-h-screen text-slate-300 py-24 px-4 sm:px-6 lg:px-8 selection:bg-emerald-500 selection:text-white">
       <div class="max-w-[1440px] mx-auto">
 
          <div class="mb-8">
@@ -72,29 +72,29 @@ const goBack = () => {
                      <span class="inline-block px-3 py-1 rounded-full bg-emerald-950/50 border border-emerald-900/50 text-emerald-400 text-xs font-extrabold tracking-widest uppercase mb-4">
                         {{ projectData.badge || projectData.category || projectData.techBadge || 'FEATURED PROJECT' }}
                      </span>
-                     <h1 class="text-4xl sm:text-5xl font-black tracking-tight mb-4 text-white">
+                     <h1 class="text-4xl sm:text-6xl font-black tracking-tight mb-4 text-white">
                         {{ projectData.title }}
                      </h1>
-                     <p class="text-slate-400 text-base sm:text-lg mb-8 leading-relaxed">
+                     <p class="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed">
                         {{ projectData.description }}
                      </p>
 
                      <div class="grid grid-cols-2 gap-6 py-6 border-t border-b border-[#26201a] mb-8">
                         <div>
-                           <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Industry</div>
-                           <div class="text-sm font-bold text-slate-200">{{ projectData.industry || 'eCommerce' }}</div>
+                           <div class="text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">Industry</div>
+                           <div class="text-sm font-bold text-slate-300">{{ projectData.industry || 'eCommerce' }}</div>
                         </div>
                         <div>
-                           <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Platform</div>
-                           <div class="text-sm font-bold text-slate-200">{{ projectData.platform || 'Shopify' }}</div>
+                           <div class="text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">Platform</div>
+                           <div class="text-sm font-bold text-slate-300">{{ projectData.platform || 'Shopify' }}</div>
                         </div>
                         <div>
-                           <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Duration</div>
-                           <div class="text-sm font-bold text-slate-200">{{ projectData.duration || '3 Weeks' }}</div>
+                           <div class="text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">Duration</div>
+                           <div class="text-sm font-bold text-slate-300">{{ projectData.duration || '3 Weeks' }}</div>
                         </div>
                         <div>
-                           <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">My Role</div>
-                           <div class="text-sm font-bold text-slate-200">{{ projectData.myRole || 'Full-Stack Developer' }}</div>
+                           <div class="text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">My Role</div>
+                           <div class="text-sm font-bold text-slate-300">{{ projectData.myRole || 'Full-Stack Developer' }}</div>
                         </div>
                      </div>
                   </div>
@@ -124,7 +124,7 @@ const goBack = () => {
             <div v-if="projectData.metrics && projectData.metrics.length > 0" class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
                <div v-for="(metric, mIdx) in projectData.metrics" :key="mIdx" class="bg-[#16120e] border border-[#26201a] rounded-3xl p-6 text-center">
                   <div class="text-3xl sm:text-4xl font-black text-emerald-400 mb-2">{{ metric.value }}</div>
-                  <div class="text-xs font-medium text-slate-400">{{ metric.label }}</div>
+                  <div class="text-xs font-medium text-slate-300">{{ metric.label }}</div>
                </div>
             </div>
 
@@ -195,7 +195,7 @@ const goBack = () => {
                <div class="lg:col-span-6 bg-[#16120e] border border-[#26201a] rounded-3xl p-8">
                   <h3 class="text-xl font-black text-white mb-6">TECHNOLOGIES & TOOLS</h3>
                   <div class="flex flex-wrap gap-4">
-                     <div v-for="(tool, tIdx) in projectData.tools" :key="tIdx" class="flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-[#1c1713] border border-[#2d2620] text-slate-200 text-xs font-bold">
+                     <div v-for="(tool, tIdx) in projectData.tools" :key="tIdx" class="flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-[#1c1713] border border-[#2d2620] text-slate-300 text-xs font-bold">
                         <Icon v-if="tool.icon" :icon="tool.icon" class="w-5 h-5" />
                         <span>{{ typeof tool === 'string' ? tool : tool.name }}</span>
                      </div>
@@ -212,7 +212,7 @@ const goBack = () => {
                   </p>
                   <div>
                      <div class="font-bold text-white text-base">{{ projectData.testimonial.author }}</div>
-                     <div class="text-xs text-slate-400">{{ projectData.testimonial.title }}</div>
+                     <div class="text-xs text-slate-300">{{ projectData.testimonial.title }}</div>
                   </div>
                </div>
             </div>
@@ -221,7 +221,7 @@ const goBack = () => {
 
          <div v-else class="text-center py-32">
             <h2 class="text-3xl font-black mb-4">Project Not Found</h2>
-            <p class="text-slate-400 mb-8">The project you are trying to view does not exist or has been removed.</p>
+            <p class="text-slate-300 mb-8">The project you are trying to view does not exist or has been removed.</p>
             <router-link to="/" class="px-8 py-4 rounded-full bg-emerald-600 text-white font-bold text-sm">
                Return Home
             </router-link>

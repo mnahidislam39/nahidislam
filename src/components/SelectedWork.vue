@@ -59,7 +59,7 @@ const toggleDetails = (index) => {
   <section 
     ref="sectionRef" 
     :id="workData.id"
-    class="selected-work-section bg-[#fbf9f4] dark:bg-[#0f0d0b] py-20 px-4 pt-0 sm:px-6 lg:px-8 text-slate-900 dark:text-slate-100 relative transition-colors duration-300"
+    class="selected-work-section bg-[#fbf9f4] dark:bg-[#0f0d0b] py-18 px-4 sm:px-6 lg:px-8 text-slate-900 dark:text-slate-300 relative transition-colors duration-300"
   >
     <div 
       id="selected-work-max-width-container" 
@@ -79,11 +79,11 @@ const toggleDetails = (index) => {
               </div>
             </div>
 
-            <h2 id="selected-work-headline" class="text-4xl sm:text-5xl font-black tracking-tight mb-6 leading-tight text-slate-900 dark:text-white">
+            <h2 id="selected-work-headline" class="text-4xl sm:text-6xl font-black tracking-tight mb-6 leading-tight text-slate-900 dark:text-white">
               SELECTED <span id="selected-work-headline-highlight" class="text-emerald-600 dark:text-emerald-400">SHOPIFY</span> WORK
             </h2>
 
-            <p id="selected-work-description" class="text-slate-600 dark:text-slate-400 text-base sm:text-lg mb-8 font-normal leading-relaxed">
+            <p id="selected-work-description" class="text-slate-600 dark:text-slate-300 text-base sm:text-lg mb-8 font-normal leading-relaxed">
               {{ workData.description }}
             </p>
           </div>
@@ -92,7 +92,7 @@ const toggleDetails = (index) => {
             <a 
               :href="workData.mainButtonLink || '#all-projects'" 
               id="selected-work-main-btn"
-              class="inline-flex items-center gap-3 px-6 py-3.5 rounded-full border border-slate-200 dark:border-[#26201a] hover:border-emerald-600 dark:hover:border-emerald-400 text-slate-900 dark:text-white hover:text-emerald-700 dark:hover:text-emerald-400 font-bold text-sm transition-all duration-300 group shadow-sm bg-white dark:bg-[#16120e]"
+              class=" inline-flex items-center gap-3 px-6 py-3.5 rounded-full border border-slate-200 dark:border-[#26201a] hover:border-emerald-600 dark:hover:border-emerald-400 text-slate-900 dark:text-white hover:text-emerald-700 dark:hover:text-emerald-400 font-bold text-sm transition-all duration-300 group shadow-sm bg-white dark:bg-[#16120e]"
             >
               <span id="selected-work-main-btn-text">{{ workData.mainButtonText || 'VIEW ALL PROJECTS' }}</span>
               <span id="selected-work-main-btn-arrow" class="transition-transform group-hover:translate-x-1">→</span>
@@ -103,7 +103,7 @@ const toggleDetails = (index) => {
         <!-- Featured Project Card -->
         <div 
           id="selected-work-featured-card"
-          class="lg:col-span-8 bg-white dark:bg-[#16120e] overflow-hidden rounded-[2.5rem] flex flex-col-reverse lg:flex-row gap-8 items-center"
+          class="lg:col-span-8 bg-white dark:bg-[#16120e] overflow-hidden rounded-[2.5rem] flex flex-col-reverse lg:flex-row gap-8 items-center "
         >
           <div id="selected-work-featured-info-col" class="w-full lg:w-1/2 p-6 flex flex-col justify-between">
             <div id="selected-work-featured-inner-wrapper">
@@ -119,7 +119,7 @@ const toggleDetails = (index) => {
                 {{ workData.featuredProject.title }}
               </h3>
 
-              <p id="selected-work-featured-desc" class="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed mb-6">
+              <p id="selected-work-featured-desc" class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
                 {{ workData.featuredProject.description }}
               </p>
 
@@ -136,19 +136,19 @@ const toggleDetails = (index) => {
               <div id="selected-work-metrics-row" class="grid grid-cols-2 sm:grid-cols-4 gap-4 py-4 border-t border-b border-slate-100 dark:border-[#26201a] mb-6">
                 <div>
                   <div class="text-emerald-700 dark:text-emerald-400 font-black text-base sm:text-lg">+62%</div>
-                  <div class="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Conversion Rate</div>
+                  <div class="text-[10px] text-slate-300 dark:text-slate-300 font-medium">Conversion Rate</div>
                 </div>
                 <div>
                   <div class="text-emerald-700 dark:text-emerald-400 font-black text-base sm:text-lg">+48%</div>
-                  <div class="text-[10px] text-slate-500 dark:text-slate-400 font-medium">AOV Increase</div>
+                  <div class="text-[10px] text-slate-300 dark:text-slate-300 font-medium">AOV Increase</div>
                 </div>
                 <div>
                   <div class="text-emerald-700 dark:text-emerald-400 font-black text-base sm:text-lg">-35%</div>
-                  <div class="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Load Time</div>
+                  <div class="text-[10px] text-slate-300 dark:text-slate-300 font-medium">Load Time</div>
                 </div>
                 <div>
                   <div class="text-emerald-700 dark:text-emerald-400 font-black text-base sm:text-lg">+70%</div>
-                  <div class="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Mobile Sales</div>
+                  <div class="text-[10px] text-slate-300 dark:text-slate-300 font-medium">Mobile Sales</div>
                 </div>
               </div>
             </div>
@@ -157,7 +157,7 @@ const toggleDetails = (index) => {
               <button 
                 @click="viewProjectDetails(workData.featuredProject)"
                 id="selected-work-featured-btn"
-                class="inline-flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors group cursor-pointer"
+                class=" inline-flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors group cursor-pointer"
               >
                 <span>{{ workData.featuredProject.caseStudyText || 'VIEW CASE STUDY' }}</span>
                 <span class="transition-transform group-hover:translate-x-1">→</span>
@@ -173,13 +173,13 @@ const toggleDetails = (index) => {
         </div>
       </div>
 
-      <!-- Projects Grid -->
+      <!-- Projects Grid (Sticky Stack applied for Mobile) -->
       <div id="selected-work-projects-grid" class="projects-stack-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 items-start scroll-card-item">
         <template v-for="(project, pIdx) in workData.projects" :key="project.id || pIdx">
           <div 
             :id="'selected-work-project-card-' + pIdx" 
-            :style="{ top: `${90 + (pIdx * 0)}px`, zIndex: pIdx + 1 }"
-            class="framer-sticky-card sticky lg:static bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] shadow-[0_10px_30px_rgba(0,0,0,0.03)] flex flex-col justify-between transition-all duration-300 hover:border-slate-300 dark:hover:border-[#382f25]"
+            :style="{ top: `${80 + (pIdx * 20)}px`, zIndex: pIdx + 1 }"
+            class="framer-sticky-card  sticky lg:static bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] shadow-[0_10px_30px_rgba(0,0,0,0.03)] flex flex-col justify-between transition-all duration-300 hover:border-slate-300 dark:hover:border-[#382f25]"
           >
             <div>
               <div class="w-full h-72 rounded-2xl rounded-br-none rounded-bl-none overflow-hidden border-none">
@@ -191,12 +191,12 @@ const toggleDetails = (index) => {
               <div class="p-6 pb-2">
                 <div class="flex items-center justify-between mb-2">
                   <h3 class="text-2xl font-black text-slate-900 dark:text-white">{{ project.title }}</h3>
-                  <span class="text-[11px] text-slate-600 dark:text-slate-400 font-semibold px-2.5 py-0.5 rounded-md bg-slate-100 dark:bg-[#1c1713] border border-slate-200 dark:border-[#2d2620]">
+                  <span class="text-[11px] text-slate-600 dark:text-slate-300 font-semibold px-2.5 py-0.5 rounded-md bg-slate-100 dark:bg-[#1c1713] border border-slate-200 dark:border-[#2d2620]">
                     {{ project.category || 'Store' }}
                   </span>
                 </div>
 
-                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
                   {{ project.description }}
                 </p>
 
@@ -244,7 +244,7 @@ const toggleDetails = (index) => {
             <div class="p-6 border-t border-slate-100 dark:border-[#26201a]">
               <button 
                 @click="viewProjectDetails(project)"
-                class="inline-flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors group cursor-pointer"
+                class=" inline-flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors group cursor-pointer"
               >
                 <span>{{ project.caseStudyText || 'VIEW CASE STUDY' }}</span>
                 <span class="transition-transform group-hover:translate-x-1">→</span>
@@ -269,7 +269,7 @@ const toggleDetails = (index) => {
             <h3 class="text-2xl font-black text-slate-900 dark:text-white mb-1">
               {{ workData.ctaBox?.title }}
             </h3>
-            <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 font-medium">
+            <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 font-medium">
               {{ workData.ctaBox?.description }}
             </p>
           </div>
@@ -278,7 +278,7 @@ const toggleDetails = (index) => {
         <div>
           <a 
             :href="workData.ctaBox?.buttonLink" 
-            class="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-emerald-800 dark:bg-emerald-600 hover:bg-emerald-900 dark:hover:bg-emerald-500 text-white font-bold text-sm transition-all duration-300 shadow-md"
+            class=" inline-flex items-center gap-3 px-8 py-4 rounded-full bg-emerald-800 dark:bg-emerald-600 hover:bg-emerald-900 dark:hover:bg-emerald-500 text-white font-bold text-sm transition-all duration-300 shadow-md"
           >
             <span>{{ workData.ctaBox?.buttonText }}</span>
             <span>→</span>
