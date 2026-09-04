@@ -1,4 +1,4 @@
-export const featuredProjectsData = {
+export const featuredWorkData = {
    sectionTag: "FEATURED WORK",
    title: "Real Projects <span class='text-emerald-600 dark:text-emerald-400'>Real Results</span>",
    description: "Here are some of the projects I've worked on for amazing brands and clients around the world.",
@@ -24,7 +24,7 @@ export const featuredProjectsData = {
          techBadge: "Shopify Customization",
          badgeIcon: "lucide:code",
          description: "High-performance storefront featuring custom product filtering and responsive design.",
-          image: 's.png',
+         image: 's.png',
          features: [
             { label: "Optimized Speed" },
             { label: "Advanced Filter" }

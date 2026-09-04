@@ -64,35 +64,35 @@ const { elementRef, isVisible } = useScrollReveal(0.1, false);
                <div class="case-study-stats-grid grid grid-cols-2 sm:grid-cols-4 gap-4">
                   <div class="case-study-stat-card bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-3xl p-5 text-center shadow-sm flex flex-col justify-center" v-for="(stat, stIdx) in caseData.stats" :key="stIdx">
                      <div class="case-study-stat-value-wrap flex items-center justify-center gap-1 mb-1">
-                        <span class="text-3xl font-black text-slate-900 dark:text-white">{{ stat.value }}</span>
+                        <span class="text-xl font-black text-slate-900 dark:text-white">{{ stat.value }}</span>
                         <span class="text-emerald-600 dark:text-emerald-400 font-black text-lg" v-if="stat.isUp">↑</span>
                      </div>
                      <p class="text-xs font-bold text-slate-800 dark:text-slate-300 mb-0.5">{{ stat.sub }}</p>
                      <p class="text-[11px] text-slate-300 dark:text-slate-300 font-medium">{{ stat.desc }}</p>
                   </div>
                </div>
-            </div>
-         </div>
-
-         <div class="case-study-testimonial-banner bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] p-4 sm:p-6 shadow-[0_10px_30px_rgba(0,0,0,0.03)] flex flex-col md:flex-row items-center justify-between gap-8 scroll-card-item">
-            <div class="case-study-testimonial-quote-wrap flex items-start gap-4 max-w-3xl animate-slide-in-right
-">
-               <span class="text-4xl text-emerald-600 dark:text-emerald-400 font-serif font-black leading-none">“</span>
-               <p class="text-sm sm:text-base text-slate-700 dark:text-slate-300 font-medium italic leading-relaxed">
-                  {{ caseData.testimonial.quote }}
-               </p>
-            </div>
-            <div class="case-study-testimonial-author-wrap flex items-center gap-4 shrink-0 border-t md:border-t-0 md:border-l border-slate-100 dark:border-[#26201a] pt-6 md:pt-0 md:pl-8 w-full md:w-auto justify-between md:justify-start">
-               <div class="case-study-author-inner flex items-center gap-3">
-                  <div class="case-study-author-avatar w-12 h-12 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 flex items-center justify-center font-bold text-xs uppercase tracking-wider">
-                     {{ caseData.testimonial.author.substring(0, 3) }}
-                  </div>
-                  <div class="case-study-author-details flex flex-col">
-                     <h5 class="text-sm font-black text-slate-900 dark:text-white">{{ caseData.testimonial.author }}</h5>
-                     <p class="text-xs text-slate-300 dark:text-slate-300 font-medium">{{ caseData.testimonial.role }}</p>
-                     <a class="text-[11px] text-emerald-600 dark:text-emerald-400 font-bold hover:underline inline-block mt-0.5" href="#">{{ caseData.testimonial.website }}</a>
-                  </div>
-               </div>
+               
+                        <div class="case-study-testimonial-banner bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] p-4 sm:p-6 shadow-[0_10px_30px_rgba(0,0,0,0.03)] flex flex-col md:flex-row items-center justify-between gap-8 scroll-card-item">
+                           <div class="case-study-testimonial-quote-wrap flex items-start gap-4 max-w-3xl animate-slide-in-right
+               ">
+                              <span class="text-4xl text-emerald-600 dark:text-emerald-400 font-serif font-black leading-none">“</span>
+                              <p class="text-sm sm:text-base text-slate-700 dark:text-slate-300 font-medium italic leading-relaxed">
+                                 {{ caseData.testimonial.quote }}
+                              </p>
+                           </div>
+                           <div class="case-study-testimonial-author-wrap flex items-center gap-4 shrink-0 border-t md:border-t-0 md:border-l border-slate-100 dark:border-[#26201a] pt-6 md:pt-0 md:pl-8 w-full md:w-auto justify-between md:justify-start">
+                              <div class="case-study-author-inner flex items-center gap-3">
+                                 <div class="case-study-author-avatar w-12 h-12 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 flex items-center justify-center font-bold text-xs uppercase tracking-wider">
+                                    {{ caseData.testimonial.author.substring(0, 3) }}
+                                 </div>
+                                 <div class="case-study-author-details flex flex-col">
+                                    <h5 class="text-sm font-black text-slate-900 dark:text-white">{{ caseData.testimonial.author }}</h5>
+                                    <p class="text-xs text-slate-300 dark:text-slate-300 font-medium">{{ caseData.testimonial.role }}</p>
+                                    <a class="text-[11px] text-emerald-600 dark:text-emerald-400 font-bold hover:underline inline-block mt-0.5" href="#">{{ caseData.testimonial.website }}</a>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
             </div>
          </div>
 

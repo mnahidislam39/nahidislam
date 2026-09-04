@@ -7,5 +7,5 @@ export default defineConfig({
     vue(),
     tailwindcss(),
   ],
-  base: '/portfolio-vue/',
+  base: '/nahidislam/',
 })

@@ -62,7 +62,7 @@ onUnmounted(() => {
                </div>
 
                <h2 id="section-main-heading"
-                  class="text-4xl sm:text-6xl max-w-xl text-center md:text-left font-black tracking-tight mb-6 leading-tight text-slate-900 dark:text-white">
+                  class="text-4xl sm:text-6xl max-w-2xl text-center md:text-left font-black tracking-tight mb-6 leading-tight text-slate-900 dark:text-white">
                   {{ services.headline }} 
                   <span id="section-heading-highlight" class="text-emerald-600 dark:text-emerald-400">
                      {{ services.highLigheHedline }}

@@ -1,15 +1,17 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import { headerData } from '../data'; 
 import { Icon } from '@iconify/vue';
 import { useDark } from '../composables/useDark.js';
 
-const header = headerData;
+const route = useRoute();
+const router = useRouter();
 
+const header = headerData;
 const { isDark, toggleDark } = useDark();
 
 const isOpen = ref(false);
-
 const activeSection = ref('home');
 const isScrolled = ref(false);
 
@@ -17,9 +19,42 @@ const toggleMenu = () => {
    isOpen.value = !isOpen.value;
 };
 
-const handleNavClick = (href) => {
-   activeSection.value = href.substring(1);
-   isOpen.value = false;
+// Vite Dynamic Asset Loader (লোগো যেন সব পেজে দেখায়)
+const getLogoUrl = (imagePath) => {
+  if (!imagePath) return '';
+  if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+    return imagePath;
+  }
+  const cleanPath = imagePath.replace(/^[\.\/]+/, '');
+  return new URL(`../assets/${cleanPath}`, import.meta.url).href;
+};
+
+// স্মার্ট নেভিগেশন (অন্য পেজে থাকলেও হোমপেজের সেকশনে নিয়ে যাবে)
+const handleNavClick = (href, e) => {
+  if (e) e.preventDefault();
+  isOpen.value = false;
+
+  if (!href) return;
+
+  // যদি লিংকটি কোনো সেকশন আইডির না হয়ে এক্সটার্নাল লিংক হয়
+  if (!href.startsWith('#')) {
+    router.push(href);
+    return;
+  }
+
+  const targetId = href.substring(1);
+  activeSection.value = targetId;
+
+  // বর্তমানে যদি হোমপেজে থাকি
+  if (route.path === '/') {
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  } else {
+    // যদি Single Project বা অন্য পেজে থাকি, তবে হোমপেজে রিডাইরেক্ট হয়ে সেকশনে যাবে
+    router.push({ path: '/', hash: href });
+  }
 };
 
 const handleScroll = () => {
@@ -29,18 +64,21 @@ const handleScroll = () => {
     isScrolled.value = false;
   }
 
-  const sections = document.querySelectorAll('section[id]');
-  const scrollPosition = window.scrollY + 200; 
+  // শুধুমাত্র হোমপেজে থাকলে স্ক্রোল অনুযায়ী এক্টিভ সেকশন ট্র্যাকিং করবে
+  if (route.path === '/') {
+    const sections = document.querySelectorAll('section[id]');
+    const scrollPosition = window.scrollY + 200; 
 
-  sections.forEach((sec) => {
-    const sectionTop = sec.offsetTop;
-    const sectionHeight = sec.offsetHeight;
-    const sectionId = sec.getAttribute('id');
+    sections.forEach((sec) => {
+      const sectionTop = sec.offsetTop;
+      const sectionHeight = sec.offsetHeight;
+      const sectionId = sec.getAttribute('id');
 
-    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-      activeSection.value = sectionId;
-    }
-  });
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        activeSection.value = sectionId;
+      }
+    });
+  }
 };
 
 onMounted(() => {
@@ -74,22 +112,22 @@ onUnmounted(() => {
          id="site-nav-container"
       >
 
-         <!-- Logo (Image convert & redirect to #home) -->
-         <a
-            class="flex items-center gap-3 cursor-pointer group"
-            id="site-logo-link"
-            href="https://mnahidislam39.github.io/portfolio-vue"
-            @click="handleNavClick('#home')"
-         >
-            <img
-               class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105"
-               id="site-logo-image"
-               :src="headerData.logoImg" 
-               alt="Logo" 
-            />
-         </a>
+      <!-- Logo Tag -->
+      <router-link
+         to="/"
+         class="flex items-center gap-3 cursor-pointer group"
+         id="site-logo-link"
+         @click="handleLogoClick"
+      >
+         <img
+            class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105"
+            id="site-logo-image"
+            :src="getLogoUrl(headerData.logoImg)" 
+            alt="Logo" 
+         />
+      </router-link>
 
-         <!-- Desktop Nav Links (Dynamic Active Color) -->
+         <!-- Desktop Nav Links -->
          <nav
             class="items-center hidden gap-8 text-xs font-bold lg:flex transition-colors duration-300"
             :class="isDark ? 'text-slate-300' : 'text-slate-600'"
@@ -99,10 +137,10 @@ onUnmounted(() => {
                v-for="(link, idx) in headerData.navLinks" 
                :key="idx" 
                :href="link.href" 
-               @click="handleNavClick(link.href)"
-               class="transition-colors relative py-1 text-sm uppercase"
+               @click="handleNavClick(link.href, $event)"
+               class="transition-colors relative py-1 text-sm uppercase cursor-pointer"
                :class="[
-                  activeSection === link.href.substring(1)
+                  activeSection === link.href.substring(1) && route.path === '/'
                      ? 'text-[#009966]' 
                      : (isDark ? 'hover:text-[#009966]' : 'hover:text-[#009966]')
                ]"
@@ -110,7 +148,7 @@ onUnmounted(() => {
             >
                {{ link.name }}
                <span
-                  v-if="activeSection === link.href.substring(1)" 
+                  v-if="activeSection === link.href.substring(1) && route.path === '/'" 
                   class="absolute bottom-0 left-0 w-full h-[2px] bg-[#009966] rounded-full"
                   id="desktop-nav-active-indicator"
                ></span>
@@ -136,6 +174,7 @@ onUnmounted(() => {
                :class="isDark ? 'bg-[#009966] text-white hover:bg-[transparent] hover:text-white border border-[#009966] hover:border-[#009966]' : 'bg-white text-black hover:bg-[#009966] hover:text-white'"
                id="desktop-cta-button"
                :href="headerData.ctaLink"
+               @click="handleNavClick(headerData.ctaLink, $event)"
             >
                {{ headerData.ctaText }}
             </a>
@@ -150,7 +189,7 @@ onUnmounted(() => {
             </button>
          </div>
 
-         <!-- Mobile Dropdown Menu (Moved INSIDE site-nav-container) -->
+         <!-- Mobile Dropdown Menu -->
          <transition
             enter-active-class="transition duration-200 ease-out"
             enter-from-class="transform -translate-y-2 opacity-0"
@@ -176,10 +215,10 @@ onUnmounted(() => {
                      v-for="(link, idx) in headerData.navLinks" 
                      :key="idx" 
                      :href="link.href" 
-                     @click="handleNavClick(link.href)"
-                     class="py-2 px-4 rounded-xl transition-colors"
+                     @click="handleNavClick(link.href, $event)"
+                     class="py-2 px-4 rounded-xl transition-colors cursor-pointer"
                      :class="[
-                        activeSection === link.href.substring(1) 
+                        activeSection === link.href.substring(1) && route.path === '/'
                            ? 'bg-[#009966]/10 text-[#009966]' 
                            : (isDark ? 'hover:bg-[#1b1713] hover:text-[#009966]' : 'hover:bg-slate-100 hover:text-[#009966]')
                      ]"
@@ -194,7 +233,7 @@ onUnmounted(() => {
                   :class="isDark ? 'bg-white text-black hover:bg-[#009966] hover:text-white' : 'bg-slate-900 text-white hover:bg-[#009966] hover:text-white'"
                   id="mobile-cta-button"
                   :href="headerData.ctaLink"
-                  @click="handleNavClick(headerData.ctaLink)"
+                  @click="handleNavClick(headerData.ctaLink, $event)"
                >
                   {{ headerData.ctaText }}
                </a>

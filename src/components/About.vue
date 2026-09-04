@@ -185,12 +185,12 @@ const { elementRef, isVisible } = useScrollReveal(0.1, false);
                            </p>
 
                            <!-- Skills Tags Flex -->
-                           <div id="skills-tags-flex" class="skills-container flex flex-wrap gap-3">
+                           <!-- <div id="skills-tags-flex" class="skills-container flex flex-wrap gap-3">
                               <span v-for="(skill, sIdx) in exp.skills" :key="sIdx"
                                  class="skill-tag text-xs font-bold text-slate-300 bg-[#16120e] border border-[#2b241d] px-3.5 py-2 rounded-xl">
                                  • {{ skill }}
                               </span>
-                           </div>
+                           </div> -->
 
                            <!-- Card Pointer / Arrow (Desktop only) -->
                            <div

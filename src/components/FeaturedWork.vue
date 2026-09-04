@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue';
-import { featuredProjectsData } from '../data';
+import { featuredWorkData } from '../data';
 import { Icon } from '@iconify/vue';
 import { useRouter } from 'vue-router';
 import { useScrollReveal } from '../composables/useScrollReveal';
@@ -23,8 +23,8 @@ const viewProjectDetails = (id) => {
    });
 };
 
-// featuredProjectsData 
-const featured = featuredProjectsData; 
+// featuredWorkData 
+const featured = featuredWorkData; 
 const modules = [Navigation, Pagination];
 
 // Active Category State

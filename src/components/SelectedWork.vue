@@ -167,7 +167,7 @@ const toggleDetails = (index) => {
 
           <div id="selected-work-featured-image-col" class="w-full lg:w-1/2 h-full overflow-hidden bg-slate-100 dark:bg-[#1c1713]">
             <div class="w-full h-full bg-slate-100 flex items-center justify-center overflow-hidden rounded-tr-lg rounded-br-lg">
-              <img :src="workData.featuredProject.imageUrl" :alt="workData.featuredProject.title" class="w-full h-full object-cover" />
+              <img :src="workData.featuredProject.image" :alt="workData.featuredProject.title" class="w-full h-full object-cover" />
             </div>
           </div>
         </div>
@@ -184,7 +184,7 @@ const toggleDetails = (index) => {
             <div>
               <div class="w-full h-72 rounded-2xl rounded-br-none rounded-bl-none overflow-hidden border-none">
                 <div class="w-full h-full bg-slate-100 flex items-center justify-center overflow-hidden rounded-2xl rounded-bl-none rounded-br-none border border-slate-200/40 shadow-sm">
-                  <img :src="project.imageUrl" :alt="project.title" class="w-full h-full object-cover" />
+                  <img :src="project.image" :alt="project.title" class="w-full h-full object-cover" />
                 </div>
               </div>
 
@@ -311,3 +311,4 @@ const toggleDetails = (index) => {
   }
 }
 </style>
+
