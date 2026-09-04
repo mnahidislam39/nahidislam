@@ -112,7 +112,7 @@ onUnmounted(() => {
          id="site-nav-container"
       >
 
-      <!-- Logo Tag -->
+      <!-- GitHub Pages URL টি নতুন রিপোজিটরির নামে আপডেট করুন -->
       <router-link
          to="/"
          class="flex items-center gap-3 cursor-pointer group"
