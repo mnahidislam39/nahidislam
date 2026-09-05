@@ -13,10 +13,10 @@ export const footerData = {
    },
    // Quick Links যোগ করা হয়েছে
    quickLinks: [
-      { name: "Home", href: "#hero" },
+      { name: "Home", href: "#home" },
       { name: "About", href: "#about" },
       { name: "Services", href: "#services" },
-      { name: "Projects", href: "#projects" },
+      { name: "Projects", href: "#featuredWork" },
       { name: "FAQ", href: "#faq" },
       { name: "Contact", href: "#contact" },
    ],

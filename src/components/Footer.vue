@@ -1,23 +1,55 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
+import { useRouter, useRoute } from 'vue-router'; // Router ও Route ইম্পোর্ট করুন
 import { footerData } from '../data';
 import { Icon } from '@iconify/vue';
 import { useScrollReveal } from '../composables/useScrollReveal';
 
-// ১. আপনার ইমেজের সঠিক Relative Path দিয়ে ইম্পোর্ট করুন
 import footerBgImg from '/nahid.png'; 
 
 const footer = footerData;
 const { elementRef, isVisible } = useScrollReveal(0.1, true);
 
-// Scroll Parallax Logic (শুধু ফুটারের মধ্যেই কাজ করবে)
+const router = useRouter();
+const route = useRoute();
+
+// Scroll Parallax Logic
 const scrollY = ref(0);
 
 const handleScroll = () => {
    if (elementRef.value) {
       const rect = elementRef.value.getBoundingClientRect();
-      // ফুটার স্ক্রিনে আসাকালীন সময় ইমেজের গতি নিয়ন্ত্রণ করবে
       scrollY.value = rect.top * 0.25; 
+   }
+};
+
+// Smart Scroll & Routing Handler
+const scrollToSection = async (targetHref) => {
+   if (!targetHref) return;
+
+   // ১. যদি ইন্টারনাল হ্যাশ লিঙ্ক না হয় (যেমন external url)
+   if (!targetHref.startsWith('#')) {
+      window.location.href = targetHref;
+      return;
+   }
+
+   // ২. আপনি যদি হোম পেজে না থাকেন (Single Project Page-এ থাকেন)
+   if (route.path !== '/') {
+      // প্রথমে হোম পেজে যান
+      await router.push('/');
+      // পেজ লোড হওয়ার জন্য সামান্য ডিলে দিয়ে স্ক্রোল করুন
+      setTimeout(() => {
+         const targetElement = document.querySelector(targetHref);
+         if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+         }
+      }, 300);
+   } else {
+      // ৩. আপনি অলরেডি হোম পেজে থাকলে সরাসরি স্ক্রোল হবে
+      const targetElement = document.querySelector(targetHref);
+      if (targetElement) {
+         targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
    }
 };
 
@@ -31,7 +63,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-   <!-- relative & overflow-hidden দিয়ে ছবিটিকে শুধুমাত্র ফুটারের মধ্যে লক করা হয়েছে -->
+   <!-- relative & overflow-hidden দিয়ে ছবিটিকে শুধুমাত্র ফুটারের মধ্যে লক করা হয়েছে -->
    <footer ref="elementRef" id="footer"
       class="footer-wrapper bg-[#fbf9f4] dark:bg-[#0b0f0e] text-slate-800 dark:text-slate-300 relative overflow-hidden font-sans border-t border-slate-200 dark:border-emerald-950/40 transition-colors duration-300">
 
@@ -43,7 +75,7 @@ onUnmounted(() => {
          }"
       ></div>
 
-      <!-- Overlay Layer (লেখা যাতে স্পষ্ট পড়া যায়) -->
+      <!-- Overlay Layer (লেখা যাতে স্পষ্ট পড়া যায়) -->
       <div class="absolute inset-0 bg-gradient-to-b from-[#fbf9f4]/90 via-[#fbf9f4]/60 to-[#046947]/40 dark:from-[#0b0f0e]/95 dark:via-[#0b0f0e]/70 dark:to-[#046947]/50 pointer-events-none z-0"></div>
 
       <!-- Top CTA & Big Title Section -->
@@ -58,8 +90,9 @@ onUnmounted(() => {
                {{ footer.personal.title }} <br class="hidden sm:inline" />  {{ footer.personal.subTitle }}
             </h2>
 
-            <a :href="footer.personal.ectaButtonLink" target="_blank" rel="noopener noreferrer"
-               class="bg-[#046947] hover:bg-[#035237] text-white font-extrabold text-sm sm:text-base px-8 py-3.5 rounded-full transition-transform duration-300 hover:scale-105 shadow-md mb-10">
+            <a :href="footer.personal.ectaButtonLink" 
+               @click.prevent="scrollToSection(footer.personal.ectaButtonLink)"
+               class="bg-[#046947] hover:bg-[#035237] text-white font-extrabold text-sm sm:text-base px-8 py-3.5 rounded-full transition-transform duration-300 hover:scale-105 shadow-md mb-10 cursor-pointer">
                {{ footer.personal.ectaButtonText }}
             </a>
 
@@ -105,7 +138,9 @@ onUnmounted(() => {
             <!-- Inline Navigation Links -->
             <ul v-if="footer.quickLinks" class="flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-sm font-medium text-emerald-100">
                <li v-for="(link, index) in footer.quickLinks" :key="index">
-                  <a :href="link.href" class="hover:text-white transition-colors">
+                  <a :href="link.href" 
+                     @click.prevent="scrollToSection(link.href)"
+                     class="hover:text-white transition-colors cursor-pointer">
                      {{ link.name }}
                   </a>
                </li>

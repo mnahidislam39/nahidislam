@@ -5,52 +5,52 @@ export const featuredWorkData = {
    categories: ["All", "Shopify", "WordPress", "Custom Development"],
    projects: [
       {
-         id: "kangroute-gear",
-         title: "Kangroute Motorcycle Gear",
+         id: "ab3d",
+         title: "ab3d",
          category: "Shopify",
          techBadge: "Shopify Development",
          badgeIcon: "lucide:shopping-bag",
          description: "An advanced e-commerce store built for motorcycle gear enthusiasts with automated inventory sync.",
-          image: 's.png',
+          image: 'ab3d.webp',
          features: [
             { label: "Custom Liquid" },
             { label: "Fast Checkout" }
          ]
       },
       {
-         id: "motogear-pro",
-         title: "MotoGear Pro Storefront",
+         id: "Ophi Studio",
+         title: "Ophi Studio",
          category: "Shopify",
          techBadge: "Shopify Customization",
          badgeIcon: "lucide:code",
          description: "High-performance storefront featuring custom product filtering and responsive design.",
-         image: 's.png',
+         image: 'ophistudio.webp',
          features: [
             { label: "Optimized Speed" },
             { label: "Advanced Filter" }
          ]
       },
       {
-         id: "urban-riders",
-         title: "Urban Riders Hub",
+         id: "beauty-essentials",
+         title: "Beauty Essentials",
          category: "Custom Development",
          techBadge: "Vue.js & Tailwind",
          badgeIcon: "lucide:layout",
          description: "Tailor-made e-commerce platform crafted with modern dark UI aesthetics and smooth transitions.",
-          image: 's.png',
+          image: 'beauty.webp',
          features: [
             { label: "Dark UI Design" },
             { label: "API Integrated" }
          ]
       },
       {
-         id: "urban-riders",
-         title: "Urban Riders Hub",
+         id: "Funny Pets",
+         title: "Funny Pets",
          category: "Custom Development",
          techBadge: "Vue.js & Tailwind",
          badgeIcon: "lucide:layout",
          description: "Tailor-made e-commerce platform crafted with modern dark UI aesthetics and smooth transitions.",
-          image: 's.png',
+          image: 'f.webp',
          features: [
             { label: "Dark UI Design" },
             { label: "API Integrated" }

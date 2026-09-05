@@ -45,7 +45,7 @@ export const selectedWorkData = {
       },
       {
          id: "nutrify",
-         title: "Funny Bunny",
+         title: "Nutrify",
          category: "Supplement",
          description: "Health supplement store with custom theme, upsell offers and performance optimization.",
          challenge: "Slow load times and low average order value.",
@@ -54,7 +54,7 @@ export const selectedWorkData = {
          tags: ["Shopify", "Custom Theme", "Upsell", "Performance"],
          caseStudyText: "View Case Study",
          caseStudyLink: "#",
-         image:  'FunnyBunny1.jpg'  
+         image:  'f.jpg'  
       }
    ],
    ctaBox: {

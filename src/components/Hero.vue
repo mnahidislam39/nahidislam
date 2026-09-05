@@ -1,9 +1,38 @@
 <script setup>
-import { heroData } from '../data';
+import { computed } from 'vue';
+import { heroData } from '../data/heroData';
+import { clientReviewData } from '../data/clientReviewData';
 import { Icon } from '@iconify/vue';
 import { useScrollReveal } from '../composables/useScrollReveal';
 
-const hero = heroData;
+// Safe Data Fallbacks
+const hero = heroData || {};
+
+// clientReviewData.reviews অ্যারেটিকে নেওয়া হচ্ছে
+const testimonialsData = Array.isArray(clientReviewData?.reviews) ? clientReviewData.reviews : [];
+
+// ১. মোট রিভিউ সংখ্যা
+const totalReviewsCount = computed(() => {
+  return testimonialsData.length;
+});
+
+// ২. এভারেজ রেটিং ক্যালকুলেশন (যেমন: (4.9 OF 5))
+const averageRatingText = computed(() => {
+  if (!testimonialsData.length) return '(5.0 OF 5)';
+  
+  const totalRating = testimonialsData.reduce((sum, item) => sum + (Number(item?.rating) || 5), 0);
+  const avg = (totalRating / testimonialsData.length).toFixed(1);
+  return `(${avg} OF 5)`;
+});
+
+// ৩. প্রথম ৪ জন রিভিউয়ারের ছবি
+const reviewerAvatars = computed(() => {
+  return testimonialsData.slice(0, 4).map(item => ({
+    name: item?.name || 'Client',
+    image: item?.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&auto=format&fit=crop'
+  }));
+});
+
 const { elementRef: leftContentRef, isVisible: leftIsVisible } = useScrollReveal();
 const { elementRef: rightColRef, isVisible: rightIsVisible } = useScrollReveal();
 </script>
@@ -51,16 +80,16 @@ const { elementRef: rightColRef, isVisible: rightIsVisible } = useScrollReveal()
 
           <div class="hero-cta-group flex justify-center md:justify-start flex-wrap items-center gap-4 relative z-30">
             <a class="hero-primary-btn flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm transition-all shadow-lg shadow-emerald-600/25 cursor-pointer"
-              :href="hero.primaryCta.link">
-              <span>{{ hero.primaryCta.text }}</span>
+              :href="hero.primaryCta?.link">
+              <span>{{ hero.primaryCta?.text }}</span>
               <div
                 class="hero-btn-arrow-box w-6 h-6 rounded-full bg-black/20 text-white flex items-center justify-center text-xs">
                 <Icon icon="lucide:arrow-right" />
               </div>
             </a>
             <a class="hero-secondary-btn px-8 py-3.5 rounded-full bg-white dark:bg-[#0f1715] border border-slate-300 dark:border-emerald-900/60 text-slate-900 dark:text-white font-bold text-sm hover:bg-slate-50 dark:hover:bg-[#16221f] transition-all shadow-md cursor-pointer"
-              :href="hero.secondaryCta.link">
-              {{ hero.secondaryCta.text }}
+              :href="hero.secondaryCta?.link">
+              {{ hero.secondaryCta?.text }}
             </a>
           </div>
 
@@ -79,31 +108,30 @@ const { elementRef: rightColRef, isVisible: rightIsVisible } = useScrollReveal()
 
           <div class="flex flex-wrap items-center md:items-start justify-center md:justify-start w-full pt-6 border-t border-slate-200 dark:border-emerald-900/60 gap-6">
             <div class="review-wrapper justify-center md:justify-start flex items-center gap-4">
+              
+              <!-- Dynamic Reviewers Avatars -->
               <div class="review-avatars flex items-center -space-x-2">
                 <img
+                  v-for="(reviewer, index) in reviewerAvatars"
+                  :key="index"
                   class="avatar-img w-9 h-9 rounded-full border-2 border-[#fbf9f4] dark:border-[#0b0f0e] object-cover shadow-sm transition-colors duration-300"
-                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&auto=format&fit=crop"
-                  alt="Client">
-                <img
-                  class="avatar-img w-9 h-9 rounded-full border-2 border-[#fbf9f4] dark:border-[#0b0f0e] object-cover shadow-sm transition-colors duration-300"
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop"
-                  alt="Client">
-                <img
-                  class="avatar-img w-9 h-9 rounded-full border-2 border-[#fbf9f4] dark:border-[#0b0f0e] object-cover shadow-sm transition-colors duration-300"
-                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100&auto=format&fit=crop"
-                  alt="Client">
-                <img
-                  class="avatar-img w-9 h-9 rounded-full border-2 border-[#fbf9f4] dark:border-[#0b0f0e] object-cover shadow-sm transition-colors duration-300"
-                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=100&auto=format&fit=crop"
-                  alt="Client">
+                  :src="reviewer.image"
+                  :alt="reviewer.name">
               </div>
+
+              <!-- Dynamic Review Content Box -->
               <div class="review-content-box">
-                <h4
-                  class="review-count text-base font-black text-slate-900 dark:text-white transition-colors duration-300">
-                  {{ hero.reviewCount }} <span class="review-rating text-slate-600 dark:text-slate-300 font-semibold">{{ hero.reviewRating }}</span>
+                <h4 class="review-count text-base font-black text-slate-900 dark:text-white transition-colors duration-300">
+                  {{ totalReviewsCount }}+ REVIEWS 
+                  <span class="review-rating text-slate-600 dark:text-slate-300 font-semibold ml-1">
+                    {{ averageRatingText }}
+                  </span>
                 </h4>
-                <p class="review-subtext text-xs text-slate-300 dark:text-slate-300 font-medium">{{ hero.reviewSubtext }}</p>
+                <p class="review-subtext text-xs text-slate-300 dark:text-slate-300 font-medium">
+                  {{ hero.reviewSubtext || 'Reviews from Valued Clients' }}
+                </p>
               </div>
+
             </div>
           </div>
 

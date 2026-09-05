@@ -19,6 +19,21 @@ const toggleMenu = () => {
    isOpen.value = !isOpen.value;
 };
 
+const handleLogoClick = (e) => {
+   if (e) e.preventDefault();
+   isOpen.value = false;
+   activeSection.value = 'home';
+
+   if (route.path === '/') {
+      if (route.hash) {
+         router.replace({ path: '/', hash: '' });
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+   } else {
+      router.push({ path: '/' });
+   }
+};
+
 // Vite Dynamic Asset Loader (লোগো যেন সব পেজে দেখায়)
 const getLogoUrl = (imagePath) => {
   if (!imagePath) return '';

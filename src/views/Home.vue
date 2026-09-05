@@ -11,7 +11,6 @@ import About from '../components/About.vue';
 import Process from '../components/Process.vue';
 import FAQ from '../components/FAQ.vue';
 import Contact from '../components/Contact.vue';
-import MasterEffects from '../components/MasterEffects.vue';
 
 </script>
 
@@ -29,6 +28,5 @@ import MasterEffects from '../components/MasterEffects.vue';
       <Process />
       <FAQ />
       <Contact />
-      <MasterEffects />
    </div>
 </template>

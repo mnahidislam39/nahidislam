@@ -5,6 +5,11 @@ import { Icon } from '@iconify/vue';
 import { useRouter } from 'vue-router';
 import { useScrollReveal } from '../composables/useScrollReveal';
 
+// assets ফোল্ডার থেকে ডায়নামিকভাবে ইমেজ পাথ জেনারেট করার ফাংশন
+const getImageUrl = (name) => {
+  return new URL(`../assets/${name}`, import.meta.url).href;
+};
+
 // Swiper Vue.js components & modules
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, Pagination } from 'swiper/modules';
@@ -150,7 +155,7 @@ const filteredProjects = computed(() => {
                      >
                         <img
                            class="object-cover object-top w-full h-full transition-transform duration-500 hover:scale-105 project-thumbnail-img"
-                           :src="project.image"
+                           :src="getImageUrl(project.image)"
                            :alt="project.title"
                         />
                      </div>
