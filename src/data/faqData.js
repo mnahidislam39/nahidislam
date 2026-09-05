@@ -59,7 +59,7 @@ export const faqData = {
       {
          icon: "lucide:code-2",
          question: "What technologies do you use for Full-Stack development",
-         answer: "For full-stack and custom web solutions, I utilize modern technologies including HTML5, CSS3, SCSS, Tailwind CSS, JavaScript, jQuery, Vue.js, PHP, Laravel framework, RESTful API development, and MySQL database design."
+         answer: "For full-stack and custom web solutions, I utilize modern technologies including HTML5, CSS3, SCSS, Tailwind CSS, JavaScript, jQuery, Vue.js, PHP, Laravel framework and MySQL database design."
       },     
    ],
    ctaBanner: {

@@ -4,11 +4,11 @@ export const aboutData = {
    headline: "ABOUT",
    subHeadline: "ME",
    authorName: "Nahid Islam",
-   description: "I'm a Shopify-focused Full-Stack Web Developer based in Ishwardi, Pabna, Rajshahi, Bangladesh. My primary expertise lies in Shopify store development, customization, and performance optimization, helping businesses build scalable and conversion-focused online stores. Alongside Shopify, I have strong expertise in HTML, CSS, Bootstrap, Tailwind CSS, SASS, JavaScript, jQuery, Vue.js, PHP, and Laravel, allowing me to handle both front-end and back-end development efficiently.",
+   description: "I'm a Shopify-focused Full-Stack Web Developer. My primary expertise lies in Shopify store development, customization, and performance optimization, helping businesses build scalable and conversion-focused online stores. Alongside Shopify, I have strong expertise in HTML, CSS, Bootstrap, Tailwind CSS, SASS, JavaScript, jQuery, Vue.js, PHP, Laravel and wordpress. I excel in creating user-friendly interfaces, optimizing performance, allowing me to handle both front-end and back-end development efficiently.",
    profileImage: 'nahid.png',
    stats: [
-      { label: "YEARS EXPERIENCE", value: "3+", icon: "briefcase" },
-      { label: "PROJECTS COMPLETED", value: "100+", icon: "projects" },
+      { label: "YEARS EXPERIENCE", value: "2+", icon: "briefcase" },
+      { label: "PROJECTS COMPLETED", value: "50+", icon: "projects" },
       { label: "TECHNOLOGIES MASTERED", value: "10+", icon: "code" },
       { label: "HAPPY CLIENTS", value: "50+", icon: "clients" }
    ],
@@ -28,35 +28,35 @@ export const aboutData = {
       {
          role: "SHOPIFY DEVELOPER / TEAM LEAD",
          company: "ILMIFY TECH AGENCY",
-         duration: "Oct 2024 – Present",
+         duration: "Oct 2025 – Present",
          status: "CURRENT",
          description: "Working as a Shopify Developer and Team Lead, handling Shopify store development, theme customization and guiding team members to deliver high-quality solutions for clients.",
-         skills: ["Shopify Development", "Liquid", "Shopify 2.0", "Theme Customization", "Team Leadership"],
+         // skills: ["Shopify Development", "Liquid", "Shopify 2.0", "Theme Customization", "Team Leadership"],
          icon: "shopify"
       },
       {
-         role: "WORDPRESS DEVELOPER (FREELANCE)",
-         company: "SELF-EMPLOYED",
-         duration: "2022 – 2024",
-         status: "",
-         description: "Built responsive WordPress websites for clients, including business websites and eCommerce stores using WooCommerce.",
-         skills: ["WordPress", "WooCommerce", "Elementor", "Custom Themes", "Plugin Customization"],
-         icon: "wordpress"
+         role: "Front-End Developer shopify",
+         company: "Softvence Agency",
+         duration: "Aug 2024 – Sep 2025",
+         status: "Former",
+         description: "Built responsive and user-friendly shopify websites for clients, including business websites and eCommerce stores.",
+         // skills: ["WordPress", "WooCommerce", "Elementor", "Custom Themes", "Plugin Customization"],
+         icon: "shopify"
       },
       {
-         role: "FULL-STACK DEVELOPER",
-         company: "DIGITAL SOLUTIONS BD",
-         duration: "2021 – 2022",
-         status: "",
-         description: "Completed multiple projects using PHP, Laravel, Vue.js and MySQL. Built web applications and improved problem-solving and programming skills.",
-         skills: ["Laravel", "Vue.js", "PHP", "MySQL", "JavaScript"],
-         icon: "code"
+         role: "Front-End Developer wordpress",
+         company: "softvence Agency",
+         duration: "Aug 2024 – Sep 2025",
+         status: "Former",
+         description: "Built responsive and user-friendly wordpress websites for clients, including business websites and eCommerce stores.",
+         // skills: ["Laravel", "Vue.js", "PHP", "MySQL", "JavaScript"],
+         icon: "wordpress"
       },
       {
          role: "COLLABORATION & CLIENT WORK",
          company: "GLOBAL CLIENTS",
-         duration: "2020 – Present",
-         status: "",
+         duration: "2024",
+         status: "Present",
          description: "Worked with clients from different industries and delivered tailored solutions that drive growth and real business results.",
          skills: ["E-Commerce", "Landing Pages", "Performance Optimization", "SEO Friendly", "UI/UX Focused"],
          icon: "briefcase"

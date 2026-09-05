@@ -31,7 +31,6 @@ export const servicesData = {
             "WordPress Development",
             "WooCommerce Solutions",
             "Custom Theme Development",
-            "Plugin Customization",
             "Elementor Development",
             "Speed Optimization",
             "Website Maintenance"
@@ -49,7 +48,6 @@ export const servicesData = {
             "Vue.js Development",
             "PHP Development",
             "Laravel Development",
-            "API Development",
             "MySQL Database Design"
          ],
          previewImage: `<div class="w-full bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-sm text-emerald-400 font-mono text-xs overflow-hidden h-36 flex items-center justify-center"><code>// Code Architecture<br/>const fullStack = true;<br/>function build() { return success; }</code></div>`
