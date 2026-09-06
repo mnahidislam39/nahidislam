@@ -67,7 +67,7 @@ const { elementRef, isVisible } = useScrollReveal(0.1, false);
 
                <!-- Key Statistics Grid -->
                <div id="key-stats-grid"
-                  class="stats-box grid grid-cols-4 md:grid-cols-2 gap-5 bg-[#16120e] border border-[#26201a] rounded-[2rem] p-8 shadow-sm">
+                  class="stats-box grid grid-cols-2 md:grid-cols-2 gap-5 bg-[#16120e] border border-[#26201a] rounded-[2rem] p-8 shadow-sm">
 
                   <div v-for="(stat, sIdx) in about.stats" :key="sIdx" :id="'stat-item-' + sIdx"
                      class="stat-card flex items-start gap-4">

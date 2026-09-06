@@ -24,9 +24,9 @@ export const contactData = {
    ],
    scheduleCall: {
       title: "Prefer a Quick Chat?",
-      subtitle: "Book a 15-minute discovery call.",
-      buttonText: "Schedule a Call",
-      href: "#discuss"
+      subtitle: " discovery call.",
+      buttonText: "Message or Call",
+      href: "https://wa.me/8801761005639"
    },
    form: {
       headerIcon: "lucide:send",

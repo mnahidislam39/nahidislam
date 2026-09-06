@@ -160,16 +160,16 @@ const handleSubmit = async () => {
                   <div class="schedule-call-info flex items-center gap-4">
                      <span
                         class="schedule-call-icon flex items-center justify-center w-12 h-12 text-xl bg-emerald-50 dark:bg-emerald-950/50 rounded-2xl text-emerald-600 dark:text-emerald-400 shrink-0">
-                        <Icon icon="lucide:calendar-days" />
+                        <Icon icon="ant-design:whats-app-outlined" />
                      </span>
                      <div class="schedule-call-text">
                         <h4 class="schedule-call-title text-sm font-bold text-slate-900 dark:text-white">{{ contact.scheduleCall?.title }}</h4>
                         <p class="schedule-call-subtitle text-xs text-slate-500 dark:text-slate-400">{{ contact.scheduleCall?.subtitle }}</p>
                      </div>
                   </div>
-                  <a :href="contact.scheduleCall?.href"
+                  <a :href="contact.scheduleCall?.href" target="_blank" 
                      class="schedule-call-btn flex items-center justify-center gap-2 px-6 py-4 text-xs font-bold text-white dark:text-slate-950 transition-all shadow-md bg-emerald-950 dark:bg-emerald-500 hover:bg-emerald-900 dark:hover:bg-emerald-400 rounded-xl w-full sm:w-auto shrink-0">
-                     <Icon icon="lucide:calendar" /> {{ contact.scheduleCall?.buttonText }}
+                     <Icon icon="ant-design:whats-app-outlined" /> {{ contact.scheduleCall?.buttonText }}
                   </a>
                </div>
 
