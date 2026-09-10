@@ -176,7 +176,7 @@ const goBack = () => {
               </div>
             </div>
 
-            <!-- Case Study Button -->
+            <!-- Case Study Button
             <div class="single-project-actions flex flex-wrap gap-4">
               <a 
                 :href="projectData.caseStudyLink || '#'" 
@@ -187,7 +187,7 @@ const goBack = () => {
                 <span>{{ projectData.caseStudyText || 'View Live Project' }}</span>
                 <Icon icon="lucide:external-link" class="w-4 h-4" />
               </a>
-            </div>
+            </div> -->
           </div>
 
           <!-- Right Image Gallery Column with Zoom Controls -->
