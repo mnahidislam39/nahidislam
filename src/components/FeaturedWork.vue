@@ -102,7 +102,7 @@ const filteredProjects = computed(() => {
                ></h2>
                
                <p
-                  class="text-sm leading-relaxed text-slate-200 dark:text-slate-200 sm:text-base section-desc-text"
+                  class="text-sm leading-relaxed text-slate-900 dark:text-slate-200 sm:text-base section-desc-text"
                   id="featured-description"
                >{{ featured.description }}</p>
             </div>
@@ -173,7 +173,7 @@ const filteredProjects = computed(() => {
                            @click="viewProjectDetails(project.id)"
                         >{{ project.title }}</h3>
                         <p
-                           class="mb-6 text-xs leading-relaxed text-slate-200 dark:text-slate-200 line-clamp-2 project-desc-text"
+                           class="mb-6 text-xs leading-relaxed text-slate-900 dark:text-slate-200 line-clamp-2 project-desc-text"
                         >{{ project.description }}
                         </p>
                      </div>
@@ -236,7 +236,7 @@ const filteredProjects = computed(() => {
                      <Icon :icon="stat.icon" class="text-2xl" />
                   </div>
                   <h3 class="mb-1 text-3xl font-black text-slate-900 dark:text-white stat-value-text">{{ stat.value }}</h3>
-                  <p class="text-[11px] text-slate-200 dark:text-slate-200 font-bold uppercase tracking-wider stat-label-text">{{ stat.label }}</p>
+                  <p class="text-[11px] text-slate-900 dark:text-slate-200 font-bold uppercase tracking-wider stat-label-text">{{ stat.label }}</p>
                </div>
             </div>
 

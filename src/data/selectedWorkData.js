@@ -13,7 +13,7 @@ export const selectedWorkData = {
       tags: ["Shopify", "Liquid", "Custom Theme", "eCommerce"],
       caseStudyText: "View Case Study",
       caseStudyLink: "#",
-      image:  'jewlleryS.png'    
+      image: 'jewlleryS.png'    
    },
 
    projects: [
@@ -22,13 +22,14 @@ export const selectedWorkData = {
          title: "Ophi Studio",
          category: "Skincare",
          description: "Skincare store with custom sections, product bundles, and subscription functionality.",
-         challenge: "Low conversion rate and cart abandonment.",
-         solution: "Custom subscription widget and optimized bundle flow.",
-         result: "+55% conversion rate",
+         challenge: "Slow mobile loading (30% speed score) & poor SEO.",
+         solution: "Liquid optimization, asset cleanup & custom subscription widget.",
+         result: "30% ➔ 90% Increase", // Speed boost metric added
+         conversionResult: "+55% Growth",
          tags: ["Shopify", "Liquid", "Subscription", "Responsive"],
          caseStudyText: "View Case Study",
          caseStudyLink: "#",
-         image:  'bag.png'  
+         image: 'bag.png'  
       },
       {
          id: "aurora-eyewear",
@@ -37,11 +38,12 @@ export const selectedWorkData = {
          description: "Modern Shopify store with advanced product filtering and quick view.",
          challenge: "Complex catalog filtering causing high bounce rates.",
          solution: "Implemented instant AJAX-based filtering and quick view drawers.",
-         result: "+40% user engagement",
+         result: "30% ➔ 90% Increase",
+         conversionResult: "+40% Engagement",
          tags: ["Shopify", "Liquid", "Filtering", "Quick View"],
          caseStudyText: "View Case Study",
          caseStudyLink: "#",
-         image:  'resstenonline.png'  
+         image: 'resstenonline.png'  
       },
       {
          id: "nutrify",
@@ -50,11 +52,12 @@ export const selectedWorkData = {
          description: "Health supplement store with custom theme, upsell offers and performance optimization.",
          challenge: "Slow load times and low average order value.",
          solution: "Custom lightweight theme architecture and post-purchase upsell app.",
-         result: "+35% AOV increase",
+         result: "30% ➔ 90% Increase",
+         conversionResult: "+35% AOV Boost",
          tags: ["Shopify", "Custom Theme", "Upsell", "Performance"],
          caseStudyText: "View Case Study",
          caseStudyLink: "#",
-         image:  'f.jpg'  
+         image: 'f.jpg'  
       }
    ],
    ctaBox: {

@@ -19,7 +19,7 @@ const totalReviewsCount = computed(() => {
 // ২. এভারেজ রেটিং ক্যালকুলেশন (যেমন: (4.9 OF 5))
 const averageRatingText = computed(() => {
   if (!testimonialsData.length) return '(5.0 OF 5)';
-  
+
   const totalRating = testimonialsData.reduce((sum, item) => sum + (Number(item?.rating) || 5), 0);
   const avg = (totalRating / testimonialsData.length).toFixed(1);
   return `(${avg} OF 5)`;
@@ -46,14 +46,13 @@ const { elementRef: rightColRef, isVisible: rightIsVisible } = useScrollReveal()
 
     <div class="hero-container flex flex-col max-w-[1400px] mx-auto w-full relative z-10 my-0">
 
-      <div class="hero-grid grid grid-cols-1 lg:grid-cols-12 items-center gap-12 relative w-full text-center md:text-left">
+      <div
+        class="hero-grid grid grid-cols-1 lg:grid-cols-12 items-center gap-12 relative w-full text-center md:text-left">
 
-        <div 
-          ref="leftContentRef"
+        <div ref="leftContentRef"
           class="hero-left-content lg:col-span-6 flex flex-col items-center md:items-start gap-8 z-20 transition-all duration-1000 ease-out"
-          :class="leftIsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'"
-        >
-          
+          :class="leftIsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'">
+
           <div class="hero-top-wrapper relative flex justify-center items-center">
             <div
               class="hero-badge-box inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white dark:bg-[#0f1715] border border-slate-200 dark:border-emerald-900/60 shadow-sm text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-300 transition-colors duration-300">
@@ -66,7 +65,8 @@ const { elementRef: rightColRef, isVisible: rightIsVisible } = useScrollReveal()
           <div class="hero-main-title-box text-center md:text-left">
             <h1
               class="hero-main-title text-6xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.1] transition-colors duration-300">
-              {{ hero.titlePrefix }} <span class="hero-highlight-name text-emerald-600 dark:text-emerald-400">{{ hero.highlightName }}</span>
+              {{ hero.titlePrefix }} <span class="hero-highlight-name text-emerald-600 dark:text-emerald-400">{{
+                hero.highlightName }}</span>
             </h1>
             <p
               class="hero-subtitle max-w-[600px] text-slate-600 dark:text-slate-300 font-medium text-base sm:text-lg mt-4 transition-colors duration-300">
@@ -106,28 +106,28 @@ const { elementRef: rightColRef, isVisible: rightIsVisible } = useScrollReveal()
             </div>
           </div>
 
-          <div class="flex flex-wrap items-center md:items-start justify-center md:justify-start w-full pt-6 border-t border-slate-200 dark:border-emerald-900/60 gap-6">
+          <div
+            class="flex flex-wrap items-center md:items-start justify-center md:justify-start w-full pt-6 border-t border-slate-200 dark:border-emerald-900/60 gap-6">
             <div class="review-wrapper justify-center md:justify-start flex items-center gap-4">
-              
+
               <!-- Dynamic Reviewers Avatars -->
               <div class="review-avatars flex items-center -space-x-2">
-                <img
-                  v-for="(reviewer, index) in reviewerAvatars"
-                  :key="index"
+                <img v-for="(reviewer, index) in reviewerAvatars" :key="index"
                   class="avatar-img w-9 h-9 rounded-full border-2 border-[#fbf9f4] dark:border-[#0b0f0e] object-cover shadow-sm transition-colors duration-300"
-                  :src="reviewer.image"
-                  :alt="reviewer.name">
+                  :src="reviewer.image" :alt="reviewer.name">
               </div>
 
               <!-- Dynamic Review Content Box -->
-              <div class="review-content-box">
-                <h4 class="review-count text-base font-black text-slate-900 dark:text-white transition-colors duration-300">
-                  {{ totalReviewsCount }}+ REVIEWS 
+              <div class="review-content-box text-left">
+                <h4
+                  class="review-count text-base font-black text-slate-900 dark:text-white transition-colors duration-300">
+                  {{ totalReviewsCount }}+ REVIEWS
                   <span class="review-rating text-slate-600 dark:text-slate-300 font-semibold ml-1">
                     {{ averageRatingText }}
                   </span>
                 </h4>
-                <p class="review-subtext text-xs text-slate-300 dark:text-slate-300 font-medium">
+                <p
+                  class="review-subtext text-xs text-slate-600 dark:text-slate-400 font-medium transition-colors duration-300">
                   {{ hero.reviewSubtext || 'Reviews from Valued Clients' }}
                 </p>
               </div>
@@ -137,29 +137,29 @@ const { elementRef: rightColRef, isVisible: rightIsVisible } = useScrollReveal()
 
         </div>
 
-        <div 
-          ref="rightColRef"
+        <div ref="rightColRef"
           class="hero-right-col lg:col-span-6 flex flex-col items-center justify-end relative min-h-[500px] pb-0 transition-all duration-1000 ease-out delay-200"
-          :class="rightIsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'"
-        >
-          
+          :class="rightIsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'">
+
           <div class="absolute inset-0 flex items-center justify-center pointer-events-none -z-10">
-            <div class="w-[350px] sm:w-[480px] h-[350px] sm:h-[480px] rounded-full bg-emerald-500/10 dark:bg-emerald-500/5 blur-3xl"></div>
-            <div class="absolute w-[280px] sm:w-[380px] h-[280px] sm:h-[380px] rounded-full border border-emerald-500/20 animate-spin-slow"></div>
+            <div
+              class="w-[350px] sm:w-[480px] h-[350px] sm:h-[480px] rounded-full bg-emerald-500/10 dark:bg-emerald-500/5 blur-3xl">
+            </div>
+            <div
+              class="absolute w-[280px] sm:w-[380px] h-[280px] sm:h-[380px] rounded-full border border-emerald-500/20 animate-spin-slow">
+            </div>
           </div>
 
           <div class="relative w-full max-w-[380px] sm:max-w-[450px] flex justify-center items-end">
-            <img class="hero-main-image w-full max-h-[420px] md:max-h-[520px] h-full object-cover md:object-contain md:transform scale-[1.55] md:scale-[1.55] lg:scale-[1.8] object-bottom drop-shadow-2xl" :src="hero.image"
-              :alt="hero.highlightName">
+            <img
+              class="hero-main-image w-full max-h-[420px] md:max-h-[520px] h-full object-cover md:object-contain md:transform scale-[1.55] md:scale-[1.55] lg:scale-[1.8] object-bottom drop-shadow-2xl"
+              :src="hero.image" :alt="hero.highlightName">
           </div>
 
-          <div 
-            v-for="(badge, bIdx) in hero.floatingBadges" 
-            :key="bIdx"
-            :class="badge.position"
-            class="bg-white dark:bg-[#121a18] border border-slate-200 dark:border-emerald-900/50 px-4 py-2.5 rounded-2xl shadow-xl flex items-center gap-3 z-20"
-          >
-            <div class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center animate-pulse">
+          <div v-for="(badge, bIdx) in hero.floatingBadges" :key="bIdx" :class="badge.position"
+            class="bg-white dark:bg-[#121a18] border border-slate-200 dark:border-emerald-900/50 px-4 py-2.5 rounded-2xl shadow-xl flex items-center gap-3 z-20">
+            <div
+              class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center animate-pulse">
               <Icon :icon="badge.icon" class="text-base" />
             </div>
             <div>
@@ -179,15 +179,19 @@ const { elementRef: rightColRef, isVisible: rightIsVisible } = useScrollReveal()
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
 @keyframes floatAnim {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-8px);
   }

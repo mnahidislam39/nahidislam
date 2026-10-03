@@ -58,7 +58,7 @@ const { elementRef: sectionRef, isVisible } = useScrollReveal();
             v-html="techData.headline"></h2>
 
          <p id="tech-stack-description-text"
-            class="tech-stack-description text-slate-300 dark:text-slate-300 text-center max-w-2xl mx-auto text-base sm:text-lg font-normal leading-relaxed">
+            class="tech-stack-description text-slate-900 dark:text-slate-300 text-center max-w-2xl mx-auto text-base sm:text-lg font-normal leading-relaxed">
             {{ techData.description }}
          </p>
 

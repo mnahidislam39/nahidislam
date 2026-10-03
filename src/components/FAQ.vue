@@ -38,7 +38,7 @@ const toggleAccordion = (index) => {
 
                   <h2 class="faq-main-title mb-4 text-4xl font-black leading-tight tracking-tight sm:text-6xl text-slate-900 dark:text-white" v-html="faqData.title">
                   </h2>
-                  <p class="faq-main-desc text-sm leading-relaxed text-slate-300 dark:text-slate-300 sm:text-base">{{ faqData.description }}</p>
+                  <p class="faq-main-desc text-sm leading-relaxed text-slate-900 dark:text-slate-300 sm:text-base">{{ faqData.description }}</p>
                </div>
 
                <!-- Still Have Questions Box -->
@@ -51,7 +51,7 @@ const toggleAccordion = (index) => {
                      </div>
                      <div class="faq-help-text-box">
                         <h3 class="faq-help-title mb-1 text-base font-black text-slate-900 dark:text-white">{{ faqData.helpBox.title }}</h3>
-                        <p class="faq-help-desc text-xs leading-relaxed text-slate-300 dark:text-slate-300">{{ faqData.helpBox.description }}</p>
+                        <p class="faq-help-desc text-xs leading-relaxed text-slate-900 dark:text-slate-300">{{ faqData.helpBox.description }}</p>
                      </div>
                   </div>
                   <a :href="faqData.helpBox.buttonLink"
@@ -72,7 +72,7 @@ const toggleAccordion = (index) => {
                         <Icon :icon="badge.icon" />
                      </div>
                      <h4 class="faq-feature-title text-[11px] font-black text-slate-900 dark:text-white mb-0.5 whitespace-nowrap">{{ badge.title }}</h4>
-                     <p class="faq-feature-desc text-[9px] text-slate-300 dark:text-slate-300 leading-tight">{{ badge.description }}</p>
+                     <p class="faq-feature-desc text-[9px] text-slate-900 dark:text-slate-300 leading-tight">{{ badge.description }}</p>
                   </div>
                </div>
 
@@ -110,7 +110,7 @@ const toggleAccordion = (index) => {
 
                   <!-- Accordion Body / Answer -->
                   <div v-show="activeIndex === idx" class="faq-accordion-body pt-4 mt-4 border-t border-slate-100 dark:border-[#26201a]">
-                     <p class="faq-accordion-answer text-xs leading-relaxed text-slate-300 dark:text-slate-300 sm:text-sm">{{ item.answer }}</p>
+                     <p class="faq-accordion-answer text-xs leading-relaxed text-slate-900 dark:text-slate-300 sm:text-sm">{{ item.answer }}</p>
                   </div>
                </div>
             </div>
@@ -129,7 +129,7 @@ const toggleAccordion = (index) => {
                </div>
                <div class="faq-cta-text-box">
                   <h3 class="faq-cta-title mb-1 text-base font-black text-slate-900 dark:text-white">{{ faqData.ctaBanner.title }}</h3>
-                  <p class="faq-cta-desc text-xs text-slate-300 dark:text-slate-300">{{ faqData.ctaBanner.description }}</p>
+                  <p class="faq-cta-desc text-xs text-slate-900 dark:text-slate-300">{{ faqData.ctaBanner.description }}</p>
                </div>
             </div>
 
@@ -141,7 +141,7 @@ const toggleAccordion = (index) => {
                   <div class="faq-cta-highlight-title flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 text-xs font-bold mb-0.5">
                      <Icon :icon="high.icon" /> {{ high.title }}
                   </div>
-                  <span class="faq-cta-highlight-desc text-[10px] text-slate-300 dark:text-slate-300">{{ high.desc }}</span>
+                  <span class="faq-cta-highlight-desc text-[10px] text-slate-900 dark:text-slate-300">{{ high.desc }}</span>
                </div>
             </div>
 

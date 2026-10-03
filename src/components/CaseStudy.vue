@@ -25,12 +25,12 @@ const { elementRef, isVisible } = useScrollReveal(0.1, false);
                <h2 class="text-4xl sm:text-6xl font-black tracking-tight mb-4 leading-tight text-slate-900 dark:text-white">
                   {{ caseData.headline }}
                </h2>
-               <p class="text-slate-300 dark:text-slate-300 text-base sm:text-lg mb-8 font-normal leading-relaxed">
+               <p class="text-slate-900 dark:text-slate-300 text-base sm:text-lg mb-8 font-normal leading-relaxed">
                   {{ caseData.description }}
                </p>
                <div class="case-study-meta-box grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-50/80 dark:bg-[#16120e] border border-slate-200/80 dark:border-[#26201a] rounded-2xl p-4 mb-10">
                   <div class="case-study-meta-item flex flex-col" v-for="(meta, mIdx) in caseData.metaInfo" :key="mIdx">
-                     <span class="text-[11px] font-bold text-slate-300 dark:text-slate-300 uppercase tracking-wider mb-0.5">{{ meta.label }}</span>
+                     <span class="text-[11px] font-bold text-slate-900 dark:text-slate-300 uppercase tracking-wider mb-0.5">{{ meta.label }}</span>
                      <span class="text-xs sm:text-sm font-extrabold text-slate-900 dark:text-white truncate">{{ meta.value }}</span>
                   </div>
                </div>
@@ -41,7 +41,7 @@ const { elementRef, isVisible } = useScrollReveal(0.1, false);
                      </div>
                      <div class="case-study-step-text-wrap flex flex-col">
                         <h4 class="text-sm font-extrabold text-emerald-700 dark:text-emerald-400 tracking-wider uppercase mb-1">{{ step.title }}</h4>
-                        <p class="text-xs sm:text-sm text-slate-300 dark:text-slate-300 font-medium leading-relaxed">{{ step.text }}</p>
+                        <p class="text-xs sm:text-sm text-slate-900 dark:text-slate-300 font-medium leading-relaxed">{{ step.text }}</p>
                      </div>
                   </div>
                </div>
@@ -68,7 +68,7 @@ const { elementRef, isVisible } = useScrollReveal(0.1, false);
                         <span class="text-emerald-600 dark:text-emerald-400 font-black text-lg" v-if="stat.isUp">↑</span>
                      </div>
                      <p class="text-xs font-bold text-slate-800 dark:text-slate-300 mb-0.5">{{ stat.sub }}</p>
-                     <p class="text-[11px] text-slate-300 dark:text-slate-300 font-medium">{{ stat.desc }}</p>
+                     <p class="text-[11px] text-slate-900 dark:text-slate-300 font-medium">{{ stat.desc }}</p>
                   </div>
                </div>
                
@@ -87,7 +87,7 @@ const { elementRef, isVisible } = useScrollReveal(0.1, false);
                                  </div>
                                  <div class="case-study-author-details flex flex-col">
                                     <h5 class="text-sm font-black text-slate-900 dark:text-white">{{ caseData.testimonial.author }}</h5>
-                                    <p class="text-xs text-slate-300 dark:text-slate-300 font-medium">{{ caseData.testimonial.role }}</p>
+                                    <p class="text-xs text-slate-900 dark:text-slate-300 font-medium">{{ caseData.testimonial.role }}</p>
                                     <a class="text-[11px] text-emerald-600 dark:text-emerald-400 font-bold hover:underline inline-block mt-0.5" href="#">{{ caseData.testimonial.website }}</a>
                                  </div>
                               </div>
