@@ -10,6 +10,6 @@ export const headerData = {
     { name: "faq", href: "#faq" },
     { name: "Contact", href: "#contact" },
   ],
-  ctaText: "Let's Talk",
-  ctaLink: "#contact"
+  ctaText: "Resume",
+  ctaLink: "https://drive.google.com/file/d/1FrhxcD9H9Z1h7J9iL_Dz6H71zx_ejuPH/view?usp=sharing"
 };

@@ -124,7 +124,8 @@ onUnmounted(() => {
             </h2>
             <p
               class="hero-subtitle max-w-[600px] text-slate-600 dark:text-slate-300 font-medium text-base sm:text-lg transition-colors duration-300">
-              {{ hero.subtitle }}  {{ hero.heroDescription }}
+              {{ hero.subtitle }}  
+              <!-- {{ hero.heroDescription }} -->
             </p>
 
           </div>
@@ -138,7 +139,7 @@ onUnmounted(() => {
                 <Icon icon="lucide:arrow-right" />
               </div>
             </a>
-            <a class="hero-secondary-btn px-8 py-3.5 rounded-full bg-white dark:bg-[#0f1715] border border-slate-300 dark:border-emerald-900/60 text-slate-900 dark:text-white font-bold text-sm hover:bg-slate-50 dark:hover:bg-[#16221f] transition-all shadow-md cursor-pointer"
+            <a class="hero-secondary-btn px-8 py-3.5 rounded-full bg-white dark:bg-[#0f1715] border border-slate-300 dark:border-emerald-900/60 text-slate-900 dark:text-white font-bold text-sm hover:bg-slate-50 dark:hover:bg-emerald-700 transition-all shadow-md cursor-pointer"
               :href="hero.secondaryCta?.link">
               {{ hero.secondaryCta?.text }}
             </a>

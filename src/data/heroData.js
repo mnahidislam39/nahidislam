@@ -3,8 +3,8 @@ export const heroData = {
   titlePrefix: "I'm",
   highlightName: "Nahid Islam",
   dyanmicTitle: "Shopify Expert | Wordpress Developer | Full Stack Developer | eCommerce Specialist",
-  subtitle: "Shopify Expert Building High-Converting, Scalable Stores",
-  heroDescription: "Custom Shopify development, theme customization, performance optimization and conversion-focused eCommerce experiences.",
+  subtitle: "I build high-quality Shopify stores, Custom Shopify development, theme customization, performance optimization and conversion-focused eCommerce experiences for growing businesses.",
+  // heroDescription: "Custom Shopify development, theme customization, performance optimization and conversion-focused eCommerce experiences.",
   
   reviewCount: "350+ Reviews",
   reviewRating: "(4.9 of 5)",
@@ -37,7 +37,7 @@ export const heroData = {
     link: "#selected-work" 
   },
   secondaryCta: { 
-    text: "Start a Project", 
+    text: "Let's Work Together", 
     link: "#contact" 
   },
   image: 'na.png'
