@@ -2,6 +2,7 @@ export const heroData = {
   badge: "Shopify Expert & Full Stack Developer",
   titlePrefix: "I'm",
   highlightName: "Nahid Islam",
+  dyanmicTitle: "Shopify Expert | Wordpress Developer | Full Stack Developer | eCommerce Specialist",
   subtitle: "Shopify Expert Building High-Converting, Scalable Stores",
   heroDescription: "Custom Shopify development, theme customization, performance optimization and conversion-focused eCommerce experiences.",
   
@@ -25,9 +26,9 @@ export const heroData = {
 
   // ফ্লোটিং ব্যাজগুলোর ডেটা এখানে ডাইনামিক করা হলো
   floatingBadges: [
-    { text: "Shopify Development", icon: "lucide:shopping-bag", position: "absolute left-2 sm:left-6 top-16 sm:top-24 animate-float-slow" },
-    { text: "Custom Liquid", icon: "lucide:code", position: "absolute right-2 sm:right-6 top-24 sm:top-32 animate-float-delayed" },
-    { text: "Performance Focused", icon: "lucide:zap", position: "absolute left-2 sm:left-4 bottom-16 sm:bottom-28 animate-float-slow" },
+    { text: "Shopify Development", icon: "lucide:shopping-bag", position: "absolute left-2 sm:-left-7 -top-[1rem] sm:top-24 animate-float-slow" },
+    { text: "Custom Liquid", icon: "lucide:code", position: "absolute right-2 sm:right-6 top-2 sm:top-32 animate-float-delayed" },
+    { text: "Performance Focused", icon: "lucide:zap", position: "absolute left-2 sm:left-4 bottom-22 sm:bottom-28 animate-float-slow" },
     { text: "eCommerce Solutions", icon: "lucide:layers", position: "absolute right-2 sm:right-4 bottom-10 sm:bottom-20 animate-float-delayed" }
   ],
 

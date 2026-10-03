@@ -39,7 +39,7 @@ const { elementRef: sectionRef, isVisible } = useScrollReveal();
   display: flex;
   width: max-content;
   will-change: transform;
-  animation: marquee 25s linear infinite;
+  animation: marquee 50s linear infinite;
 }
 
 .mask-gradient {

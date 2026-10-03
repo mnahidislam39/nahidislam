@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue'; // ref, onMounted, onUnmounted যোগ করা হলো
 import { heroData } from '../data/heroData';
 import { clientReviewData } from '../data/clientReviewData';
 import { Icon } from '@iconify/vue';
@@ -8,7 +8,7 @@ import { useScrollReveal } from '../composables/useScrollReveal';
 // Safe Data Fallbacks
 const hero = heroData || {};
 
-// clientReviewData.reviews অ্যারেটিকে নেওয়া হচ্ছে
+// clientReviewData.reviews অ্যারেটিকে নেওয়া হচ্ছে
 const testimonialsData = Array.isArray(clientReviewData?.reviews) ? clientReviewData.reviews : [];
 
 // ১. মোট রিভিউ সংখ্যা
@@ -25,7 +25,7 @@ const averageRatingText = computed(() => {
   return `(${avg} OF 5)`;
 });
 
-// ৩. প্রথম ৪ জন রিভিউয়ারের ছবি
+// ৩. প্রথম ৪ জন রিভিউয়ারের ছবি
 const reviewerAvatars = computed(() => {
   return testimonialsData.slice(0, 4).map(item => ({
     name: item?.name || 'Client',
@@ -35,6 +35,50 @@ const reviewerAvatars = computed(() => {
 
 const { elementRef: leftContentRef, isVisible: leftIsVisible } = useScrollReveal();
 const { elementRef: rightColRef, isVisible: rightIsVisible } = useScrollReveal();
+
+// dynamic titles array: heroData এর dynamicTitle কে | দিয়ে split করে নেয়া হচ্ছে (অথবা কাস্টম লিস্ট ব্যবহার করতে পারেন)
+const titles = hero.dyanmicTitle 
+  ? hero.dyanmicTitle.split('|').map(t => t.trim()) 
+  : [ 'Shopify Expert', 'Wordpress Developer', 'Full Stack Developer' ];
+
+const currentTitle = ref('');
+let titleIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+let typingTimeout = null;
+
+const typeEffect = () => {
+  const currentFullText = titles[titleIndex];
+
+  if (isDeleting) {
+    currentTitle.value = currentFullText.substring(0, charIndex - 1);
+    charIndex--;
+  } else {
+    currentTitle.value = currentFullText.substring(0, charIndex + 1);
+    charIndex++;
+  }
+
+  let typingSpeed = isDeleting ? 40 : 80;
+
+  if (!isDeleting && charIndex === currentFullText.length) {
+    typingSpeed = 2000; // ২ সেকেন্ড পজ থাকবে
+    isDeleting = true;
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    titleIndex = (titleIndex + 1) % titles.length;
+    typingSpeed = 500;
+  }
+
+  typingTimeout = setTimeout(typeEffect, typingSpeed);
+};
+
+onMounted(() => {
+  typeEffect();
+});
+
+onUnmounted(() => {
+  if (typingTimeout) clearTimeout(typingTimeout);
+});
 </script>
 
 <template>
@@ -64,18 +108,25 @@ const { elementRef: rightColRef, isVisible: rightIsVisible } = useScrollReveal()
 
           <div class="hero-main-title-box text-center md:text-left">
             <h1
-              class="hero-main-title text-6xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.1] transition-colors duration-300">
-              {{ hero.titlePrefix }} <span class="hero-highlight-name text-emerald-600 dark:text-emerald-400">{{
-                hero.highlightName }}</span>
+              class="hero-main-title flex flex-col text-2xl md:text-2xl font-black tracking-tight text-slate-900 dark:text-emerald-500 leading-[1.1] transition-colors duration-300">
+              <!-- {{ hero.titlePrefix }} -->
+               <span
+                class="hero-highlight-name text-emerald-600 text-5xl md:text-7xl dark:text-emerald-400">{{
+                  hero.highlightName }}</span>
             </h1>
+            <h2
+              class="hero-dynamic-title h-7 text-lg sm:text-xl md:text-2xl font-semibold text-emerald-700 dark:text-emerald-500 animate-pulse py-8 transition-colors duration-300 flex items-center justify-center sm:justify-start gap-1">
+              <!-- Dynamic Typing Text -->
+              <span>{{ currentTitle }}</span>
+
+              <!-- Blinking Cursor -->
+              <span class="inline-block w-[2px] h-6 bg-emerald-600 dark:bg-emerald-400 animate-pulse"></span>
+            </h2>
             <p
-              class="hero-subtitle max-w-[600px] text-slate-600 dark:text-slate-300 font-medium text-base sm:text-lg mt-4 transition-colors duration-300">
-              {{ hero.subtitle }}
+              class="hero-subtitle max-w-[600px] text-slate-600 dark:text-slate-300 font-medium text-base sm:text-lg transition-colors duration-300">
+              {{ hero.subtitle }}  {{ hero.heroDescription }}
             </p>
-            <p
-              class="hero-subtitle max-w-[600px] text-slate-600 dark:text-slate-300 font-medium text-base sm:text-lg mt-2 transition-colors duration-300">
-              {{ hero.heroDescription }}
-            </p>
+
           </div>
 
           <div class="hero-cta-group flex justify-center md:justify-start flex-wrap items-center gap-4 relative z-30">
