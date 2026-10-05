@@ -95,16 +95,15 @@ const filteredProjects = computed(() => {
 
             <!-- Category Filters -->
             <div class="filetMainRap">
-               
 
                <div
-                  class="featured-category-filters-container flex items-center gap-1.5 bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] p-1.5 rounded-full shadow-sm overflow-x-auto max-w-full"
+                  class="featured-category-filters-container flex gap-2 bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] p-2 rounded-full shadow-sm overflow-x-auto w-full"
                   id="category-filters">
                   <button v-for="(cat, cIdx) in featured.categories" :key="cIdx" @click="activeCategory = cat" :class="[
-                     'featured-category-filter-btn px-5 py-2.5 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap',
+                     'featured-category-filter-btn flex gap-2 items-center justify-between w-fit px-6 py-3 rounded-full font-bold text-xs sm:text-sm transition-all duration-300 cursor-pointer border whitespace-nowrap',
                      activeCategory === cat
-                        ? 'bg-emerald-800 dark:bg-emerald-500 text-white dark:text-slate-950 shadow-md'
-                        : 'text-slate-600 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white hover:bg-slate-150 dark:hover:bg-[#1f1a15]'
+                        ? 'bg-emerald-600 dark:bg-emerald-600 text-white dark:text-white border-emerald-600 shadow-md'
+                        : 'bg-slate-100 dark:bg-[#1c1713] hover:bg-emerald-600 dark:hover:bg-emerald-600 text-slate-900 dark:text-white hover:text-white dark:hover:text-white border-slate-200 dark:border-[#2d2620]'
                   ]">
                      {{ cat }}
                   </button>
@@ -127,14 +126,14 @@ const filteredProjects = computed(() => {
                1024: { slidesPerView: 3 },
             }" class="featured-swiper-instance pb-8 overflow-visible">
                <SwiperSlide v-for="(project, pIdx) in filteredProjects" :key="pIdx"
-                  class="featured-swiper-slide-item h-auto max-h[60vh]">
+                  class="featured-swiper-slide-item !h-auto">
                   <!-- Project Card -->
                   <div
-                     class="project-card bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] shadow-[0_10px_30px_rgba(0,0,0,0.03)] flex flex-col justify-between h-full hover:border-emerald-500/50 transition-all">
+                 class="project-card bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] shadow-[0_10px_30px_rgba(0,0,0,0.03)] flex flex-col justify-between h-[100%] max-h-[55vh] hover:border-emerald-500/50 transition-all">
 
                      <!-- Thumbnail Preview -->
                      <div
-                        class="project-card-media relative rounded-2xl overflow-hidden mb-6 bg-slate-900 dark:bg-[#1f1a15] aspect-[16/10] border border-slate-100 rounded-bl-none rounded-br-none dark:border-[#2b241d] cursor-pointer"
+                        class="project-card-media relative rounded-2xl overflow-hidden bg-slate-900 dark:bg-[#1f1a15] aspect-[16/10] border border-slate-100 rounded-bl-none rounded-br-none dark:border-[#2b241d] cursor-pointer"
                         @click="viewProjectDetails(project.id)">
                         <img
                            class="project-card-image object-cover object-top w-full h-full transition-transform duration-500 hover:scale-105"
@@ -163,7 +162,7 @@ const filteredProjects = computed(() => {
 
                      <!-- Features & Link Row -->
                      <div
-                        class="project-card-footer flex flex-col items-center gap-3 justify-between p-4 mt-auto border-t border-slate-100 dark:border-[#26201a]">
+                        class="project-card-footer flex flex-col gap-3 justify-between p-4 mt-auto border-t border-slate-100 dark:border-[#26201a]">
                         <div
                            class="project-card-features-list flex items-center gap-3 text-xs font-bold text-slate-700 dark:text-slate-200">
                            <!-- Slice 0 to 2 for Home Page Card View -->
@@ -178,9 +177,9 @@ const filteredProjects = computed(() => {
 
                         <!-- View Project Button -->
                         <button
-                           class="project-card-action-btn flex items-center gap-1.5 text-xs font-bold cursor-pointer rounded-full px-3 py-2 border transition-all duration-300 shrink-0 border-slate-200 dark:border-emerald-600 bg-slate-50 dark:bg-[#1c1713] text-slate-800 dark:text-slate-200 hover:bg-emerald-600 hover:text-white dark:hover:bg-emerald-500 dark:hover:text-white hover:border-emerald-600 dark:hover:border-emerald-500 shadow-sm group"
+                           class="project-card-action-btn flex items-center justify-between gap-1.5 text-[14px] font-bold cursor-pointer rounded-full px-3 py-2 border transition-all duration-300 shrink-0 border-slate-200 dark:border-emerald-600 bg-slate-50 dark:bg-[#1c1713] text-slate-800 dark:text-slate-200 hover:bg-emerald-600 hover:text-white dark:hover:bg-emerald-500 dark:hover:text-white hover:border-emerald-600 dark:hover:border-emerald-500 shadow-sm group"
                            @click="viewProjectDetails(project.id)">
-                           <span class="project-card-action-label">{{ featuredWorkData.buttonText }}</span>
+                           <span class="project-card-action-label text-center ">{{ featuredWorkData.buttonText }}</span>
                            <Icon icon="lucide:arrow-right"
                               class="project-card-action-icon text-sm transition-transform duration-300 group-hover:translate-x-1" />
                         </button>
@@ -192,17 +191,17 @@ const filteredProjects = computed(() => {
 
             <!-- Custom Navigation Arrows -->
             <button
-               class="featured-nav-btn custom-prev-btn absolute -left-5 sm:-left-6 top-[45%] -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white dark:bg-[#16120e] border border-slate-200 dark:border-[#26201a] shadow-xl text-slate-700 dark:text-slate-200 hover:bg-emerald-800 dark:hover:bg-emerald-500 hover:text-white dark:hover:text-slate-950 hover:border-emerald-800 dark:hover:border-emerald-500 flex items-center justify-center transition-all cursor-pointer">
+               class="featured-nav-btn custom-prev-btn absolute -left-5 sm:-left-6 top-[45%] -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white dark:bg-[#16120e] border border-slate-200 dark:border-slate-500 shadow-xl text-slate-700 dark:text-slate-200 hover:bg-emerald-800 dark:hover:bg-emerald-500 hover:text-white dark:hover:text-slate-950 hover:border-emerald-800 dark:hover:border-emerald-500 flex items-center justify-center transition-all cursor-pointer">
                <Icon icon="lucide:chevron-left" class="featured-nav-btn-icon text-2xl" />
             </button>
 
             <button
-               class="featured-nav-btn custom-next-btn absolute -right-5 sm:-right-6 top-[45%] -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white dark:bg-[#16120e] border border-slate-200 dark:border-[#26201a] shadow-xl text-slate-700 dark:text-slate-200 hover:bg-emerald-800 dark:hover:bg-emerald-500 hover:text-white dark:hover:text-slate-950 hover:border-emerald-800 dark:hover:border-emerald-500 flex items-center justify-center transition-all cursor-pointer">
+               class="featured-nav-btn custom-next-btn absolute -right-5 sm:-right-6 top-[45%] -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white dark:bg-[#16120e] border border-slate-200 dark:border-slate-500 shadow-xl text-slate-700 dark:text-slate-200 hover:bg-emerald-800 dark:hover:bg-emerald-500 hover:text-white dark:hover:text-slate-950 hover:border-emerald-800 dark:hover:border-emerald-500 flex items-center justify-center transition-all cursor-pointer">
                <Icon icon="lucide:chevron-right" class="featured-nav-btn-icon text-2xl" />
             </button>
          </div>
 
-       
+
       </div>
    </section>
 </template>

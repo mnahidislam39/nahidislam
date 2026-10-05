@@ -46,19 +46,20 @@ const toggleAccordion = (index) => {
                      <div class="faq-feature-icon-box flex items-center justify-center w-10 h-10 mb-2 text-lg rounded-xl bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400">
                         <Icon :icon="badge.icon" />
                      </div>
-                     <h4 class="faq-feature-title text-[11px] font-black text-slate-900 dark:text-white mb-0.5 whitespace-nowrap">{{ badge.title }}</h4>
-                     <p class="faq-feature-desc text-[9px] text-slate-500 dark:text-slate-400 leading-tight">{{ badge.description }}</p>
+                     <h4 class="faq-feature-title text-[14px] font-black text-slate-900 dark:text-white mb-0.5 whitespace-nowrap">{{ badge.title }}</h4>
+                     <p class="faq-feature-desc text-[12px] text-slate-500 dark:text-slate-200 leading-tight">{{ badge.description }}</p>
                   </div>
                </div>
 
             </div>
 
-            <!-- Right Column: Categorized Questions -->
+            <!-- Right Column: Categorized Questions with Mobile Sticky Stack -->
             <div class="faq-accordion-column lg:col-span-7 flex flex-col relative gap-4">
                <div 
                   v-for="(item, idx) in faqData.questions" 
                   :key="idx"
-                  class="faq-accordion-item bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2rem] p-5 sm:p-6 shadow-sm transition-all duration-300 hover:border-emerald-500/50"
+                  class="faq-accordion-item sticky top-24 lg:relative lg:top-0 bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2rem] p-5 sm:p-6 shadow-sm transition-all duration-300 hover:border-emerald-500/50"
+                  :style="{ zIndex: idx + 1 }"
                >
                   <!-- Accordion Header -->
                   <button 
@@ -112,15 +113,15 @@ const toggleAccordion = (index) => {
 
             <div class="faq-cta-highlights-col grid grid-cols-3 gap-4 px-0 py-4 text-center border-t lg:col-span-5 lg:border-t-0 lg:border-x border-slate-100 dark:border-[#26201a] lg:py-0 lg:px-6 lg:text-left">
                <div v-for="(high, hIdx) in faqData.ctaBanner.highlights" :key="hIdx" class="faq-cta-highlight-item flex flex-col items-center lg:items-start">
-                  <div class="faq-cta-highlight-title flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 text-xs font-bold mb-0.5">
+                  <div class="faq-cta-highlight-title flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 text-[14px] font-bold mb-0.5">
                      <Icon :icon="high.icon" /> {{ high.title }}
                   </div>
-                  <span class="faq-cta-highlight-desc text-[10px] text-slate-500 dark:text-slate-400">{{ high.desc }}</span>
+                  <span class="faq-cta-highlight-desc text-[12px] text-slate-500 dark:text-slate-200">{{ high.desc }}</span>
                </div>
             </div>
 
             <div class="faq-cta-right-col flex justify-end lg:col-span-3">
-               <a :href="faqData.ctaBanner.buttonLink" class="faq-cta-btn flex items-center justify-center w-full gap-2 px-6 py-4 text-xs font-bold text-white dark:text-slate-950 transition-all shadow-md lg:w-auto bg-emerald-950 dark:bg-emerald-500 hover:bg-emerald-900 dark:hover:bg-emerald-400 rounded-xl">
+               <a :href="faqData.ctaBanner.buttonLink" class="faq-cta-btn flex items-center justify-between w-full px-6 py-3 rounded-full bg-slate-100 dark:bg-[#1c1713] hover:bg-emerald-600 dark:hover:bg-emerald-600 text-slate-900 dark:text-white hover:text-white dark:hover:text-white font-bold text-xs sm:text-sm transition-all duration-300 cursor-pointer border border-slate-200 dark:border-[#2d2620]">
                   {{ faqData.ctaBanner.buttonText }}
                   <Icon icon="lucide:arrow-right" class="text-base" />
                </a>

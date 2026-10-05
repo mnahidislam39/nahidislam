@@ -46,7 +46,7 @@ const { elementRef, isVisible } = useScrollReveal(0.1, false);
                   </div>
                </div>
                <div class="case-study-button-wrap flex justify-center md:justify-start items-center">
-                  <a :href="caseData.mainButtonLink" class="case-study-btn  inline-flex items-center gap-3 px-8 py-4 rounded-full bg-slate-900 dark:bg-white hover:bg-emerald-600 dark:hover:bg-emerald-500 text-white dark:text-slate-900 font-bold text-sm transition-all duration-300 shadow-md group cursor-pointer">
+                  <a :href="caseData.mainButtonLink" class="case-study-btn  flex gap-2 items-center justify-between w-fit px-6 py-3 rounded-full bg-slate-100 dark:bg-[#1c1713] hover:bg-emerald-600 dark:hover:bg-emerald-600 text-slate-900 dark:text-white hover:text-white dark:hover:text-white font-bold text-xs sm:text-sm transition-all duration-300 cursor-pointer border border-slate-200 dark:border-[#2d2620]">
                      {{ caseData.mainButtonText }}
                      <span class="inline-block transition-transform group-hover:translate-x-1">→</span>
                   </a>
