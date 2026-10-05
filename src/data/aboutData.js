@@ -1,10 +1,26 @@
 export const aboutData = {
    id: "about",
-   sectionNumber: "About Me / Professional Experience",
-   headline: "ABOUT",
-   subHeadline: "ME",
+   sectionNumber: "About Me",
+   headline: "WHY WORK ",
+   subHeadline: "WITH ME",
    authorName: "Nahid Islam",
-   description: "I'm a Shopify-focused Full-Stack Web Developer. My primary expertise lies in Shopify store development, customization, and performance optimization, helping businesses build scalable and conversion-focused online stores. Alongside Shopify, I have strong expertise in HTML, CSS, Bootstrap, Tailwind CSS, SASS, JavaScript, jQuery, Vue.js, PHP, Laravel and wordpress. I excel in creating user-friendly interfaces, optimizing performance, allowing me to handle both front-end and back-end development efficiently.",
+   resumeText: "Download Resume",
+   description: "I'm a Shopify-focused Full-Stack Web Developer with experience building, customizing and optimizing eCommerce websites. I believe in creating digital experiences that balance elegant design with high performance. My goal is to help businesses grow through clean code and scalable technology.",
+   resumeUrl: "https://drive.google.com/file/d/1FrhxcD9H9Z1h7J9iL_Dz6H71zx_ejuPH/view?usp=sharing", // Apnar resume file path
+  socialLinks: {
+    linkedin: "https://linkedin.com/in/mnahidislam39",
+    whatsapp: "https://wa.me/8801761005639",
+    email: "mailto:devnahidislam4@gmail.com"
+  },
+   // Short bullets array
+  bullets: [
+    "Shopify Development",
+    "Theme Customization",
+    "WordPress Development",
+    "Frontend Development",
+    "Backend Development",
+    "Team Leadership"
+  ],
    profileImage: 'nahid.png',
    stats: [
       { label: "YEARS EXPERIENCE", value: "2+", icon: "briefcase" },

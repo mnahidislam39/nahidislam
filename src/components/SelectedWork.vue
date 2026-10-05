@@ -87,7 +87,7 @@ const viewProjectDetails = (projectOrId) => {
             <a 
               :href="workData.mainButtonLink || '#all-projects'" 
               id="selected-work-main-btn"
-              class="selected-work-main-button inline-flex items-center gap-3 px-6 py-3.5 rounded-full border border-slate-200 dark:border-[#26201a] hover:border-emerald-600 dark:hover:border-emerald-400 text-slate-900 dark:text-white hover:text-emerald-700 dark:hover:text-emerald-400 font-bold text-sm transition-all duration-300 group shadow-sm bg-white dark:bg-[#16120e]"
+              class="selected-work-main-button flex items-center gap-2.5 px-8 py-3.5 border border-slate-300 hover:border-emerald-600 dark:border-emerald-900/60 rounded-full bg-transparent dark:bg-[#0f1715] hover:text-white text-slate-900 dark:text-white font-bold text-sm hover:bg-emerald-600 dark:hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-600/25 cursor-pointer w-fit"
             >
               <span id="selected-work-main-btn-text" class="selected-work-btn-label">{{ workData.mainButtonText || 'VIEW ALL PROJECTS' }}</span>
               <span id="selected-work-main-btn-arrow" class="selected-work-btn-arrow transition-transform group-hover:translate-x-1">→</span>
@@ -152,7 +152,7 @@ const viewProjectDetails = (projectOrId) => {
               <button 
                 @click="viewProjectDetails(workData.featuredProject)"
                 id="selected-work-featured-btn"
-                class="selected-work-featured-link inline-flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors group cursor-pointer"
+                class="selected-work-featured-link flex items-center gap-2.5 px-8 py-3.5 border border-slate-300 hover:border-emerald-600 dark:border-emerald-900/60 rounded-full bg-transparent dark:bg-[#0f1715] hover:text-white text-slate-900 dark:text-white font-bold text-sm hover:bg-emerald-600 dark:hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-600/25 cursor-pointer w-fit"
               >
                 <span>{{ workData.featuredProject.caseStudyText || 'VIEW CASE STUDY' }}</span>
                 <span class="transition-transform group-hover:translate-x-1">→</span>
@@ -248,7 +248,7 @@ const viewProjectDetails = (projectOrId) => {
             <div class="selected-work-card-footer p-6 border-t border-slate-100 dark:border-[#26201a]">
               <button 
                 @click="viewProjectDetails(project)"
-                class="selected-work-card-action inline-flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors group cursor-pointer"
+                class="selected-work-card-action flex items-center gap-2.5 px-8 py-3.5 border border-slate-300 hover:border-emerald-600 dark:border-emerald-900/60 rounded-full bg-transparent dark:bg-[#0f1715] hover:text-white text-slate-900 dark:text-white font-bold text-sm hover:bg-emerald-600 dark:hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-600/25 cursor-pointer w-fit"
               >
                 <span>{{ project.caseStudyText || 'VIEW CASE STUDY' }}</span>
                 <span class="transition-transform group-hover:translate-x-1">→</span>
@@ -282,7 +282,7 @@ const viewProjectDetails = (projectOrId) => {
         <div class="selected-work-cta-action">
           <a 
             :href="workData.ctaBox?.buttonLink" 
-            class="selected-work-cta-btn inline-flex items-center gap-3 px-8 py-4 rounded-full bg-emerald-800 dark:bg-emerald-600 hover:bg-emerald-900 dark:hover:bg-emerald-500 text-white font-bold text-sm transition-all duration-300 shadow-md"
+            class="selected-work-cta-btnflex flex items-center gap-2.5 px-8 py-3.5 border border-slate-300 hover:border-emerald-600 dark:border-emerald-900/60 rounded-full bg-transparent dark:bg-[#0f1715] hover:text-white text-slate-900 dark:text-white font-bold text-sm hover:bg-emerald-600 dark:hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-600/25 cursor-pointer w-fit"
           >
             <span>{{ workData.ctaBox?.buttonText }}</span>
             <span>→</span>

@@ -2,7 +2,7 @@ export const caseStudyData = {
    id: "case-study",
    projectId: "Vakasas",
    sectionNumber: "CASE STUDY",
-   headline: "From Challenge to Conversion",
+   headline: "From Challenge to Solution",
    description: "How I built a high-performing Shopify store that drives results.",
    metaInfo: [
       { label: "Project", value: "Vakasas" },

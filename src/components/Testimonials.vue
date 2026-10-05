@@ -171,7 +171,7 @@ const getStarType = (rating, index) => {
 
                         <div class="testimonials-card-footer-flex flex items-center justify-between pt-4 mt-auto border-t border-slate-100 dark:border-[#26201a]">
                            <div class="testimonials-card-user-info flex items-center gap-3">
-                              <img :src="review.avatar" :alt="review.name" class="testimonials-card-avatar object-cover w-10 h-10 rounded-full" />
+                              <!-- <img :src="review.avatar" :alt="review.name" class="testimonials-card-avatar object-cover w-10 h-10 rounded-full" /> -->
                               <div class="testimonials-card-text-box text-left">
                                  <h4 class="testimonials-card-name text-xs font-black text-slate-900 dark:text-white">{{ review.name }}</h4>
                                  <p class="testimonials-card-role text-[10px] text-slate-500 dark:text-slate-400 font-semibold">{{ review.role }}</p>

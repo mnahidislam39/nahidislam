@@ -1,13 +1,15 @@
 export const faqData = {
    sectionTag: "FAQ",
-   title: "Frequently Asked <span class='text-emerald-600'>Questions.</span>",
-   description: "Find answers to some of the most common questions my clients ask before starting a project.",
+   title: "Frequently Asked <span class='text-emerald-600 dark:text-emerald-400'>Questions.</span>",
+   description: "Find clear answers to common questions about services, process, and technical capabilities before starting a project.",
+   
    helpBox: {
       title: "Still have questions?",
       description: "I'm happy to help! Let's discuss your project and find the best solution for you.",
       buttonText: "Let's Talk",
       buttonLink: "#contact"
    },
+
    features: [
       {
          icon: "lucide:shield-check",
@@ -22,49 +24,87 @@ export const faqData = {
       {
          icon: "lucide:message-square",
          title: "Clear Communication",
-         description: "You'll always be updated at every step of your project."
+         description: "You'll always be updated at every step."
       },
       {
          icon: "lucide:lock",
          title: "Data Security",
-         description: "Your data and project information are always safe with me."
+         description: "Your project data is completely secure."
       }
    ],
+
+   // Categorized Questions Order: 1. Shopify -> 2. WordPress -> 3. Custom / Process
    questions: [
+      // ================= SHOPIFY =================
       {
+         category: "Shopify",
          icon: "lucide:shopping-bag",
-         question: "What services do you offer for Shopify stores?",
-         answer: "I provide comprehensive, end-to-end Shopify development and customization. This includes custom Shopify store development, theme customization, Liquid programming, Shopify 2.0 development, custom sections & templates, third-party app integration, and overall performance optimization to drive eCommerce sales."
+         question: "01. What Shopify services do you offer?",
+         answer: "I offer end-to-end Shopify development including custom Liquid theme creation, Shopify 2.0 section architecture, store setup, app integrations, and conversion rate optimization."
       },
       {
+         category: "Shopify",
+         icon: "lucide:store",
+         question: "02. Can you build a Shopify store from scratch?",
+         answer: "Yes. I develop fully customized, high-converting Shopify stores tailored to your brand identity, complete with optimized product pages, cart drawers, and mobile UX."
+      },
+      {
+         category: "Shopify",
          icon: "lucide:wrench",
-         question: "Can you customize existing Shopify themes or fix bugs?",
-         answer: "Absolutely. Whether you need custom Liquid sections added, UI layout fixes, or specific feature integrations into your current Shopify theme, I can tailor it precisely to your brand and requirements."
+         question: "03. Can you customize existing Shopify themes or fix bugs?",
+         answer: "Yes. I can modify your current Shopify theme, create bespoke Liquid sections, troubleshoot layout/script issues, and improve your mobile PageSpeed scores."
       },
+
+      // ================= WORDPRESS =================
       {
-         icon: "lucide:clock",
-         question: "How long does it typically take to complete a project?",
-         answer: "Project timelines vary depending on complexity and scope. A standard Shopify or WordPress store setup might take a few days to a couple of weeks, while custom full-stack web applications require a custom timeline based on your specific requirements."
-      },
-      {
-         icon: "lucide:shield-check",
-         question: "Do you provide post-launch support and maintenance?",
-         answer: "Yes, I ensure long-term reliability by offering ongoing support, regular updates, bug fixes, and performance monitoring to keep your website running smoothly and securely."
-      },
-      {
+         category: "WordPress",
          icon: "lucide:layout-template",
-         question: "Do you build and customize WordPress websites?",
-         answer: "Yes! I deliver fast, secure, and easy-to-manage custom WordPress solutions. My core WordPress services include custom theme development, WooCommerce online store setup, plugin customization, Elementor-based design, website speed optimization, and ongoing maintenance."
+         question: "04. Do you develop WordPress and WooCommerce websites?",
+         answer: "Yes. I build custom WordPress websites and WooCommerce online stores with Elementor or custom block themes, focused on fast loading speeds and easy content management."
       },
       {
+         category: "WordPress",
+         icon: "lucide:globe",
+         question: "05. Can you customize an existing WordPress website?",
+         answer: "Yes. I handle design revamps, plugin integration, speed optimization, responsive layout fixes, and ongoing maintenance for existing WordPress sites."
+      },
+
+      // ================= CUSTOM DEVELOPMENT & PROCESS =================
+      {
+         category: "Custom",
+         icon: "lucide:figma",
+         question: "06. Can you convert Figma designs into code?",
+         answer: "Yes. I translate Figma designs into pixel-perfect, responsive code for Shopify themes, WordPress sites, or custom Vue.js/Laravel web applications."
+      },
+      {
+         category: "Custom",
          icon: "lucide:code-2",
-         question: "What technologies do you use for Full-Stack development",
-         answer: "For full-stack and custom web solutions, I utilize modern technologies including HTML5, CSS3, SCSS, Tailwind CSS, JavaScript, jQuery, Vue.js, PHP, Laravel framework and MySQL database design."
-      },     
+         question: "07. Can you build custom web applications?",
+         answer: "Yes. Using JavaScript, Vue.js, PHP, Laravel, and MySQL, I build custom web applications, admin dashboards, and dynamic database-driven features."
+      },
+      {
+         category: "Custom",
+         icon: "lucide:zap",
+         question: "08. Can you fix website bugs and optimize performance?",
+         answer: "Yes. I diagnose technical performance bottlenecks and optimize Core Web Vitals, scripts, and asset loading to achieve 90+ speed scores on mobile and desktop."
+      },
+      {
+         category: "Custom",
+         icon: "lucide:messages-square",
+         question: "09. How do you handle project communication?",
+         answer: "I maintain clear and regular updates through direct messaging or email, keeping project goals, progress, and deliverables transparent throughout development."
+      },
+      {
+         category: "Custom",
+         icon: "lucide:rocket",
+         question: "10. How do I start a project with you?",
+         answer: "Simply send your project brief through the contact form below or via email. I will review your requirements and respond within 24 hours to discuss the next steps."
+      }
    ],
+
    ctaBanner: {
       title: "Ready to Start Your Project?",
-      description: "Let's turn your ideas into a stunning digital experience.",
+      description: "Let's turn your ideas into a stunning, high-converting store.",
       highlights: [
          { icon: "lucide:message-square-text", title: "Fast Response", desc: "Within 24 Hours" },
          { icon: "lucide:shield-check", title: "Free Consultation", desc: "No Obligation" },

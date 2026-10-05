@@ -131,7 +131,8 @@ onUnmounted(() => {
           </div>
 
           <div class="hero-cta-group flex justify-center md:justify-start flex-wrap items-center gap-4 relative z-30">
-            <a class="hero-primary-btn flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm transition-all shadow-lg shadow-emerald-600/25 cursor-pointer"
+           
+            <a class="hero-primary-btn flex items-center gap-2.5 px-8 py-3.5 border border-slate-300 dark:border-emerald-900/60 rounded-full bg-emerald-600 hover:bg-transparent text-white font-bold text-sm transition-all shadow-lg shadow-emerald-600/25 cursor-pointer"
               :href="hero.primaryCta?.link">
               <span>{{ hero.primaryCta?.text }}</span>
               <div
@@ -139,7 +140,8 @@ onUnmounted(() => {
                 <Icon icon="lucide:arrow-right" />
               </div>
             </a>
-            <a class="hero-secondary-btn px-8 py-3.5 rounded-full bg-white dark:bg-[#0f1715] border border-slate-300 dark:border-emerald-900/60 text-slate-900 dark:text-white font-bold text-sm hover:bg-slate-50 dark:hover:bg-emerald-700 transition-all shadow-md cursor-pointer"
+           
+            <a class="hero-secondary-btn flex items-center gap-2.5 px-8 py-3.5 border border-slate-300 dark:border-emerald-900/60 rounded-full bg-white dark:bg-[#0f1715] text-slate-900 dark:text-white font-bold text-sm hover:bg-slate-50 dark:hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-600/25 cursor-pointer w-fit hover:bg-emerald-700"
               :href="hero.secondaryCta?.link">
               {{ hero.secondaryCta?.text }}
             </a>
@@ -164,9 +166,9 @@ onUnmounted(() => {
 
               <!-- Dynamic Reviewers Avatars -->
               <div class="review-avatars flex items-center -space-x-2">
-                <img v-for="(reviewer, index) in reviewerAvatars" :key="index"
+                <!-- <img v-for="(reviewer, index) in reviewerAvatars" :key="index"
                   class="avatar-img w-9 h-9 rounded-full border-2 border-[#fbf9f4] dark:border-[#0b0f0e] object-cover shadow-sm transition-colors duration-300"
-                  :src="reviewer.image" :alt="reviewer.name">
+                  :src="reviewer.image" :alt="reviewer.name"> -->
               </div>
 
               <!-- Dynamic Review Content Box -->

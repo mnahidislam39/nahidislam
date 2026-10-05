@@ -13,44 +13,45 @@ export const clientReviewData = {
    ],
    reviews: [
       {
-         quote: "Nahid did an outstanding job customizing our Shopify store. He understood our requirements perfectly and delivered on time. Will definitely work with him again!",
-         name: "Michael Brown",
-         role: "E-commerce Entrepreneur",
-         avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+         quote: "Communication was clear and reliable. feedback was implemented well. and the agreed scope was delivered professionally. The store was set up responsively and important Shopify elements such as markets, shipping structure and the general store setup were prepared as discussed.",
+         name: "cptlglo's",
+         role: "",
+         // avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
          rating: 5,
          icon: "lucide:shopping-bag"
       },
       {
-         quote: "\"Very professional and skilled developer. He fixed issues on our Shopify store and improved the speed significantly. Highly recommended!\"",
-         name: "Sophia Williams",
-         role: "Store Owner",
-         avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
-         rating: 4.5,
+         quote: "Fantastic outcome, very professional delivery high recommended working with the amazing team of people.",
+         name: "diegocalvo",
+         role: "",
+         // avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+         rating: 5,
          icon: "lucide:shopping-bag"
       },
       {
-         quote: "\"Nahid built a clean and modern WordPress website for our business. Great attention to detail and excellent support throughout the project.\"",
-         name: "David Thompson",
-         role: "Marketing Manager",
-         avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80",
+         quote: "Great guy to work with.",
+         name: "Isldorosmoschog",
+         role: "",
+         // avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
          rating: 5,
-         icon: "lucide:globe"
+         icon: "lucide:shopping-bag"
       },
       {
-         quote: "He developed a custom web application for our team that streamlined our workflow. Very reliable and easy to work with. Excellent experience!",
-         name: "Daniel Smith",
-         role: "CTO, TechSolutions",
-         avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80",
-         rating: 4.5,
-         icon: "lucide:code"
+         quote: "Very placed with the final result.",
+         name: "rashawnda",
+         role: "",
+         // avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+         rating: 5,
+         icon: "lucide:shopping-bag"
       },
       {
-         quote: "He developed a custom web application for our team that streamlined our workflow. Very reliable and easy to work with. Excellent experience!",
-         name: "Daniel Smith",
-         role: "CTO, TechSolutions",
-         avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80",
+         quote: "fabulous, great attention to detail, and definitely exceeded my expectations",
+         name: "",
+         role: "",
+         // avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
          rating: 5,
-         icon: "lucide:code"
+         icon: "lucide:shopping-bag"
       },
+
    ]
 };

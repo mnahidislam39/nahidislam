@@ -13,7 +13,7 @@ setEffect('magneticCursor', false); // Cursor বন্ধ করার জন�
 
 <template>
    <main
-      class="min-h-screen bg-[#fbf9f4] dark:bg-[#0b0f0e] text-slate-900 dark:text-white selection:bg-emerald-500 selection:text-white relative font-sans transition-colors duration-300 ">
+      class="min-h-screen  bg-[#fbf9f4] dark:bg-[#0b0f0e] text-slate-900 dark:text-white selection:bg-emerald-500 selection:text-white relative font-sans transition-colors duration-300 ">
 
       <Header />
 
