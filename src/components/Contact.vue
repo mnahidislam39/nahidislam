@@ -109,7 +109,7 @@ const handleSubmit = async () => {
 
 <template>
    <section ref="elementRef" id="contact"
-      class="contact-section relative px-4 py-18 overflow-hidden bg-[#fbf9f4] dark:bg-[#0f0d0b] sm:px-6 lg:px-8 text-slate-900 dark:text-slate-300 transition-colors duration-300">
+      class="contact-section relative px-4 py-18 overflow-hidden bg-white dark:bg-[#0f0d0b] sm:px-6 lg:px-8 text-slate-900 dark:text-slate-300 transition-colors duration-300">
 
       <div id="contact-container" :class="['contact-container max-w-[1440px] mx-auto relative z-10 scroll-zoom-container', { 'start-zoom': isVisible }]">
 

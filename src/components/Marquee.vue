@@ -7,7 +7,7 @@ const { elementRef: sectionRef, isVisible } = useScrollReveal();
 </script>
 
 <template>
-  <section ref="sectionRef" class="bg-[#fbf9f4] dark:bg-[#0f0d0b] py-10 overflow-hidden border-t border-slate-100 dark:border-[#26201a] transition-colors duration-300">
+  <section ref="sectionRef" class="bg-white dark:bg-[#0f0d0b] py-10 overflow-hidden border-t border-slate-100 dark:border-[#26201a] transition-colors duration-300">
     <div class="w-full overflow-hidden transition-all duration-1000 ease-out"
        :class="isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'">
       <div class="marquee-container flex overflow-hidden relative mask-gradient w-full">

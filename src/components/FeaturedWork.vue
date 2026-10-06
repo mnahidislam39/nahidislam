@@ -52,7 +52,7 @@ import { useScrollReveal } from '../composables/useScrollReveal';
 
 <template>
    <section ref="elementRef"
-      class="featured-work-section relative px-4 py-18 overflow-hidden bg-[#fbf9f4] dark:bg-[#0f0d0b] sm:px-6 lg:px-8 text-slate-900 dark:text-slate-200 transition-colors duration-300"
+      class="featured-work-section relative px-4 py-18 overflow-hidden bg-white dark:bg-[#0f0d0b] sm:px-6 lg:px-8 text-slate-900 dark:text-slate-200 transition-colors duration-300"
       id="featuredWork">
       <!-- Main Container -->
       <div :class="[

@@ -8,7 +8,7 @@ const { elementRef: sectionRef, isVisible } = useScrollReveal();
 
 <template>
    <section ref="sectionRef" :id="techData.id"
-      class="tech-stack-section bg-[#fbf9f4] dark:bg-[#0f0d0b] py-18 px-4 sm:px-6 lg:px-8 text-slate-900 dark:text-slate-300 relative overflow-hidden transition-colors duration-300">
+      class="tech-stack-section bg-white dark:bg-[#0f0d0b] py-18 px-4 sm:px-6 lg:px-8 text-slate-900 dark:text-slate-300 relative overflow-hidden transition-colors duration-300">
 
       <div id="tech-stack-container" class="max-w-[1440px] mx-auto relative z-10 transition-all duration-1000 ease-out"
          :class="isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-12 scale-95'">

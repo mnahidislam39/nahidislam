@@ -37,9 +37,9 @@ const { elementRef: leftContentRef, isVisible: leftIsVisible } = useScrollReveal
 const { elementRef: rightColRef, isVisible: rightIsVisible } = useScrollReveal();
 
 // dynamic titles array: heroData এর dynamicTitle কে | দিয়ে split করে নেয়া হচ্ছে (অথবা কাস্টম লিস্ট ব্যবহার করতে পারেন)
-const titles = hero.dyanmicTitle 
-  ? hero.dyanmicTitle.split('|').map(t => t.trim()) 
-  : [ 'Shopify Expert', 'Wordpress Developer', 'Full Stack Developer' ];
+const titles = hero.dyanmicTitle
+  ? hero.dyanmicTitle.split('|').map(t => t.trim())
+  : ['Shopify Expert', 'Wordpress Developer', 'Full Stack Developer'];
 
 const currentTitle = ref('');
 let titleIndex = 0;
@@ -110,9 +110,8 @@ onUnmounted(() => {
             <h1
               class="hero-main-title flex flex-col text-2xl md:text-2xl font-black tracking-tight text-slate-900 dark:text-emerald-500 leading-[1.1] transition-colors duration-300">
               <!-- {{ hero.titlePrefix }} -->
-               <span
-                class="hero-highlight-name text-emerald-600 text-5xl md:text-7xl dark:text-emerald-400">{{
-                  hero.highlightName }}</span>
+              <span class="hero-highlight-name text-emerald-600 text-5xl md:text-7xl dark:text-emerald-400">{{
+                hero.highlightName }}</span>
             </h1>
             <h2
               class="hero-dynamic-title h-7 text-lg sm:text-xl md:text-2xl font-semibold text-emerald-700 dark:text-emerald-500 animate-pulse py-8 transition-colors duration-300 flex items-center justify-center sm:justify-start gap-1">
@@ -124,14 +123,14 @@ onUnmounted(() => {
             </h2>
             <p
               class="hero-subtitle max-w-[600px] text-slate-600 dark:text-slate-300 font-medium text-base sm:text-lg transition-colors duration-300">
-              {{ hero.subtitle }}  
+              {{ hero.subtitle }}
               <!-- {{ hero.heroDescription }} -->
             </p>
 
           </div>
 
           <div class="hero-cta-group flex justify-center md:justify-start flex-wrap items-center gap-4 relative z-30">
-           
+
             <a class="hero-primary-btn flex items-center gap-2.5 px-4 py-3 border border-slate-300 dark:border-emerald-900/60 rounded-full bg-emerald-600 hover:bg-transparent text-white dark:hover:text-white hover:text-black font-bold text-sm transition-all shadow-lg shadow-emerald-600/25 cursor-pointer"
               :href="hero.primaryCta?.link">
               <span>{{ hero.primaryCta?.text }}</span>
@@ -140,11 +139,11 @@ onUnmounted(() => {
                 <Icon icon="lucide:arrow-right" />
               </div>
             </a>
-           
+
             <a class="hero-secondary-btn flex items-center gap-2.5 px-4 py-3 border border-slate-300 dark:border-emerald-900/60 rounded-full bg-transparent dark:bg-transparent text-slate-900 dark:text-white font-bold text-sm dark:hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-600/25 cursor-pointer w-fit hover:bg-emerald-700 hover:text-white"
               :href="hero.secondaryCta?.link">
               {{ hero.secondaryCta?.text }}
-               <div
+              <div
                 class="hero-btn-arrow-box w-6 h-6 rounded-full bg-emerald-600/80 text-white flex items-center justify-center text-xs">
                 <Icon icon="lucide:arrow-right" />
               </div>

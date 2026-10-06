@@ -65,7 +65,7 @@ onUnmounted(() => {
 <template>
    <!-- relative & overflow-hidden দিয়ে ছবিটিকে শুধুমাত্র ফুটারের মধ্যে লক করা হয়েছে -->
    <footer ref="elementRef" id="footer"
-      class="footer-wrapper bg-[#fbf9f4] dark:bg-[#0b0f0e] text-slate-800 dark:text-slate-300 relative overflow-hidden font-sans border-t border-slate-200 dark:border-emerald-950/40 transition-colors duration-300">
+      class="footer-wrapper bg-white dark:bg-[#0b0f0e] text-slate-800 dark:text-slate-300 relative overflow-hidden font-sans border-t border-slate-200 dark:border-emerald-950/40 transition-colors duration-300">
 
       <div 
          class="absolute inset-0 w-full h-[130%] -top-[15%] bg-cover bg-center pointer-events-none z-0 opacity-1 dark:opacity-100 transition-transform duration-100 ease-out"

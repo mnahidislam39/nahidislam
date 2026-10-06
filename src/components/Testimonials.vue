@@ -51,7 +51,7 @@ const getStarType = (rating, index) => {
    <section
       ref="elementRef"
       id="testimonials"
-      class="relative px-4 py-18 bg-[#fbf9f4] dark:bg-[#0f0d0b] testimonials-section sm:px-6 lg:px-8 text-slate-900 dark:text-slate-300 transition-colors duration-700"
+      class="relative px-4 py-18 bg-white dark:bg-[#0f0d0b] testimonials-section sm:px-6 lg:px-8 text-slate-900 dark:text-slate-300 transition-colors duration-700"
    >
       <div
          id="testimonials-container"

@@ -36,7 +36,7 @@ onUnmounted(() => {
 
 <template>
    <section ref="sectionRef" id="process-section"
-      class="relative px-4 py-18 bg-[#fbf9f4] dark:bg-[#0f0d0b] process-section sm:px-6 lg:px-8 text-slate-900 dark:text-slate-300 transition-colors duration-700">
+      class="relative px-4 py-18 bg-white dark:bg-[#0f0d0b] process-section sm:px-6 lg:px-8 text-slate-900 dark:text-slate-300 transition-colors duration-700">
 
       <!-- Main Container Div with Animation Binding -->
       <div id="process-container" :class="['max-w-[1440px] mx-auto relative z-10 scroll-zoom-container', { 'start-zoom': isVisible }]">
@@ -94,7 +94,7 @@ onUnmounted(() => {
                      </p>
                   </div>
 
-                  <div class="relative z-10 w-16 h-16 rounded-2xl bg-[#fbf9f4] dark:bg-[#0f0d0b] border border-slate-200 dark:border-[#26201a] shadow-md flex items-center justify-center text-amber-700 dark:text-emerald-400 text-2xl transform group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300">
+                  <div class="relative z-10 w-16 h-16 rounded-2xl bg-white dark:bg-[#0f0d0b] border border-slate-200 dark:border-[#26201a] shadow-md flex items-center justify-center text-amber-700 dark:text-emerald-400 text-2xl transform group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300">
                      <Icon :icon="processData.steps[0]?.icons?.[0] || 'lucide:box'" />
                   </div>
                </div>
@@ -105,7 +105,7 @@ onUnmounted(() => {
                      2
                   </span>
 
-                  <div class="relative z-10 mb-6 w-16 h-16 rounded-2xl bg-[#fbf9f4] dark:bg-[#0f0d0b] border border-slate-200 dark:border-[#26201a] shadow-md flex items-center justify-center text-amber-700 dark:text-emerald-400 text-2xl transform group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300">
+                  <div class="relative z-10 mb-6 w-16 h-16 rounded-2xl bg-white dark:bg-[#0f0d0b] border border-slate-200 dark:border-[#26201a] shadow-md flex items-center justify-center text-amber-700 dark:text-emerald-400 text-2xl transform group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300">
                      <Icon :icon="processData.steps[1]?.icons?.[0] || 'lucide:wrench'" />
                   </div>
 
@@ -123,7 +123,7 @@ onUnmounted(() => {
                      3
                   </span>
 
-                  <div class="relative z-10 mb-6 w-16 h-16 rounded-2xl bg-[#fbf9f4] dark:bg-[#0f0d0b] border border-slate-200 dark:border-[#26201a] shadow-md flex items-center justify-center text-amber-700 dark:text-emerald-400 text-2xl transform group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300">
+                  <div class="relative z-10 mb-6 w-16 h-16 rounded-2xl bg-white dark:bg-[#0f0d0b] border border-slate-200 dark:border-[#26201a] shadow-md flex items-center justify-center text-amber-700 dark:text-emerald-400 text-2xl transform group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300">
                      <Icon :icon="processData.steps[2]?.icons?.[0] || 'lucide:truck'" />
                   </div>
 

@@ -9,7 +9,7 @@ const { elementRef, isVisible } = useScrollReveal(0.1, false);
 </script>
 
 <template>
-   <section ref="elementRef" class="case-study-section bg-[#fbf9f4] dark:bg-[#0f0d0b] py-18 px-4 sm:px-6 lg:px-8 text-slate-900 dark:text-slate-300 relative transition-colors duration-300" :id="caseData.id">
+   <section ref="elementRef" class="case-study-section bg-white dark:bg-[#0f0d0b] py-18 px-4 sm:px-6 lg:px-8 text-slate-900 dark:text-slate-300 relative transition-colors duration-300" :id="caseData.id">
       
       <div :class="['case-study-container max-w-[1440px] mx-auto relative z-10 scroll-zoom-container', { 'start-zoom': isVisible }]">
          

@@ -36,7 +36,7 @@ onUnmounted(() => {
 
 <template>
    <section ref="sectionRef" :id="services.id"
-      class="services-section bg-[#fbf9f4] dark:bg-[#0f0d0b] py-18 px-4 sm:px-6 lg:px-8 text-slate-900 dark:text-slate-300 relative transition-colors duration-300">
+      class="services-section bg-white dark:bg-[#0f0d0b] py-18 px-4 sm:px-6 lg:px-8 text-slate-900 dark:text-slate-300 relative transition-colors duration-300">
 
       <!-- Max width container with Global Scroll Zoom Effect -->
       <div id="services-container" :class="['max-w-[1400px] mx-auto relative z-10 flex flex-col gap-10 scroll-zoom-container', { 'start-zoom': isVisible }]">

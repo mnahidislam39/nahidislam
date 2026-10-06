@@ -15,7 +15,7 @@ const toggleAccordion = (index) => {
 </script>
 
 <template>
-   <section ref="elementRef" id="faq" class="relative px-4 py-18 bg-[#fbf9f4] dark:bg-[#0f0d0b] sm:px-6 lg:px-8 text-slate-900 dark:text-slate-300 transition-colors duration-300">
+   <section ref="elementRef" id="faq" class="relative px-4 py-18 bg-white dark:bg-[#0f0d0b] sm:px-6 lg:px-8 text-slate-900 dark:text-slate-300 transition-colors duration-300">
       <div id="faq-main-container" :class="['faq-container max-w-[1440px] mx-auto relative z-10 scroll-zoom-container', { 'start-zoom': isVisible }]">
 
          <!-- Top Grid -->

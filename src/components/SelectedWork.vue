@@ -54,7 +54,7 @@ const viewProjectDetails = (projectOrId) => {
   <section 
     ref="sectionRef" 
     :id="workData.id"
-    class="selected-work-section bg-[#fbf9f4] dark:bg-[#0f0d0b] py-18 px-4 sm:px-6 lg:px-8 text-slate-900 dark:text-slate-300 relative transition-colors duration-300"
+    class="selected-work-section bg-white dark:bg-[#0f0d0b] py-18 px-4 sm:px-6 lg:px-8 text-slate-900 dark:text-slate-300 relative transition-colors duration-300"
   >
     <div 
       id="selected-work-max-width-container" 
