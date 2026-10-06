@@ -85,7 +85,7 @@ const viewProjectDetails = (projectOrId) => {
 
           <div id="selected-work-main-btn-wrapper" class="selected-work-btn-wrapper text-center md:text-left">
             <a 
-              :href="workData.mainButtonLink || '#all-projects'" 
+              :href="workData.mainButtonLink || '#featuredWork'" 
               id="selected-work-main-btn"
               class="selected-work-main-button flex items-center gap-2.5 px-8 py-3.5 border border-slate-300 hover:border-emerald-600 dark:border-emerald-900/60 rounded-full bg-transparent dark:bg-[#0f1715] hover:text-white text-slate-900 dark:text-white font-bold text-sm hover:bg-emerald-600 dark:hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-600/25 cursor-pointer w-fit"
             >

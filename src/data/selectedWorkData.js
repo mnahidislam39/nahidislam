@@ -4,7 +4,7 @@ export const selectedWorkData = {
    headline: "Selected Shopify Work",
    description: "A selection of Shopify experiences focused on usability, performance and conversion.",
    mainButtonText: "View All Projects",
-   mainButtonLink: "#",
+   mainButtonLink: "#featuredWork",
    featuredProject: {
       id: "vevano-home",
       badge: "FEATURED PROJECT",

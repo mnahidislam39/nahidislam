@@ -129,15 +129,15 @@ const openResumeModal = (e) => {
       class="site-header-wrapper fixed top-0 left-0 right-0 z-50 flex items-center justify-center transition-all duration-300 pointer-events-none"
       :class="[
          isScrolled
-            ? (isDark ? 'pt-0 px-0 bg-[#120f0c] text-white border-[#26211c] shadow-[0_15px_35px_rgba(0,0,0,0.25)]' : 'pt-0 px-0 bg-[#fbf9f4] text-slate-900 border-slate-200/90 shadow-[0_15px_35px_rgba(0,0,0,0.06)]')
+            ? (isDark ? 'pt-0 px-0 bg-[#120f0c] text-white border-[#26211c] shadow-[0_15px_35px_rgba(0,0,0,0.25)]' : 'pt-0 px-0 bg-white text-slate-900 border-slate-200/90 shadow-[0_15px_35px_rgba(0,0,0,0.06)]')
             : 'pt-4 px-4'
       ]" id="site-header-wrapper">
       <div
          class="site-nav-container pointer-events-auto flex items-center justify-between transition-all duration-300 relative"
          :class="[
-            isDark ? 'bg-[#120f0c] text-white border-[#26211c] shadow-[0_15px_35px_rgba(0,0,0,0.25)]' : 'bg-[#fbf9f4] text-slate-900 border-slate-200/90 shadow-[0_15px_35px_rgba(0,0,0,0.06)]',
+            isDark ? 'bg-[#120f0c] text-white border-[#26211c] shadow-[0_15px_35px_rgba(0,0,0,0.25)]' : 'bg-white text-slate-900 border-slate-200/90 ',
             isScrolled
-               ? 'w-full max-w-[1440px] mx-auto rounded-none border-x-0 border-t-0 px-6 sm:px-12 py-3.5 backdrop-blur-md bg-[#120f0c]/95 dark:bg-[#120f0c]/95 shadow-md'
+               ? 'w-full max-w-[1440px] mx-auto rounded-none border-x-0 border-t-0 px-6 sm:px-12 py-3.5 backdrop-blur-md bg-[#120f0c]/95 dark:bg-[#120f0c]/95 '
                : 'w-full max-w-[1440px] mx-auto rounded-full px-4 py-2.5 sm:px-6 sm:py-3 border'
          ]" id="site-nav-container">
 
@@ -151,7 +151,7 @@ const openResumeModal = (e) => {
          <!-- Nav Links -->
          <nav
             class="desktop-nav-menu items-center hidden gap-8 text-xs font-bold lg:flex transition-colors duration-300"
-            :class="isDark ? 'text-slate-300' : 'text-slate-600'" id="desktop-nav-menu">
+            :class="isDark ? 'text-slate-300' : 'text-slate-900'" id="desktop-nav-menu">
             <a v-for="(link, idx) in headerData.navLinks" :key="idx" :href="link.href"
                @click="handleNavClick(link.href, $event)"
                class="desktop-nav-link-item transition-colors relative py-1 text-sm uppercase cursor-pointer" :class="[
@@ -175,8 +175,8 @@ const openResumeModal = (e) => {
             </button>
 
             <button
-               class="desktop-cta-button hidden px-4 py-2 text-sm rounded-full font-bold transition-all shadow-md cursor-pointer sm:inline-block"
-               :class="isDark ? 'bg-[#009966] text-white hover:bg-[transparent] hover:text-white border border-[#009966] hover:border-[#009966]' : 'bg-white text-black hover:bg-[#009966] hover:text-white'"
+               class="desktop-cta-button flex items-center justify-center hidden px-4 py-2 text-sm rounded-full font-bold transition-all shadow-md cursor-pointer sm:inline-block"
+               :class="isDark ? 'bg-[#009966] text-white hover:bg-[transparent] hover:text-white border border-[#009966] hover:border-[#009966]' : 'bg-transparent border border-[#009966] text-black hover:bg-[#009966] hover:text-white'"
                id="desktop-cta-button" @click="openResumeModal">
                {{ headerData.ctaText }}
             </button>
@@ -196,7 +196,7 @@ const openResumeModal = (e) => {
             <div v-if="isOpen"
                class="mobile-dropdown-container absolute left-0 right-0 z-40 p-6 flex flex-col gap-4 pointer-events-auto lg:hidden transition-all duration-300"
                :class="[
-                  isDark ? 'bg-[#120f0c] text-white border-[#26211c] shadow-[0_20px_40px_rgba(0,0,0,0.4)]' : 'bg-[#fbf9f4] text-slate-900 border-slate-200 shadow-[0_20px_40px_rgba(0,0,0,0.1)]',
+                  isDark ? 'bg-[#120f0c] text-white border-[#26211c] shadow-[0_20px_40px_rgba(0,0,0,0.4)]' : 'bg-white text-slate-900 border-slate-200 shadow-[0_20px_40px_rgba(0,0,0,0.1)]',
                   isScrolled ? 'top-full rounded-b-3xl rounded-t-none border-t-0' : 'top-full mt-2 rounded-3xl border'
                ]" id="mobile-dropdown-container">
                <nav class="mobile-nav-links-list flex flex-col gap-3 text-sm font-bold" id="mobile-nav-links-list">
@@ -212,7 +212,7 @@ const openResumeModal = (e) => {
                </nav>
 
                <button class="mobile-cta-button w-full py-3 rounded-full font-bold text-xs text-center transition-all shadow-md cursor-pointer sm:hidden"
-                  :class="isDark ? 'bg-white text-black hover:bg-[#009966] hover:text-white' : 'bg-slate-900 text-white hover:bg-[#009966] hover:text-white'"
+                  :class="isDark ? 'bg-transparent border border-[#009966] text-white hover:bg-[#009966] hover:text-white' : 'bg-transparent border border-[#009966] text-emerald-600 hover:bg-[#009966] hover:text-white'"
                   id="mobile-cta-button" @click="openResumeModal">
                   {{ headerData.ctaText }}
                </button>

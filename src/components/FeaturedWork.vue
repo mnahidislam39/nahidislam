@@ -5,49 +5,49 @@ import { Icon } from '@iconify/vue';
 import { useRouter } from 'vue-router';
 import { useScrollReveal } from '../composables/useScrollReveal';
 
-// assets foulder theke dynamic image path URL generate korar function
-const getImageUrl = (name) => {
-   return new URL(`../assets/${name}`, import.meta.url).href;
-};
+   // assets foulder theke dynamic image path URL generate korar function
+   const getImageUrl = (name) => {
+      return new URL(`../assets/${name}`, import.meta.url).href;
+   };
 
-// Swiper Vue.js components & modules
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Navigation, Pagination } from 'swiper/modules';
+   // Swiper Vue.js components & modules
+   import { Swiper, SwiperSlide } from 'swiper/vue';
+   import { Navigation, Pagination } from 'swiper/modules';
 
-// Swiper CSS styles
-import 'swiper/css';
-import 'swiper/css/navigation';
+   // Swiper CSS styles
+   import 'swiper/css';
+   import 'swiper/css/navigation';
 
-const router = useRouter();
+   const router = useRouter();
 
-// Card ebong "View Project" click action
-const viewProjectDetails = (id) => {
-   router.push({
-      path: `/project/${id}`,
-      query: { from: 'featuredWork' }
+   // Card ebong "View Project" click action
+   const viewProjectDetails = (id) => {
+      router.push({
+         path: `/project/${id}`,
+         query: { from: 'featuredWork' }
+      });
+   };
+
+   // featuredWorkData
+   const featured = featuredWorkData;
+   const modules = [Navigation, Pagination];
+
+   // Active Category State
+   const activeCategory = ref("All");
+
+   // Scroll Reveal Composable
+   const { elementRef, isVisible } = useScrollReveal(0.15, false);
+
+   // Filtered Projects Computed Property
+   const filteredProjects = computed(() => {
+      if (activeCategory.value === "All") {
+         return featured.projects;
+      }
+      return featured.projects.filter(project =>
+         project.category?.toLowerCase() === activeCategory.value.toLowerCase() ||
+         project.techBadge?.toLowerCase() === activeCategory.value.toLowerCase()
+      );
    });
-};
-
-// featuredWorkData
-const featured = featuredWorkData;
-const modules = [Navigation, Pagination];
-
-// Active Category State
-const activeCategory = ref("All");
-
-// Scroll Reveal Composable
-const { elementRef, isVisible } = useScrollReveal(0.15, false);
-
-// Filtered Projects Computed Property
-const filteredProjects = computed(() => {
-   if (activeCategory.value === "All") {
-      return featured.projects;
-   }
-   return featured.projects.filter(project =>
-      project.category?.toLowerCase() === activeCategory.value.toLowerCase() ||
-      project.techBadge?.toLowerCase() === activeCategory.value.toLowerCase()
-   );
-});
 </script>
 
 <template>
