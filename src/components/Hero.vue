@@ -132,7 +132,7 @@ onUnmounted(() => {
 
           <div class="hero-cta-group flex justify-center md:justify-start flex-wrap items-center gap-4 relative z-30">
            
-            <a class="hero-primary-btn flex items-center gap-2.5 px-8 py-3.5 border border-slate-300 dark:border-emerald-900/60 rounded-full bg-emerald-600 hover:bg-transparent text-white font-bold text-sm transition-all shadow-lg shadow-emerald-600/25 cursor-pointer"
+            <a class="hero-primary-btn flex items-center gap-2.5 px-4 py-3 border border-slate-300 dark:border-emerald-900/60 rounded-full bg-emerald-600 hover:bg-transparent text-white dark:hover:text-white hover:text-black font-bold text-sm transition-all shadow-lg shadow-emerald-600/25 cursor-pointer"
               :href="hero.primaryCta?.link">
               <span>{{ hero.primaryCta?.text }}</span>
               <div
@@ -141,21 +141,25 @@ onUnmounted(() => {
               </div>
             </a>
            
-            <a class="hero-secondary-btn flex items-center gap-2.5 px-8 py-3.5 border border-slate-300 dark:border-emerald-900/60 rounded-full bg-white dark:bg-[#0f1715] text-slate-900 dark:text-white font-bold text-sm hover:bg-slate-50 dark:hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-600/25 cursor-pointer w-fit hover:bg-emerald-700"
+            <a class="hero-secondary-btn flex items-center gap-2.5 px-4 py-3 border border-slate-300 dark:border-emerald-900/60 rounded-full bg-transparent dark:bg-transparent text-slate-900 dark:text-white font-bold text-sm dark:hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-600/25 cursor-pointer w-fit hover:bg-emerald-700 hover:text-white"
               :href="hero.secondaryCta?.link">
               {{ hero.secondaryCta?.text }}
+               <div
+                class="hero-btn-arrow-box w-6 h-6 rounded-full bg-emerald-600/80 text-white flex items-center justify-center text-xs">
+                <Icon icon="lucide:arrow-right" />
+              </div>
             </a>
           </div>
 
           <div class="skills-wrapper relative flex flex-row items-center">
             <div
-              class="skill-icon-item relative flex items-center justify-center cursor-pointer group [&:not(:first-child)]:-ml-4"
+              class="skill-icon-item relative flex items-center justify-center cursor-pointer group [&:not(:first-child)]:-ml-3.5"
               v-for="(skill, sIdx) in hero.skillIcons" :key="sIdx" :title="skill.name">
-              <div class="skill-ping-ring absolute inset-0 rounded-full bg-[#e5e0d3]"></div>
+              <div class="skill-ping-ring absolute inset-0 rounded-full bg-white "></div>
               <div
-                class="skill-circle-box relative flex items-center justify-center w-11 h-11 transition-transform border-2 border-[#e5e0d3] dark:border-[#fcfcfc] rounded-full shadow-lg group-hover:scale-110 group-hover:z-30 transition-colors duration-300"
-                :class="[skill.style === 'amber' ? 'text-black' : 'bg-[#e5e0d3] text-slate-900 dark:text-white']">
-                <Icon class="skill-svg-icon text-lg" :icon="skill.icon" />
+                class="skill-circle-box relative flex items-center justify-center w-12 h-12 transition-transform border-2 border-emerald-200 dark:border-[#fcfcfc] rounded-full shadow-lg group-hover:scale-110 group-hover:z-30 transition-colors duration-300"
+                :class="[skill.style === 'amber' ? 'text-black' : 'bg-white text-slate-900 dark:text-white']">
+                <Icon class="skill-svg-icon text-xl" :icon="skill.icon" />
               </div>
             </div>
           </div>
@@ -211,7 +215,7 @@ onUnmounted(() => {
           </div>
 
           <div v-for="(badge, bIdx) in hero.floatingBadges" :key="bIdx" :class="badge.position"
-            class="bg-white dark:bg-[#121a18] border border-slate-200 dark:border-emerald-900/50 px-4 py-2.5 rounded-2xl shadow-xl flex items-center gap-3 z-20">
+            class="bg-white dark:bg-[#121a18] border border-slate-200 dark:border-emerald-900/50 px-4 py-2.5 rounded-full shadow-xl flex items-center gap-3 z-20">
             <div
               class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center animate-pulse">
               <Icon :icon="badge.icon" class="text-base" />
