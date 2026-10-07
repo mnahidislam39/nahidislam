@@ -1,11 +1,11 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
-import { useRouter, useRoute } from 'vue-router'; // Router ও Route ইম্পোর্ট করুন
+import { useRouter, useRoute } from 'vue-router';
 import { footerData } from '../data';
 import { Icon } from '@iconify/vue';
 import { useScrollReveal } from '../composables/useScrollReveal';
 
-import footerBgImg from '/nahid.png'; 
+import footerBgImg from '../assets/nahidnew.jpg'; 
 
 const footer = footerData;
 const { elementRef, isVisible } = useScrollReveal(0.1, true);
@@ -27,7 +27,7 @@ const handleScroll = () => {
 const scrollToSection = async (targetHref) => {
    if (!targetHref) return;
 
-   // ১. যদি ইন্টারনাল হ্যাশ লিঙ্ক না হয় (যেমন external url)
+   // ১. যদি ইন্টারনাল হ্যাশ লিঙ্ক না হয় (যেমন external url)
    if (!targetHref.startsWith('#')) {
       window.location.href = targetHref;
       return;
@@ -35,9 +35,7 @@ const scrollToSection = async (targetHref) => {
 
    // ২. আপনি যদি হোম পেজে না থাকেন (Single Project Page-এ থাকেন)
    if (route.path !== '/') {
-      // প্রথমে হোম পেজে যান
       await router.push('/');
-      // পেজ লোড হওয়ার জন্য সামান্য ডিলে দিয়ে স্ক্রোল করুন
       setTimeout(() => {
          const targetElement = document.querySelector(targetHref);
          if (targetElement) {
@@ -67,26 +65,27 @@ onUnmounted(() => {
    <footer ref="elementRef" id="footer"
       class="footer-wrapper bg-white dark:bg-[#0b0f0e] text-slate-800 dark:text-slate-300 relative overflow-hidden font-sans border-t border-slate-200 dark:border-emerald-950/40 transition-colors duration-300">
 
+      <!-- Background Image Layer (Opacity ঠিক করা হয়েছে) -->
       <div 
-         class="absolute inset-0 w-full h-[130%] -top-[15%] bg-cover bg-center pointer-events-none z-0 opacity-1 dark:opacity-100 transition-transform duration-100 ease-out"
+         class="absolute inset-0 w-full h-[130%] -top-[15%] bg-cover bg-center pointer-events-none z-0 opacity-80 dark:opacity-40 transition-transform duration-100 ease-out"
          :style="{ 
             backgroundImage: `url(${footerBgImg})`,
             transform: `translate3d(0, ${scrollY}px, 0)` 
          }"
       ></div>
 
-      <!-- Overlay Layer (লেখা যাতে স্পষ্ট পড়া যায়) -->
-      <div class="absolute inset-0 bg-gradient-to-b from-[#fbf9f4]/90 via-[#fbf9f4]/60 to-[#046947]/40 dark:from-[#0b0f0e]/95 dark:via-[#0b0f0e]/70 dark:to-[#046947]/50 pointer-events-none z-0"></div>
+      <!-- Overlay Layer (Light Mode-এ ইমেজের দৃশ্যমানতা বাড়ানোর জন্য ওপারসিটি কমানো হয়েছে) -->
+      <div class="absolute inset-0 bg-gradient-to-b from-black/70 to-[#046947]/30 dark:from-[#0b0f0e]/25 dark:via-[#0b0f0e]/5 dark:to-[#046947]/50 pointer-events-none z-0"></div>
 
       <!-- Top CTA & Big Title Section -->
       <div id="footer-top-container" :class="['max-w-[1440px] mx-auto px-5 sm:px-6 lg:px-12 pt-16 pb-20 relative z-10 scroll-zoom-container', { 'start-zoom': isVisible }]">
          <div id="footer-top-cta" class="flex flex-col items-center justify-center text-center">
             
-            <div class="w-12 h-12 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center mb-6 text-slate-700 dark:text-white text-xl font-bold bg-emerald-200/60 dark:bg-emerald-900/50 shadow-sm">
+            <div class="w-12 h-12 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center mb-6 text-slate-700 dark:text-white text-xl font-bold bg-emerald-200/60 dark:bg-emerald-900/50 shadow-sm backdrop-blur-sm">
                <Icon icon="lucide:circle-dot" />
             </div>
 
-            <h2 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-900 dark:text-white uppercase max-w-4xl leading-tight mb-8">
+            <h2 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-100 dark:text-white uppercase max-w-4xl leading-tight mb-8">
                {{ footer.personal.title }} <br class="hidden sm:inline" />  {{ footer.personal.subTitle }}
             </h2>
 
@@ -97,7 +96,7 @@ onUnmounted(() => {
             </a>
 
             <div class="mt-2">
-               <h1 class="text-6xl sm:text-7xl lg:text-9xl font-black text-[#046947] dark:text-[#00d492] tracking-wider uppercase select-none drop-shadow-sm transition-colors duration-300">
+               <h1 class="text-6xl sm:text-7xl lg:text-9xl font-black text-emerald-500 dark:text-[#00d492] tracking-wider uppercase select-none drop-shadow-sm transition-colors duration-300">
                   {{ footer.personal.firstName }} {{ footer.personal.lastName }}
                </h1>
             </div>

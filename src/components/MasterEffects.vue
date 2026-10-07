@@ -163,7 +163,7 @@ onUnmounted(() => {
       <div v-if="effectsConfig.gridSpotlight" class="pointer-events-none fixed inset-0 z-0 overflow-hidden">
          <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px]"></div>
          <div 
-            class="absolute w-[500px] h-[500px] rounded-full bg-[#046947]/15 dark:bg-[#00d492]/10 blur-[110px] -translate-x-1/2 -translate-y-1/2 transition-transform duration-75 ease-out"
+            class="absolute w-[500px] h-[500px] rounded-full bg-[#046947]/10 dark:bg-[#00d492]/10 blur-[100px] -translate-x-1/2 -translate-y-1/2 transition-transform duration-75 ease-out"
             :style="{ left: `${mouseX}px`, top: `${mouseY}px` }"
          ></div>
       </div>

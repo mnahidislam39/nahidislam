@@ -3,7 +3,7 @@ import Hero from '../components/Hero.vue';
 import Marquee from '../components/Marquee.vue';
 import TechStack from '../components/TechStack.vue';
 import Services from '../components/Services.vue';
-import SelectedWork from '../components/SelectedWork.vue';
+// import SelectedWork from '../components/SelectedWork.vue';
 import CaseStudy from '../components/CaseStudy.vue';
 import FeaturedWork from '../components/FeaturedWork.vue';
 import Testimonials from '../components/Testimonials.vue';
@@ -20,7 +20,7 @@ import Contact from '../components/Contact.vue';
       <Marquee />
       <TechStack />
       <Services />
-      <SelectedWork />
+      <!-- <SelectedWork /> -->
       <CaseStudy />
       <FeaturedWork />
       <Testimonials />

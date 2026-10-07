@@ -35,6 +35,23 @@ import { useScrollReveal } from '../composables/useScrollReveal';
    // Active Category State
    const activeCategory = ref("All");
 
+   // Dynamic Categories (data.js এর প্রজেক্টগুলোর ক্যাটাগরির ওপর নির্ভর করে অটো জেনারেট হবে)
+   const dynamicCategories = computed(() => {
+      if (!featured.projects) return ["All"];
+
+      const rawCategories = featured.projects
+         .map(project => project.category)
+         .filter(Boolean);
+
+      const uniqueCategories = Array.from(
+         new Set(
+            rawCategories.map(cat => cat.charAt(0).toUpperCase() + cat.slice(1).toLowerCase())
+         )
+      );
+
+      return ["All", ...uniqueCategories];
+   });
+
    // Scroll Reveal Composable
    const { elementRef, isVisible } = useScrollReveal(0.15, false);
 
@@ -99,7 +116,7 @@ import { useScrollReveal } from '../composables/useScrollReveal';
                <div
                   class="featured-category-filters-container flex gap-2 bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] p-2 rounded-full shadow-sm overflow-x-auto w-full"
                   id="category-filters">
-                  <button v-for="(cat, cIdx) in featured.categories" :key="cIdx" @click="activeCategory = cat" :class="[
+                  <button v-for="(cat, cIdx) in dynamicCategories" :key="cIdx" @click="activeCategory = cat" :class="[
                      'featured-category-filter-btn flex gap-2 items-center justify-between w-fit px-6 py-3 rounded-full font-bold text-xs sm:text-sm transition-all duration-300 cursor-pointer border whitespace-nowrap',
                      activeCategory === cat
                         ? 'bg-emerald-600 dark:bg-emerald-600 text-white dark:text-white border-emerald-600 shadow-md'
@@ -129,7 +146,7 @@ import { useScrollReveal } from '../composables/useScrollReveal';
                   class="featured-swiper-slide-item !h-auto">
                   <!-- Project Card -->
                   <div
-                 class="project-card bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] shadow-[0_10px_30px_rgba(0,0,0,0.03)] flex flex-col justify-between h-[100%] max-h-[55vh] hover:border-emerald-500/50 transition-all">
+                  class="project-card bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] shadow-[0_10px_30px_rgba(0,0,0,0.03)] flex flex-col justify-between h-[100%] max-h-[55vh] hover:border-emerald-500/50 transition-all">
 
                      <!-- Thumbnail Preview -->
                      <div

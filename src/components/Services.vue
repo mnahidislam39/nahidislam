@@ -206,7 +206,7 @@ onUnmounted(() => {
                   <p class="text-xs text-slate-900 dark:text-slate-300 font-medium">{{ services.ctaBox.subTextSecondary }}</p>
                </div>
                <a :href="services.ctaBox.buttonLink"
-                  class="flex items-center gap-2.5 px-8 py-3.5 border border-slate-300 dark:border-emerald-900/60 rounded-full bg-white dark:bg-[#0f1715] text-slate-900 dark:text-white font-bold text-sm hover:bg-slate-50 dark:hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-600/25 cursor-pointer w-fit hover:bg-emerald-700">
+                  class="flex items-center gap-2.5 px-8 py-3.5 border border-slate-300 dark:border-emerald-900/60 rounded-full bg-transprent dark:bg-[#0f1715] text-slate-900 dark:text-white font-bold text-sm hover:bg-slate-50 dark:hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-600/25 cursor-pointer w-fit hover:bg-emerald-700">
                   <span class="">{{ services.ctaBox.buttonText }}</span>
                   <span>→</span>
                </a>

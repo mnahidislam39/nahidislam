@@ -5,7 +5,7 @@ export const caseStudyData = {
    headline: "From Challenge to Solution",
    description: "How I built a high-performing Shopify store that drives results.",
    metaInfo: [
-      { label: "Project", value: "Vakasas" },
+      { label: "Project", value: "Vakaja" },
       { label: "Platform", value: "Shopify" },
       { label: "Category", value: "Card" },
       { label: "Role", value: "Design & Development" }

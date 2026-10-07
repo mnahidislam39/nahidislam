@@ -18,13 +18,13 @@ export const selectedWorkData = {
 
    projects: [
       {
-         id: "luminos-skin",
-         title: "Ophi Studio",
-         category: "Skincare",
-         description: "Skincare store with custom sections, product bundles, and subscription functionality.",
-         challenge: "Slow mobile loading (30% speed score) & poor SEO.",
-         solution: "Liquid optimization, asset cleanup & custom subscription widget.",
-         result: "30% ➔ 90% Increase", // Speed boost metric added
+         id: "ophi-studio",
+         title: "Ophi Studio", 
+         category: "Lifestyle & Fashion Brand",
+         description: "Designed and developed an elegant, high-converting product showcase and catalog website for Premier Floors USA, a premier hardwood flooring distributor. The site presents extensive engineered wood collections, finish swatches, and custom flooring samples in a clean, minimalist design optimized for interior designers and residential clients.",
+         challenge: "The client needed a high-end UK storefront that balanced visual elegance with top-tier search performance and accessible user journeys across mobile devices.",
+         solution: "Customized Shopify 2.0 sections using Liquid, optimized dynamic media assets, implemented high-contrast layout accessibility, and structured clean semantic HTML for full SEO compliance.",         
+         result: "30% ➔ 90% Increase", 
          conversionResult: "+55% Growth",
          tags: ["Shopify", "Liquid", "Subscription", "Responsive"],
          caseStudyText: "View Case Study",

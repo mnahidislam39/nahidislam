@@ -33,8 +33,8 @@ export const heroData = {
   ],
 
   primaryCta: { 
-    text: "View Shopify Work", 
-    link: "#selected-work" 
+    text: "View My Work", 
+    link: "#featuredWork" 
   },
   secondaryCta: { 
     text: "Let's Work Together", 

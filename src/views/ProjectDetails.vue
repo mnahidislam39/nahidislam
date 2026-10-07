@@ -189,7 +189,7 @@ const goBack = () => {
 
               <!-- Dynamic Meta Info -->
               <div
-                class="project-details-meta-grid grid grid-cols-2 gap-6 py-6 border-t border-b border-slate-200 dark:border-[#26201a] mb-8">
+                class="project-details-meta-grid grid grid-cols-2 gap-6 py-6  mb-8">
                 <div v-if="projectData.category" class="project-details-meta-item">
                   <div
                     class="project-details-meta-label text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">

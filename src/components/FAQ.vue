@@ -41,8 +41,8 @@ const toggleAccordion = (index) => {
                </div>
 
                <!-- 4 Badges Box -->
-               <div class="faq-features-grid-card bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] p-6 shadow-sm grid grid-cols-2 gap-4 items-center">
-                  <div v-for="(badge, bIdx) in faqData.features" :key="bIdx" class="faq-feature-item flex flex-col items-center px-2 py-1 text-center">
+               <div class="faq-features-grid-card  bg-white dark:bg-[#16120e] border border-slate-200/90 dark:border-[#26201a] rounded-[2.5rem] p-6 shadow-sm grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                  <div v-for="(badge, bIdx) in faqData.features" :key="bIdx" class="faq-feature-item relative sticky top-24 lg:relative lg:top-0  bg-white dark:bg-[#16120e]  flex flex-col items-center px-2 py-1 text-center">
                      <div class="faq-feature-icon-box flex items-center justify-center w-10 h-10 mb-2 text-lg rounded-xl bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400">
                         <Icon :icon="badge.icon" />
                      </div>
